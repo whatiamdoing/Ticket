@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.ticket.ui.fonts.CustomFontTextView
+        android:id="@+id/tv_rules"
+        android:gravity="center"
+        android:textSize="40sp"
+        android:textColor="@color/dark_grey"
+        android:text="@string/tutorial"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_small_8"
+        android:layout_alignParentTop="true"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_rules"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        android:layout_below="@+id/tv_rules"
+        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/spacing_small_8"
+        android:layout_marginEnd="6dp"
+        android:src="@drawable/win_ticket"/>
+
+    <com.ticket.ui.fonts.CustomFontTextView
+        android:gravity="center"
+        android:textSize="22sp"
+        android:textColor="@color/dark_grey"
+        android:text="@string/rules_of_the_game_f"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/iv_rules"
+        android:layout_marginStart="@dimen/spacing_tiny_4"
+        android:layout_marginEnd="@dimen/spacing_tiny_4"
+        android:layout_marginTop="@dimen/spacing_normal_16" />
+
+    <ImageView
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/hand"
+        android:layout_width="80dp"
+        android:layout_height="80dp"/>
+
+</RelativeLayout>

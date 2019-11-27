@@ -8,8 +8,11 @@
     <color name="light_pink">#8C4156</color>
     <color name="basic">#26364F</color>
     <color name="light_violet">#463A52</color>
+    <color name="dark_grey">#3c3c3c</color>
+    <color name="red">#FF0000</color>
 
 
     <color name="white">#fff</color>
     <color name="black">#000</color>
+
 </resources>
