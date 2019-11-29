@@ -7,7 +7,7 @@
     <TextView
         android:id="@+id/ready"
         android:text="@string/go"
-        style="@style/Standart.huge40"
+        style="@style/type.huge40"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_centerVertical="true"/>
