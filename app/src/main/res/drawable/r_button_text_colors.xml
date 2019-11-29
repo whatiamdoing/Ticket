@@ -3,7 +3,7 @@
     <!-- Focused and not pressed -->
     <item android:state_focused="true"
         android:state_pressed="false"
-        android:color="@color/dark_grey" />
+        android:color="@color/dark_grey"/>
 
     <!-- Focused and pressed -->
     <item android:state_focused="true"

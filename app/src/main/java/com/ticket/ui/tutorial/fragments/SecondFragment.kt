@@ -16,10 +16,4 @@ class SecondFragment : Fragment() {
     ): View? {
         return inflater.inflate(R.layout.fragment_two, container, false)
     }
-
-//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        tv_fragment_name.text = "Fragment One"
-//    }
-
-
 }

@@ -16,16 +16,11 @@ class TutorialActivity : AppCompatActivity() {
 
         val adapter = ViewPageAdapter(supportFragmentManager)
 
-//        adapter.addFragment(FragmentOne(), "One")
-//        adapter.addFragment(FragmentTwo(), "Two")
-//        adapter.addFragment(FragmentThree(), "Three")
-
         adapter.addFragment(FirstFragment())
         adapter.addFragment(SecondFragment())
         adapter.addFragment(ThirdFragment())
 
         viewPager.adapter = adapter
-        //tabs.setupWithViewPager(viewPager)
         dots.attachViewPager(viewPager)
     }
 }

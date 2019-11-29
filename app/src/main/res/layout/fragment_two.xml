@@ -4,11 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.ticket.ui.fonts.CustomFontTextView
+    <TextView
+        style="@style/Standart.huge40"
         android:id="@+id/tv_rules"
-        android:gravity="center"
-        android:textSize="40sp"
-        android:textColor="@color/dark_grey"
         android:text="@string/tutorial"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -26,9 +24,8 @@
         android:layout_marginEnd="6dp"
         android:src="@drawable/win_ticket"/>
 
-    <com.ticket.ui.fonts.CustomFontTextView
-        android:gravity="center"
-        android:textSize="22sp"
+    <TextView
+        style="@style/Standart.medium22"
         android:textColor="@color/dark_grey"
         android:text="@string/rules_of_the_game_f"
         android:layout_width="match_parent"
