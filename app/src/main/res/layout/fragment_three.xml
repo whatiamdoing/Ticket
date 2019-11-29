@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/ready"
+        android:text="@string/go"
+        style="@style/Standart.huge40"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_centerVertical="true"/>
+
+    <Button
+
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ready"
+        android:layout_centerHorizontal="true"
+        android:text="@string/yes"
+        android:textColor="@drawable/r_button_text_colors"
+        android:textSize="30sp"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:background="@null"/>
+
+</RelativeLayout>
