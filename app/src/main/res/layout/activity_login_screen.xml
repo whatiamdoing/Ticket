@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.login.LoginScreen"
+    android:background="@drawable/background_login">
+
+    <TextView
+        android:textSize="50sp"
+        android:gravity="center"
+        android:id="@+id/hello"
+        android:text="@string/hello"
+        android:layout_marginTop="150dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/login_et"
+        style="@style/button_tv"
+        android:hint="@string/enter_nickname"
+        android:background="@drawable/custom_et_login"
+        android:layout_below="@id/hello"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:cursorVisible="false"/>
+    <Button
+        android:textColor="@color/red"
+        android:id="@+id/login_btn"
+        android:textAllCaps="false"
+        android:text="@string/continue_l"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/login_et"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/custom_button_login"/>
+
+</RelativeLayout>
