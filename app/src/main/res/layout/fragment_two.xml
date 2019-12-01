@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        style="@style/Standart.huge40"
+        style="@style/type.huge40"
         android:id="@+id/tv_rules"
         android:text="@string/tutorial"
         android:layout_width="match_parent"
@@ -25,7 +25,7 @@
         android:src="@drawable/win_ticket"/>
 
     <TextView
-        style="@style/Standart.medium22"
+        style="@style/type.medium22"
         android:textColor="@color/dark_grey"
         android:text="@string/rules_of_the_game_f"
         android:layout_width="match_parent"
