@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android">
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
@@ -7,22 +7,29 @@
     </style>
 
 
-    <style name="Standart">
+    <style name="type">
         <item name="android:fontFamily">@font/ticket</item>
         <item name="android:textColor">@color/dark_grey</item>
         <item name="android:gravity">center</item>
     </style>
 
-    <style name="Standart.huge40">
+    <style name="type.huge40">
         <item name="android:textSize">40sp</item>
     </style>
 
-    <style name="Standart.medium22">
+    <style name="type.medium22">
         <item name="android:textSize">22sp</item>
     </style>
 
-    <style name="Standart.medium30">
+    <style name="type.medium30">
         <item name="android:textSize">30sp</item>
+    </style>
+
+    <style name="splash">
+        <item name="android:fontFamily">@font/ticket</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">60sp</item>
     </style>
 
 </resources>
