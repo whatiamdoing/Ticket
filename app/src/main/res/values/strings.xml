@@ -5,4 +5,7 @@
     <string name="rules_of_the_game_f">Если суммы не равны, то надо нажать на правую половину твоего телефона.</string>
     <string name="go">Приступим? :)</string>
     <string name="yes">Да!</string>
+    <string name="continue_l">Продолжить</string>
+    <string name="enter_nickname">Введите никнейм</string>
+    <string name="hello">Привет!</string>
 </resources>

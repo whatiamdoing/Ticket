@@ -3,6 +3,7 @@ package com.ticket.ui.tutorial
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.ticket.R
+import com.ticket.ui.login.LoginScreen
 import com.ticket.ui.tutorial.fragments.FirstFragment
 import com.ticket.ui.tutorial.fragments.SecondFragment
 import com.ticket.ui.tutorial.fragments.ThirdFragment
@@ -14,13 +15,16 @@ class TutorialActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tutorial)
 
-        val adapter = ViewPageAdapter(supportFragmentManager)
-
-        adapter.addFragment(FirstFragment())
-        adapter.addFragment(SecondFragment())
-        adapter.addFragment(ThirdFragment())
+        val adapter = ViewPageAdapter(
+            supportFragmentManager,
+            listOf(
+                FirstFragment(),
+                SecondFragment(),
+                ThirdFragment()
+            )
+        )
 
         viewPager.adapter = adapter
-        dots.attachViewPager(viewPager)
+        tabDots.setupWithViewPager(viewPager, true)
     }
 }
