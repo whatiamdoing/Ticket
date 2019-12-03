@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.login.LoginScreen"
+    tools:context=".ui.login.LoginActivity"
     android:background="@color/dark_grey">
 
     <TextView
@@ -30,7 +30,7 @@
         android:layout_height="40dp"
         android:cursorVisible="false"/>
     <Button
-        android:id="@+id/login_btn"
+        android:id="@+id/btn_login"
         android:fontFamily="@font/ticket"
         android:textColor="@color/white"
         android:textAllCaps="false"
