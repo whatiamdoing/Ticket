@@ -5,7 +5,8 @@
     android:layout_height="match_parent">
 
     <TextView
-        style="@style/type.huge40"
+        style="@style/medium40.darkGray"
+        android:gravity="center"
         android:id="@+id/tv_rules"
         android:text="@string/tutorial"
         android:layout_width="match_parent"
@@ -25,9 +26,10 @@
         android:src="@drawable/win_ticket"/>
 
     <TextView
-        style="@style/type.medium22"
+        style="@style/medium22.darkGray"
         android:text="@string/rules_of_the_game_t"
         android:layout_width="match_parent"
+        android:gravity="center"
         android:layout_height="wrap_content"
         android:layout_below="@id/iv_rules"
         android:layout_marginStart="@dimen/spacing_tiny_4"

@@ -22,6 +22,6 @@ class SplashScreen : AppCompatActivity() {
             startActivity(intent)
         },3000)
 
-        splash_iv.startAnimation(fadeInAnimation)
+        iv_logo.startAnimation(fadeInAnimation)
     }
 }
