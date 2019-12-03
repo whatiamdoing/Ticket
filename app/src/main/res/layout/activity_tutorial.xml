@@ -7,14 +7,14 @@
     tools:context=".ui.tutorial.TutorialActivity"
     android:orientation="vertical">
 
-    <com.afollestad.viewpagerdots.DotsIndicator
-        app:dot_drawable="@drawable/unselected_dot"
-        app:dot_width="6dp"
-        app:dot_height="6dp"
-        android:id="@+id/dots"
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabDots"
+        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_alignParentBottom="true"/>
+        android:layout_height="wrap_content"
+        app:tabBackground="@drawable/tab_selector"
+        app:tabGravity="center"
+        app:tabIndicatorHeight="0dp"/>
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager"
