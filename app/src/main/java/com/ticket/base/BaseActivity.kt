@@ -1,4 +1,4 @@
-package com.ticket.di.base
+package com.ticket.base
 
 import androidx.appcompat.app.AppCompatActivity
 

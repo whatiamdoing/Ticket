@@ -8,4 +8,6 @@
     <string name="continue_l">Продолжить</string>
     <string name="enter_nickname">Введите никнейм</string>
     <string name="hello">Привет!</string>
+    <string name="message_success">Успешно!</string>
+    <string name="error_enter_the_name">Пожалуйста, введите никнейм</string>
 </resources>

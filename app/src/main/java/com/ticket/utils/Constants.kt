@@ -2,7 +2,7 @@ package com.ticket.utils
 
 object Constants {
     object Api{
-        const val BASE_URL = "https://jsonplaceholder.typicode.com"
+        const val BASE_URL = "https://ticket-14620.firebaseio.com/"
     }
 
     object Splash{

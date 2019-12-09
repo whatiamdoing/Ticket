@@ -1,7 +1,7 @@
 package com.ticket.di.injection.module.component
 
 import com.ticket.di.injection.module.NetworkModule
-import com.ticket.di.network.PostListViewModel
+import com.ticket.ui.login.LoginViewModel
 import dagger.Component
 import javax.inject.Singleton
 
@@ -9,7 +9,7 @@ import javax.inject.Singleton
 @Component(modules = [(NetworkModule::class)])
 interface ViewModelInjector {
 
-    fun inject(postListViewModel: PostListViewModel)
+    fun inject(postListViewModel: LoginViewModel)
 
     @Component.Builder
     interface Builder {

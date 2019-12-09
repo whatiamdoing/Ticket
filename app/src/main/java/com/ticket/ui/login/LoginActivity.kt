@@ -3,15 +3,17 @@ package com.ticket.ui.login
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.snackbar.Snackbar
 import com.ticket.R
-import com.ticket.di.base.BaseActivity
-import com.ticket.di.network.PostListViewModel
+import com.ticket.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_login_screen.*
 
 class LoginActivity : BaseActivity() {
-    private lateinit var viewModel: PostListViewModel
+
+    private lateinit var viewModel: LoginViewModel
 
     companion object {
         fun newIntent(context: Context) = Intent(context, LoginActivity::class.java)
@@ -20,19 +22,31 @@ class LoginActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login_screen)
-        viewModel = ViewModelProviders.of(this).get(PostListViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
 
         setPostListObserver()
 
         btn_login.setOnClickListener {
-            viewModel.loadPosts()
+            saveNickname()
         }
     }
 
 
     private fun setPostListObserver() {
-        viewModel.posts.observe(this, androidx.lifecycle.Observer{
-            Snackbar.make(btn_login,"Успешно!", Snackbar.LENGTH_LONG).show()
+        viewModel.successLiveData.observe(this, androidx.lifecycle.Observer{
+            Snackbar.make(btn_login,getString(R.string.message_success), Snackbar.LENGTH_LONG).show()
         })
+    }
+
+    private fun saveNickname(){
+        val name = et_login.text.toString().trim()
+
+        if(name.isEmpty()){
+            et_login.error = getString(R.string.error_enter_the_name)
+            return
+        } else {
+            viewModel.sendName(name)
+
+        }
     }
 }

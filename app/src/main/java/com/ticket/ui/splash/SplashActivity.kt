@@ -10,7 +10,7 @@ import com.ticket.ui.tutorial.TutorialActivity
 import com.ticket.utils.Constants.Splash.SPLASH_TIME
 import kotlinx.android.synthetic.main.activity_splash_screen.*
 
-class SplashScreenActivity : AppCompatActivity() {
+class SplashActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
