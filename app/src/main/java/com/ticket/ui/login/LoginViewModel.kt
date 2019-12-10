@@ -18,7 +18,7 @@ class LoginViewModel: BaseViewModel(){
 
     private val subscriptions = CompositeDisposable()
     private val isLoading: MutableLiveData<Boolean> = MutableLiveData()
-    val errorLiveData = SingleLiveEvent<String>()
+    val errorLiveData = SingleLiveEvent<Void>()
     val successLiveData = SingleLiveEvent<String>()
 
     fun sendName(name:String){
