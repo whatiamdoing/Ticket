@@ -24,7 +24,7 @@ class LoginActivity : BaseActivity() {
         setContentView(R.layout.activity_login_screen)
         viewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
 
-        setPostListObserver()
+        observeSuccessMessage()
 
         btn_login.setOnClickListener {
             saveNickname()
@@ -32,9 +32,12 @@ class LoginActivity : BaseActivity() {
     }
 
 
-    private fun setPostListObserver() {
+    private fun observeSuccessMessage() {
         viewModel.successLiveData.observe(this, androidx.lifecycle.Observer{
             Snackbar.make(btn_login,getString(R.string.message_success), Snackbar.LENGTH_LONG).show()
+        })
+        viewModel.errorLiveData.observe(this, androidx.lifecycle.Observer{
+            Snackbar.make(btn_login,getString(R.string.message_error), Snackbar.LENGTH_LONG).show()
         })
     }
 
@@ -46,7 +49,6 @@ class LoginActivity : BaseActivity() {
             return
         } else {
             viewModel.sendName(name)
-
         }
     }
 }

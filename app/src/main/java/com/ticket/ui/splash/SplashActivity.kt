@@ -7,7 +7,7 @@ import android.os.Handler
 import android.view.animation.AnimationUtils
 import com.ticket.R
 import com.ticket.ui.tutorial.TutorialActivity
-import com.ticket.utils.Constants.Splash.SPLASH_TIME
+import com.ticket.utils.Constants.Delays.SPLASH_TIME_DELAY
 import kotlinx.android.synthetic.main.activity_splash_screen.*
 
 class SplashActivity : AppCompatActivity() {
@@ -21,7 +21,7 @@ class SplashActivity : AppCompatActivity() {
         Handler().postDelayed({
             val intent = Intent(this, TutorialActivity::class.java)
             startActivity(intent)
-        },SPLASH_TIME)
+        },SPLASH_TIME_DELAY)
 
         iv_logo.startAnimation(fadeInAnimation)
     }

@@ -5,7 +5,7 @@ object Constants {
         const val BASE_URL = "https://ticket-14620.firebaseio.com/"
     }
 
-    object Splash{
-        const val SPLASH_TIME: Long = 3000
+    object Delays{
+        const val SPLASH_TIME_DELAY: Long = 3000
     }
 }
