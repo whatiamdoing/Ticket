@@ -3,7 +3,6 @@ package com.ticket.ui.tutorial
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.ticket.R
-import com.ticket.ui.login.LoginScreen
 import com.ticket.ui.tutorial.fragments.FirstFragment
 import com.ticket.ui.tutorial.fragments.SecondFragment
 import com.ticket.ui.tutorial.fragments.ThirdFragment
