@@ -3,10 +3,12 @@ package com.ticket.ui.login
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.snackbar.Snackbar
 import com.ticket.R
 import com.ticket.base.BaseActivity
+import com.ticket.utils.setUserName
 import kotlinx.android.synthetic.main.activity_login_screen.*
 
 class LoginActivity : BaseActivity() {
@@ -41,11 +43,11 @@ class LoginActivity : BaseActivity() {
 
     private fun saveNickname(){
         val name = et_login.text.toString().trim()
-
         if(name.isEmpty()){
             et_login.error = getString(R.string.error_enter_the_name)
             return
         } else {
+            setUserName(this, name)
             viewModel.sendName(name)
         }
     }
