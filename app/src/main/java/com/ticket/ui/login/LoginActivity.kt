@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.snackbar.Snackbar
 import com.ticket.R
 import com.ticket.base.BaseActivity
+import com.ticket.utils.setUserName
 import kotlinx.android.synthetic.main.activity_login_screen.*
 
 class LoginActivity : BaseActivity() {
@@ -46,6 +47,7 @@ class LoginActivity : BaseActivity() {
             et_login.error = getString(R.string.error_enter_the_name)
             return
         } else {
+            setUserName(this, name)
             viewModel.sendName(name)
         }
     }
