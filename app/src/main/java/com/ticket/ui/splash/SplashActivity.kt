@@ -20,7 +20,7 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash_screen)
 
         val fadeInAnimation = AnimationUtils.loadAnimation(this, R.anim.fade_in)
-        
+
         var intent: Intent
         Handler().postDelayed({
             intent = if(getIsFirstLaunch(this)) {

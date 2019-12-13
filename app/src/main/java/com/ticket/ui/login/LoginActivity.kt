@@ -41,11 +41,7 @@ class LoginActivity : BaseActivity() {
     }
 
     private fun saveNickname(){
-        val reference = com.ticket.utils.SharedPrefsHelper(this)
         val name = et_login.text.toString().trim()
-        reference.setUserName(name)
-        Log.d("M_LoginActivity", name)
-
         if(name.isEmpty()){
             et_login.error = getString(R.string.error_enter_the_name)
             return
