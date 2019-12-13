@@ -1,34 +1,37 @@
 package com.ticket.utils
 
 import android.content.Context
+import com.ticket.utils.SharedPrefsHelper.Companion.PREF_KEY_LAUNCH
+import com.ticket.utils.SharedPrefsHelper.Companion.PREF_KEY_NAME
 
-class SharedPrefsHelper(context: Context) {
+fun getIsFirstLaunch(context: Context): Boolean{
+    return context.getSharedPreferences(SharedPrefsHelper.PREF_KEY_USER, Context.MODE_PRIVATE)
+        .getBoolean(PREF_KEY_LAUNCH, true)
+}
 
-    private val launchPreference = "Launch"
-    private val launchPreferenceKey = "isFirstLaunch"
-    private val usernamePreference = "Username"
-    private val usernamePreferenceKey = "SaveUserName"
+fun setFirstLaunch(context: Context, isFirstLaunch: Boolean){
+    context.getSharedPreferences(SharedPrefsHelper.PREF_KEY_USER, Context.MODE_PRIVATE)
+        .edit()
+        .putBoolean(PREF_KEY_LAUNCH, isFirstLaunch)
+        .apply()
+}
 
-    private val launch = context.getSharedPreferences(launchPreference, Context.MODE_PRIVATE)
-    private val username = context.getSharedPreferences(launchPreference, Context.MODE_PRIVATE)
+fun getUserName(context: Context): String? {
+    return context.getSharedPreferences(SharedPrefsHelper.PREF_KEY_USER, Context.MODE_PRIVATE)
+        .getString(PREF_KEY_NAME, "Друг")
+}
 
-    fun getFirstLaunchValue(): Boolean {
-        return launch.getBoolean(launchPreferenceKey, false)
-    }
+fun setUserName(context: Context, name: String) {
+    context.getSharedPreferences(SharedPrefsHelper.PREF_KEY_USER, Context.MODE_PRIVATE)
+        .edit()
+        .putString(PREF_KEY_NAME, name)
+        .apply()
+}
 
-    fun setLaunchValue(value: Boolean) {
-        val editor = launch.edit()
-        editor.putBoolean(launchPreferenceKey, value)
-        editor.apply()
-    }
-
-    fun getUserName(): String? {
-        return username.getString(usernamePreferenceKey, "Друг")
-    }
-
-    fun setUserName(name: String){
-        val editor = username.edit()
-        editor.putString(usernamePreference, name)
-        editor.apply()
+class SharedPrefsHelper{
+    companion object {
+        const val PREF_KEY_USER = "user_data"
+        const val PREF_KEY_LAUNCH = "isFirstLaunch"
+        const val PREF_KEY_NAME = "user_name"
     }
 }
