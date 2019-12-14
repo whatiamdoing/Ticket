@@ -11,4 +11,7 @@
     <string name="message_success">Успешно!</string>
     <string name="message_error">Ошибка!</string>
     <string name="error_enter_the_name">Пожалуйста, введите никнейм</string>
+    <string name="friend">Друг</string>
+    <string name="toBegin">Начать</string>
+    <string name="records">Рекорды</string>
 </resources>
