@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.menu.MenuActivity"
+    android:background="@color/dark_grey">
+
+    <ImageView
+        android:id="@+id/iv_ticket"
+        android:layout_height="250dp"
+        android:layout_width="250dp"
+        android:src="@drawable/logo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/spacing_outsize_50"/>
+
+    <TextView
+        android:id="@+id/tv_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/friend"
+        style="@style/medium50.white"
+        android:gravity="center"
+        android:layout_below="@id/iv_ticket"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/spacing_normal_16"
+        android:shadowColor="@color/black"
+        android:shadowRadius="20"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_let"
+        android:layout_width="140dp"
+        android:layout_height="50dp"
+        android:text="@string/toBegin"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        android:fontFamily="@font/ticket"
+        android:background="@drawable/custom_button_login"
+        android:layout_below="@id/tv_username"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/spacing_huge_32"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_records"
+        android:layout_width="140dp"
+        android:layout_height="50dp"
+        android:text="@string/records"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        android:fontFamily="@font/ticket"
+        android:background="@drawable/custom_button_login"
+        android:layout_below="@id/btn_let"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/spacing_normal_16"/>
+
+</RelativeLayout>

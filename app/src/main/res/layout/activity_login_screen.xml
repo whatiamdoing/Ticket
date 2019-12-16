@@ -32,7 +32,7 @@
     <Button
         android:id="@+id/btn_login"
         android:fontFamily="@font/ticket"
-        android:textColor="@color/white"
+        android:textColor="@drawable/btn_text_color"
         android:textAllCaps="false"
         android:text="@string/continue_l"
         android:layout_width="100dp"
