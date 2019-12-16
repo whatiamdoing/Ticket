@@ -28,7 +28,7 @@
         android:shadowColor="@color/black"
         android:shadowRadius="20"/>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_let"
         android:layout_width="140dp"
         android:layout_height="50dp"
@@ -42,7 +42,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/spacing_huge_32"/>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_records"
         android:layout_width="140dp"
         android:layout_height="50dp"
