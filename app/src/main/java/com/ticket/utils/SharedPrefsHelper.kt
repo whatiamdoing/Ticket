@@ -18,7 +18,7 @@ fun setFirstLaunch(context: Context, isFirstLaunch: Boolean){
 
 fun getUserName(context: Context): String? {
     return context.getSharedPreferences(SharedPrefsHelper.PREF_KEY_USER, Context.MODE_PRIVATE)
-        .getString(PREF_KEY_NAME, "Друг")
+        .getString(PREF_KEY_NAME, null)
 }
 
 fun setUserName(context: Context, name: String) {
