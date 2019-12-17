@@ -1,5 +1,6 @@
 package com.ticket.ui.splash
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -31,17 +32,17 @@ class SplashActivity : AppCompatActivity() {
                 setFirstLaunch(this, false)
                 Intent(this, TutorialActivity::class.java)
             } else {
-                Intent(this, LoginActivity::class.java)
+                if(getUserName(this) != null) {
+                    Intent(this, MenuActivity::class.java)
+                } else {
+
+                    Intent(this, LoginActivity::class.java)
+                }
             }
             startActivity(intent)
         },SPLASH_TIME_DELAY)
 
         iv_logo.startAnimation(fadeInAnimation)
 
-        if(getUserName(this) != null){
-            startActivity(MenuActivity.newIntent(this))
-        } else {
-            startActivity(LoginActivity.newIntent(this))
-        }
     }
 }
