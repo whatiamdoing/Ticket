@@ -35,7 +35,6 @@ class SplashActivity : AppCompatActivity() {
                 if(getUserName(this) != null) {
                     Intent(this, MenuActivity::class.java)
                 } else {
-
                     Intent(this, LoginActivity::class.java)
                 }
             }

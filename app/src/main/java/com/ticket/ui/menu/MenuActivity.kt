@@ -3,7 +3,6 @@ package com.ticket.ui.menu
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import androidx.lifecycle.ViewModelProviders
 import com.ticket.R
 import com.ticket.base.BaseActivity
 import com.ticket.ui.game.GameActivity

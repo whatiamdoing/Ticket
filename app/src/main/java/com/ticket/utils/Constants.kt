@@ -8,4 +8,9 @@ object Constants {
     object Delays{
         const val SPLASH_TIME_DELAY: Long = 3000
     }
+
+    object Timer{
+        const val TIMER_TIME_IN_MILLISECONDS: Long = 4000
+        const val MILLISECONDS_IN_SECONDS: Long = 1000
+    }
 }
