@@ -1,6 +1,5 @@
 package com.ticket.ui.splash
 
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -11,11 +10,9 @@ import com.ticket.ui.login.LoginActivity
 import com.ticket.ui.menu.MenuActivity
 import com.ticket.ui.tutorial.TutorialActivity
 import com.ticket.utils.Constants.Delays.SPLASH_TIME_DELAY
-import com.ticket.utils.SharedPrefsHelper
 import com.ticket.utils.getIsFirstLaunch
 import com.ticket.utils.getUserName
 import com.ticket.utils.setFirstLaunch
-import kotlinx.android.synthetic.main.activity_menu.*
 import kotlinx.android.synthetic.main.activity_splash_screen.*
 
 class SplashActivity : AppCompatActivity() {

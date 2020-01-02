@@ -7,7 +7,7 @@
     android:background="@color/white">
 
       <fragment
-        android:id="@+id/fragment"
+        android:id="@+id/fragment_game"
         android:name="com.ticket.ui.game.fragments.TimerFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

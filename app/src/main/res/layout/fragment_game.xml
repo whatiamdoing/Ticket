@@ -5,6 +5,21 @@
     android:layout_height="match_parent"
     android:background="@color/white">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_height="325dp">
+
+        <TextView
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:text="356741"
+            android:textColor="@color/very_dark_grey"
+            android:textSize="50sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
+
     <ImageView
         android:layout_above="@id/tv_points"
         android:src="@drawable/bus_ticket"
@@ -14,6 +29,7 @@
         android:layout_marginTop="@dimen/spacing_huge_32"/>
 
     <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/btn_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_info_outline_black_35dp"
@@ -24,6 +40,7 @@
         android:padding="@dimen/spacing_small_8"/>
 
     <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/btn_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_arrow_back_black_35dp"
@@ -41,14 +58,16 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_left"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="600dp"
+            android:layout_gravity="center"
             android:layout_weight="1"
             android:background="@android:color/transparent"/>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_right"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="600dp"
+            android:layout_gravity="center"
             android:layout_weight="1"
             android:background="@android:color/transparent"/>
 

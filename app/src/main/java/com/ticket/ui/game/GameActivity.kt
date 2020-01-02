@@ -9,12 +9,9 @@ import com.ticket.base.BaseActivity
 import com.ticket.ui.game.fragments.GameFragment
 import com.ticket.utils.Constants.Timer.MILLISECONDS_IN_SECONDS
 import com.ticket.utils.Constants.Timer.TIMER_TIME_IN_MILLISECONDS
-import kotlinx.android.synthetic.main.activity_game.*
 import kotlinx.android.synthetic.main.fragment_timer.*
 
 class GameActivity : BaseActivity() {
-
-
 
     companion object {
         fun newIntent(context: Context) = Intent(context, GameActivity::class.java)
@@ -24,12 +21,13 @@ class GameActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
 
+
         val prepareTimer = object : CountDownTimer(TIMER_TIME_IN_MILLISECONDS, MILLISECONDS_IN_SECONDS){
 
             override fun onFinish() {
                 val manager = supportFragmentManager
                 val transaction = manager.beginTransaction()
-                transaction.replace(R.id.fragment, GameFragment())
+                transaction.replace(R.id.fragment_game, GameFragment())
                 transaction.addToBackStack(null)
                 transaction.commit()
             }
@@ -41,3 +39,5 @@ class GameActivity : BaseActivity() {
         prepareTimer.start()
     }
 }
+
+
