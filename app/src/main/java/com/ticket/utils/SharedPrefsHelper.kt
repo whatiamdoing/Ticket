@@ -3,6 +3,7 @@ package com.ticket.utils
 import android.content.Context
 import com.ticket.utils.SharedPrefsHelper.Companion.PREF_KEY_LAUNCH
 import com.ticket.utils.SharedPrefsHelper.Companion.PREF_KEY_NAME
+import com.ticket.utils.SharedPrefsHelper.Companion.PREF_KEY_RECORD
 
 fun getIsFirstLaunch(context: Context): Boolean{
     return context.getSharedPreferences(SharedPrefsHelper.PREF_KEY_USER, Context.MODE_PRIVATE)
@@ -28,10 +29,23 @@ fun setUserName(context: Context, name: String) {
         .apply()
 }
 
+fun setUserRecord(context: Context, record: Int){
+    context.getSharedPreferences(SharedPrefsHelper.PREF_KEY_USER, Context.MODE_PRIVATE)
+        .edit()
+        .putInt(PREF_KEY_RECORD, record)
+        .apply()
+}
+
+fun getUserRecord(context: Context): Int{
+    return context.getSharedPreferences(SharedPrefsHelper.PREF_KEY_USER, Context.MODE_PRIVATE)
+        .getInt(PREF_KEY_RECORD, 0)
+}
+
 class SharedPrefsHelper{
     companion object {
         const val PREF_KEY_USER = "user_data"
         const val PREF_KEY_LAUNCH = "isFirstLaunch"
         const val PREF_KEY_NAME = "user_name"
+        const val PREF_KEY_RECORD = "user_record"
     }
 }

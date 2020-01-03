@@ -32,7 +32,7 @@ class FirstFragment : Fragment() {
             btn_exit.visibility = View.GONE
         }
         btn_exit.setOnClickListener{
-            startActivity(MenuActivity.newIntent(activity!!))
+            startActivity(GameActivity.newIntent(activity!!))
         }
     }
 }

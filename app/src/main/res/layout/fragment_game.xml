@@ -8,9 +8,10 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_alignParentTop="true"
-        android:layout_height="325dp">
+        android:layout_height="280dp">
 
         <TextView
+            android:id="@+id/tv_gameTickets"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:text="356741"
@@ -25,8 +26,8 @@
         android:src="@drawable/bus_ticket"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="70dp"
-        android:layout_marginTop="@dimen/spacing_huge_32"/>
+        android:padding="80dp"
+        android:layout_marginBottom="10dp"/>
 
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/btn_info"
@@ -91,5 +92,14 @@
         android:gravity="center"
         style="@style/medium30.darkGray"
         android:layout_marginBottom="@dimen/spacing_huge_32"/>
+
+    <TextView
+        android:id="@+id/tv_gameTime"
+        android:text="0"
+        android:gravity="center"
+        style="@style/foma50.red"
+        android:layout_above="@id/tv_points"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 </RelativeLayout>

@@ -8,7 +8,7 @@
 
     <style name="medium40">
         <item name="android:fontFamily">@font/ticket</item>
-        <item name="android:textSize">40dp</item>
+        <item name="android:textSize">40sp</item>
     </style>
 
     <style name="medium40.darkGray">
@@ -40,6 +40,15 @@
 
     <style name="medium50.white">
         <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="foma50">
+        <item name="android:textSize">50sp</item>
+        <item name="android:fontFamily">@font/foma</item>
+    </style>
+
+    <style name="foma50.red">
+        <item name="android:textColor">@color/red</item>
     </style>
 
     <style name="medium80">

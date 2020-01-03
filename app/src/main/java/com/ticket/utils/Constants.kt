@@ -6,6 +6,7 @@ object Constants {
     }
 
     object Delays{
+        const val GAME_DELAY: Long = 30000
         const val SPLASH_TIME_DELAY: Long = 3000
         const val TIME_DELAY: Long = 1000
     }
