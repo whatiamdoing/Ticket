@@ -102,4 +102,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
+    <Button
+        android:id="@+id/btn_tryAgain"
+        android:text="Попробоавть ещё раз? Да!"
+        android:gravity="center"
+        android:visibility="gone"
+        android:layout_above="@+id/tv_points"
+        android:layout_width="match_parent"
+        style="@style/foma25.red"
+        android:layout_height="wrap_content"
+        android:background="@null"/>
+
 </RelativeLayout>

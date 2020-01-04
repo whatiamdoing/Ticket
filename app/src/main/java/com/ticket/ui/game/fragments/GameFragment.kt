@@ -1,7 +1,10 @@
 package com.ticket.ui.game.fragments
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +12,7 @@ import android.view.ViewGroup
 import com.ticket.R
 import com.ticket.ui.menu.MenuActivity
 import com.ticket.ui.tutorial.TutorialActivity
+import com.ticket.utils.Constants
 import com.ticket.utils.Constants.Delays.GAME_DELAY
 import com.ticket.utils.Constants.Timer.MILLISECONDS_IN_SECONDS
 import com.ticket.utils.getUserRecord
@@ -31,30 +35,7 @@ class GameFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        val gameTimer = object : CountDownTimer(
-            GAME_DELAY,
-            MILLISECONDS_IN_SECONDS
-        ){
-            override fun onFinish() {
-                tv_gameTime?.text = "Время вышло"
-                btn_left.isClickable = false
-                btn_right.isClickable = false
-                btn_back.isClickable = true
-                btn_info.isClickable = true
-                if(getUserRecord(activity!!) < points){
-                    setUserRecord(activity!!, points)
-                    tv_record?.text = String.format(getString(R.string.record), points)
-                }
-            }
-            override fun onTick(millisUntilFinished: Long) {
-                tv_gameTime?.text = (millisUntilFinished/MILLISECONDS_IN_SECONDS).toString()
-                btn_back?.isClickable = false
-                btn_info?.isClickable = false
-            }
-        }
-        gameTimer.start()
-
+        gameStarter()
         return inflater.inflate(R.layout.fragment_game, container, false)
         }
 
@@ -73,7 +54,13 @@ class GameFragment : Fragment() {
             startActivity(TutorialActivity.newTutorialIntent(activity!!, false))
         }
         btn_back?.setOnClickListener{
-            startActivity(MenuActivity.newIntent(activity!!))
+            val builder = AlertDialog.Builder(activity!!)
+            builder.setTitle("Выйти в главное меню?")
+            builder.setPositiveButton("Да") { dialogInterface: DialogInterface, i: Int ->
+                startActivity(MenuActivity.newIntent(activity!!))
+            }
+            builder.setNegativeButton("Нет",{ dialogInterface: DialogInterface, i: Int -> })
+            builder.show()
         }
         btn_left?.setOnClickListener {
             if(ticketDefinition(tv_gameTickets.text.toString().toInt())){
@@ -89,12 +76,69 @@ class GameFragment : Fragment() {
             }
             tv_gameTickets?.text = tickets.random().toString()
         }
+        btn_tryAgain.setOnClickListener{
+            alertDialog()
+        }
     }
 
     private fun ticketDefinition(num: Int): Boolean {
         val firstHalf: Int = num / 100000 + num / 10000 % 10 + num / 1000 % 10
         val secondHalf: Int = num % 10 + num / 10 % 10 + num / 100 % 10
         return  firstHalf == secondHalf
+    }
+
+    private fun gameStarter(){
+        points = 0
+        tv_points?.text = String.format(getString(R.string.points), points)
+        tv_gameTime?.visibility = View.VISIBLE
+        btn_tryAgain?.visibility = View.GONE
+        val gameTimer = object : CountDownTimer(
+            GAME_DELAY,
+            MILLISECONDS_IN_SECONDS
+        ){
+            override fun onFinish() {
+                Handler().postDelayed({
+                    btn_tryAgain?.visibility = View.VISIBLE
+                    tv_gameTime?.visibility = View.GONE
+                }, Constants.Delays.TIME_DELAY)
+                tv_gameTime?.text = "Время вышло"
+                btn_left.isClickable = false
+                btn_right.isClickable = false
+                btn_back.isClickable = true
+                btn_info.isClickable = true
+                if(getUserRecord(activity!!) < points){
+                    setUserRecord(activity!!, points)
+                    tv_record?.text = String.format(getString(R.string.record), points)
+                }
+                alertDialog()
+            }
+            override fun onTick(millisUntilFinished: Long) {
+                tv_gameTime?.text = (millisUntilFinished/MILLISECONDS_IN_SECONDS).toString()
+                btn_back?.isClickable = false
+                btn_info?.isClickable = false
+            }
+        }
+        gameTimer.start()
+    }
+
+    private fun alertDialog(){
+        val builder = AlertDialog.Builder(activity!!)
+        if(getUserRecord(activity!!) < points){
+            builder.setMessage("Ура! Вы побили свой старый рекорд. Ваш результат: $points очков" )
+            builder.setTitle("Попробовать ещё раз?")
+        } else {
+            builder.setMessage("Ваш результат: $points очков" )
+            builder.setTitle("Попробовать ещё раз?")
+        }
+
+        builder.setPositiveButton("Да") { dialogInterface: DialogInterface, i: Int ->
+            tv_points?.text = String.format(getString(R.string.points), 0)
+            gameStarter()
+            btn_left.isClickable = true
+            btn_right.isClickable = true
+        }
+        builder.setNegativeButton("Нет") { dialogInterface: DialogInterface, i: Int -> }
+        builder.show()
     }
 }
 
