@@ -15,8 +15,9 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:text="356741"
+            android:layout_marginBottom="@dimen/spacing_huge_32"
             android:textColor="@color/very_dark_grey"
-            android:textSize="50sp"
+            android:textSize="40sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </RelativeLayout>

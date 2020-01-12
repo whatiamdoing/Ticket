@@ -5,21 +5,27 @@ import android.content.DialogInterface
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProviders
 import com.ticket.R
+import com.ticket.ui.game.GameViewModel
 import com.ticket.ui.menu.MenuActivity
 import com.ticket.ui.tutorial.TutorialActivity
 import com.ticket.utils.Constants
 import com.ticket.utils.Constants.Delays.GAME_DELAY
 import com.ticket.utils.Constants.Timer.MILLISECONDS_IN_SECONDS
+import com.ticket.utils.getUserName
 import com.ticket.utils.getUserRecord
 import com.ticket.utils.setUserRecord
 import kotlinx.android.synthetic.main.fragment_game.*
 
 class GameFragment : Fragment() {
+
+    private lateinit var gameViewModel: GameViewModel
 
     private var points = 0
 
@@ -43,6 +49,7 @@ class GameFragment : Fragment() {
         view: View,
         savedInstanceState: Bundle?) {
 
+        gameViewModel = ViewModelProviders.of(this).get(GameViewModel::class.java)
         setOnClickListeners()
         tv_gameTickets?.text = tickets.random().toString()
         tv_points?.text = String.format(getString(R.string.points), points)
@@ -89,7 +96,7 @@ class GameFragment : Fragment() {
 
     private fun gameStarter(){
         points = 0
-        tv_points?.text = String.format(getString(R.string.points), points)
+        tv_points?.text = String.format(getString(R.string.points),0)
         tv_gameTime?.visibility = View.VISIBLE
         btn_tryAgain?.visibility = View.GONE
         val gameTimer = object : CountDownTimer(
@@ -109,6 +116,7 @@ class GameFragment : Fragment() {
                 if(getUserRecord(activity!!) < points){
                     setUserRecord(activity!!, points)
                     tv_record?.text = String.format(getString(R.string.record), points)
+                    gameViewModel.sendRecord(getUserName(activity!!)!!, getUserRecord(activity!!))
                 }
                 alertDialog()
             }
@@ -123,15 +131,9 @@ class GameFragment : Fragment() {
 
     private fun alertDialog(){
         val builder = AlertDialog.Builder(activity!!)
-        if(getUserRecord(activity!!) < points){
-            builder.setMessage("Ура! Вы побили свой старый рекорд. Ваш результат: $points очков" )
-            builder.setTitle("Попробовать ещё раз?")
-        } else {
             builder.setMessage("Ваш результат: $points очков" )
             builder.setTitle("Попробовать ещё раз?")
-        }
-
-        builder.setPositiveButton("Да") { dialogInterface: DialogInterface, i: Int ->
+            builder.setPositiveButton("Да") { dialogInterface: DialogInterface, i: Int ->
             tv_points?.text = String.format(getString(R.string.points), 0)
             gameStarter()
             btn_left.isClickable = true

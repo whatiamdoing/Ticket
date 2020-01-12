@@ -3,6 +3,7 @@ package com.ticket.utils
 object Constants {
     object Api{
         const val BASE_URL = "https://ticket-14620.firebaseio.com/"
+        const val JSON_REQUEST_TYPE = "application/json; utf-8"
     }
 
     object Delays{
