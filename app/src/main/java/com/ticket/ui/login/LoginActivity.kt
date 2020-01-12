@@ -10,8 +10,10 @@ import com.ticket.R
 import com.ticket.base.BaseActivity
 import com.ticket.ui.menu.MenuActivity
 import com.ticket.utils.Constants
+import com.ticket.utils.setUserId
 import com.ticket.utils.setUserName
 import kotlinx.android.synthetic.main.activity_login_screen.*
+import java.util.*
 
 class LoginActivity : BaseActivity() {
 
@@ -47,13 +49,15 @@ class LoginActivity : BaseActivity() {
     }
 
     private fun saveNickname(){
+        val userId = UUID.randomUUID().toString()
         val name = et_login.text.toString().trim()
         if(name.isEmpty()){
             et_login.error = getString(R.string.error_enter_the_name)
             return
         } else {
             setUserName(this, name)
-            viewModel.sendName(name)
+            setUserId(this, userId)
+            viewModel.sendName(name, userId)
         }
     }
 }
