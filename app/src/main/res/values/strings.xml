@@ -17,7 +17,11 @@
     <string name="record">Рекорд: %1$d</string>
     <string name="points">Очки: %1$d</string>
     <string name="get_ready">Приготовься, игра начнётся через: %1$d</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="no">Нет</string>
+    <string name="yeah">Да</string>
+    <string name="try_one_more_time">Попробовать ещё раз?</string>
+    <string name="yours_result">Ваш результат: %1$d %2$s</string>
+    <string name="exit_to_main_menu_q">Выйти в главное меню?</string>
+    <string name="time_is_over">Время вышло</string>
 </resources>
