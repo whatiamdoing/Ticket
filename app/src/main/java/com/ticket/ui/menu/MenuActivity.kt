@@ -15,7 +15,6 @@ class MenuActivity : BaseActivity() {
         fun newIntent(context: Context) = Intent(context, MenuActivity::class.java)
     }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu)

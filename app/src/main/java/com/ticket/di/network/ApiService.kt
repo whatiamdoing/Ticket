@@ -1,6 +1,6 @@
 package com.ticket.di.network
 
-import com.squareup.moshi.FromJson
+
 import com.ticket.entity.User
 import io.reactivex.Observable
 import okhttp3.RequestBody
@@ -12,7 +12,6 @@ interface ApiService {
     @PUT("/{name}.json")
     fun createUser(@Path("name") name: String, @Body user: User): Observable<Response<ResponseBody>>
 
-    @FromJson
     @PATCH("/{name}/.json")
     fun usersRecord(@Body body: RequestBody, @Path("name") name: String): Observable<Response<ResponseBody>>
 }

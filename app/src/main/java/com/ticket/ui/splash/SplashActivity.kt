@@ -37,8 +37,6 @@ class SplashActivity : AppCompatActivity() {
             }
             startActivity(intent)
         },SPLASH_TIME_DELAY)
-
         iv_logo.startAnimation(fadeInAnimation)
-
     }
 }

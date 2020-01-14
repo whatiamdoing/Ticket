@@ -5,12 +5,9 @@ import com.ticket.base.BaseViewModel
 import com.ticket.di.network.ApiService
 import com.ticket.entity.User
 import com.ticket.utils.SingleLiveEvent
-import com.ticket.utils.getUserId
-import com.ticket.utils.setUserId
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import java.util.*
 import javax.inject.Inject
 
 

@@ -21,15 +21,13 @@ class GameActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
 
-
         val prepareTimer = object : CountDownTimer(TIMER_TIME_IN_MILLISECONDS, MILLISECONDS_IN_SECONDS){
 
             override fun onFinish() {
-                val manager = supportFragmentManager
-                val transaction = manager.beginTransaction()
-                transaction.replace(R.id.fragment_game, GameFragment())
-                transaction.addToBackStack(null)
-                transaction.commit()
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_game, GameFragment())
+                    .addToBackStack(null)
+                    .commit()
             }
 
             override fun onTick(millisUntilFinished: Long) {

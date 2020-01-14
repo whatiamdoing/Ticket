@@ -35,7 +35,6 @@ class LoginActivity : BaseActivity() {
         }
     }
 
-
     private fun observeSuccessMessage() {
         viewModel.successLiveData.observe(this, androidx.lifecycle.Observer{
             Snackbar.make(btn_login,getString(R.string.message_success), Snackbar.LENGTH_LONG).show()

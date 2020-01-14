@@ -3,8 +3,6 @@ package com.ticket.ui.game
 import androidx.lifecycle.MutableLiveData
 import com.ticket.base.BaseViewModel
 import com.ticket.di.network.ApiService
-import com.ticket.entity.User
-import com.ticket.utils.Constants
 import com.ticket.utils.Constants.Api.JSON_REQUEST_TYPE
 import com.ticket.utils.SingleLiveEvent
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -32,11 +30,19 @@ class GameViewModel: BaseViewModel(){
         subscriptions.add(apiService.usersRecord(body, name)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .doOnSubscribe { isLoading.value = true }
-            .doOnTerminate { isLoading.value = false }
+            .doOnSubscribe {
+                isLoading.value = true
+            }
+            .doOnTerminate {
+                isLoading.value = false
+            }
             .subscribe(
-                { successLiveData.call() },
-                { errorLiveData.call() }
+                {
+                    successLiveData.call()
+                },
+                {
+                    errorLiveData.call()
+                }
             ))
     }
 

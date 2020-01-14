@@ -24,4 +24,10 @@
     <string name="yours_result">Ваш результат: %1$d %2$s</string>
     <string name="exit_to_main_menu_q">Выйти в главное меню?</string>
     <string name="time_is_over">Время вышло</string>
+    <string name="try_again_btn_text">Попробоавть ещё раз? Да!</string>
+    <string name="zero">0</string>
+    <string name="any_ticket_number">356741</string>
+    <string name="point_o">очко</string>
+    <string name="point_a">очка</string>
+    <string name="point_ov">очков</string>
 </resources>

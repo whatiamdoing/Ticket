@@ -14,7 +14,6 @@ class TutorialActivity : AppCompatActivity() {
      var tutorialQualifier: Boolean? = null
 
     companion object {
-
        fun newTutorialIntent(context: Context, isForInformation: Boolean): Intent{
             val intent = Intent(context, TutorialActivity::class.java)
             intent.putExtra("extra-name", isForInformation)
@@ -45,7 +44,6 @@ class TutorialActivity : AppCompatActivity() {
                 )
             )
         }
-
         viewPager.adapter = adapter
         tabDots.setupWithViewPager(viewPager, true)
     }

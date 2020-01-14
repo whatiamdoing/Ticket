@@ -5,7 +5,6 @@ import android.content.DialogInterface
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -26,9 +25,7 @@ import kotlinx.android.synthetic.main.fragment_game.*
 class GameFragment : Fragment() {
 
     private lateinit var gameViewModel: GameViewModel
-
     private var points = 0
-
     private val tickets =
         arrayOf(114150, 425920, 461812, 479749, 499679, 207513, 401221, 777777, 111111, 222222, 112320, 105320, 543363,
         333333, 444444, 555555, 666666, 888888, 999999, 367583, 195861, 861159, 673853, 570057, 409607, 229913,
@@ -62,11 +59,11 @@ class GameFragment : Fragment() {
         }
         btn_back?.setOnClickListener{
             val builder = AlertDialog.Builder(activity!!)
-            builder.setTitle("Выйти в главное меню?")
-            builder.setPositiveButton("Да") { dialogInterface: DialogInterface, i: Int ->
+            builder.setTitle(getString(R.string.exit_to_main_menu_q))
+            builder.setPositiveButton(R.string.yeah) { dialogInterface: DialogInterface, i: Int ->
                 startActivity(MenuActivity.newIntent(activity!!))
             }
-            builder.setNegativeButton("Нет",{ dialogInterface: DialogInterface, i: Int -> })
+            builder.setNegativeButton(R.string.no,{ dialogInterface: DialogInterface, i: Int -> })
             builder.show()
         }
         btn_left?.setOnClickListener {
@@ -108,7 +105,7 @@ class GameFragment : Fragment() {
                     btn_tryAgain?.visibility = View.VISIBLE
                     tv_gameTime?.visibility = View.GONE
                 }, Constants.Delays.TIME_DELAY)
-                tv_gameTime?.text = "Время вышло"
+                tv_gameTime?.text = getString(R.string.time_is_over)
                 btn_left.isClickable = false
                 btn_right.isClickable = false
                 btn_back.isClickable = true
@@ -131,15 +128,20 @@ class GameFragment : Fragment() {
 
     private fun alertDialog(){
         val builder = AlertDialog.Builder(activity!!)
-            builder.setMessage("Ваш результат: $points очков" )
-            builder.setTitle("Попробовать ещё раз?")
-            builder.setPositiveButton("Да") { dialogInterface: DialogInterface, i: Int ->
+            builder.setMessage(String.format(getString(R.string.yours_result), points, when(points){
+                1, 21, 31, 41, 51 -> getString(R.string.point_o)
+                2, 3, 4, 22, 23, 24, 32, 33, 34, 42, 43, 44-> getString(R.string.point_a)
+                5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 25, 26, 27, 28, 29, 30, 35, 36, 37, 38, 39, 40, 45, 46, 47, 48, 49, 50 -> "очков"
+                else -> getString(R.string.point_ov)
+            }))
+            builder.setTitle(getString(R.string.try_one_more_time))
+            builder.setPositiveButton(getString(R.string.yeah)) { dialogInterface: DialogInterface, i: Int ->
             tv_points?.text = String.format(getString(R.string.points), 0)
             gameStarter()
             btn_left.isClickable = true
             btn_right.isClickable = true
         }
-        builder.setNegativeButton("Нет") { dialogInterface: DialogInterface, i: Int -> }
+        builder.setNegativeButton(getString(R.string.no)) { dialogInterface: DialogInterface, i: Int -> }
         builder.show()
     }
 }
