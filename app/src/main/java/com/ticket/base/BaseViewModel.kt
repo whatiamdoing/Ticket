@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import com.ticket.di.injection.module.NetworkModule
 import com.ticket.di.injection.module.component.DaggerViewModelInjector
 import com.ticket.di.injection.module.component.ViewModelInjector
+import com.ticket.ui.game.GameViewModel
 import com.ticket.ui.login.LoginViewModel
 
 abstract class BaseViewModel: ViewModel(){
@@ -19,6 +20,7 @@ abstract class BaseViewModel: ViewModel(){
     private fun inject() {
         when (this) {
             is LoginViewModel -> injector.inject(this)
+            is GameViewModel -> injector.inject(this)
         }
     }
 }

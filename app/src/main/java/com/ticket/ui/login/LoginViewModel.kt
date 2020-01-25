@@ -8,7 +8,6 @@ import com.ticket.utils.SingleLiveEvent
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import java.util.*
 import javax.inject.Inject
 
 
@@ -21,8 +20,8 @@ class LoginViewModel: BaseViewModel(){
     val errorLiveData = SingleLiveEvent<Void>()
     val successLiveData = SingleLiveEvent<String>()
 
-    fun sendName(name:String){
-        subscriptions.add(apiService.createUser(name, User(UUID.randomUUID().toString(), 0))
+    fun sendName(name:String, id: String){
+        subscriptions.add(apiService.createUser(name, User(id, 0))
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { isLoading.value = true }

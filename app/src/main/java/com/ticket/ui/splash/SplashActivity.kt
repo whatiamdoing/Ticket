@@ -10,11 +10,9 @@ import com.ticket.ui.login.LoginActivity
 import com.ticket.ui.menu.MenuActivity
 import com.ticket.ui.tutorial.TutorialActivity
 import com.ticket.utils.Constants.Delays.SPLASH_TIME_DELAY
-import com.ticket.utils.SharedPrefsHelper
 import com.ticket.utils.getIsFirstLaunch
 import com.ticket.utils.getUserName
 import com.ticket.utils.setFirstLaunch
-import kotlinx.android.synthetic.main.activity_menu.*
 import kotlinx.android.synthetic.main.activity_splash_screen.*
 
 class SplashActivity : AppCompatActivity() {
@@ -31,17 +29,14 @@ class SplashActivity : AppCompatActivity() {
                 setFirstLaunch(this, false)
                 Intent(this, TutorialActivity::class.java)
             } else {
-                Intent(this, LoginActivity::class.java)
+                if(getUserName(this) != null) {
+                    Intent(this, MenuActivity::class.java)
+                } else {
+                    Intent(this, LoginActivity::class.java)
+                }
             }
             startActivity(intent)
         },SPLASH_TIME_DELAY)
-
         iv_logo.startAnimation(fadeInAnimation)
-
-        if(getUserName(this) != null){
-            startActivity(MenuActivity.newIntent(this))
-        } else {
-            startActivity(LoginActivity.newIntent(this))
-        }
     }
 }

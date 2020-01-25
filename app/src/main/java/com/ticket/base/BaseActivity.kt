@@ -4,7 +4,6 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
-import com.ticket.R
 
 abstract class BaseActivity: AppCompatActivity() {
     fun showMessage(messageText: String) {

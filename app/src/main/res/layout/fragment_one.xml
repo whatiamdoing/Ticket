@@ -4,6 +4,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:visibility="gone"
+        android:id="@+id/btn_exit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_close_black_35dp"
+        android:background="@android:color/transparent"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="@dimen/spacing_normal_16"
+        android:padding="@dimen/spacing_small_8"/>
+
     <TextView
         style="@style/medium40.darkGray"
         android:gravity="center"

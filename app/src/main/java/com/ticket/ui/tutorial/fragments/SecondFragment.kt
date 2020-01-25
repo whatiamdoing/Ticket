@@ -7,6 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.ticket.R
+import com.ticket.ui.menu.MenuActivity
+import com.ticket.ui.tutorial.TutorialActivity
+import com.ticket.utils.setGone
+import com.ticket.utils.setVisible
+import kotlinx.android.synthetic.main.fragment_one.*
 
 class SecondFragment : Fragment() {
 
@@ -15,5 +20,17 @@ class SecondFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_two, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val visibility = (activity!! as TutorialActivity).tutorialQualifier
+        if(visibility == false ){
+            btn_exit.setVisible()
+        } else {
+            btn_exit.setGone()
+        }
+        btn_exit.setOnClickListener{
+            startActivity(MenuActivity.newIntent(activity!!))
+        }
     }
 }
