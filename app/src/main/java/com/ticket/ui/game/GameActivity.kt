@@ -24,10 +24,11 @@ class GameActivity : BaseActivity() {
         val prepareTimer = object : CountDownTimer(TIMER_TIME_IN_MILLISECONDS, MILLISECONDS_IN_SECONDS){
 
             override fun onFinish() {
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_game, GameFragment())
-                    .addToBackStack(null)
-                    .commit()
+                supportFragmentManager.beginTransaction().apply{
+                            replace(R.id.fragment_game, GameFragment())
+                            addToBackStack(null)
+                            commit()
+                }
             }
 
             override fun onTick(millisUntilFinished: Long) {

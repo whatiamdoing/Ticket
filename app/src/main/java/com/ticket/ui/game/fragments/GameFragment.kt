@@ -74,16 +74,16 @@ class GameFragment : Fragment() {
         }
         btn_left?.setOnClickListener {
             if(isTicketHappy(currentTicket)){
-                toLeftClickedInCorrectTicket()
+                onLeftToCorrectTicket()
             } else {
-                toRightClickedInCorrectTicket()
+                onRightToCorrectTicket()
             }
         }
         btn_right?.setOnClickListener {
             if(!isTicketHappy(currentTicket)){
-                toRightClickedInWrongTicket()
+                onRightToWrongTicket()
             } else {
-                toLeftClickedInWrongTicket()
+                onLeftToWrongTicket()
             }
         }
         btn_tryAgain.setOnClickListener{
@@ -163,8 +163,8 @@ class GameFragment : Fragment() {
         tv_gameTime?.setGone()
         btn_tryAgain?.setVisible()
         builder()
-            .setMessage("Начать заново?")
-            .setTitle("Ай-ай-ай, играй честно :)")
+            .setMessage(getString(R.string.start_over))
+            .setTitle(getString(R.string.play_fair))
             .setPositiveButton(R.string.yeah) { dialogInterface: DialogInterface, i: Int ->
                 btn_left.setClickable()
                 btn_right.setClickable()
@@ -186,14 +186,14 @@ class GameFragment : Fragment() {
         tv_gameTickets?.text = currentTicket.toString()
     }
 
-    private fun toLeftClickedInCorrectTicket(){
+    private fun onLeftToCorrectTicket(){
         mistakes = 0
         points++
         tv_points?.text = String.format(getString(R.string.points), points)
         setNewTicket()
     }
 
-    private fun toRightClickedInCorrectTicket(){
+    private fun onRightToCorrectTicket(){
         mistakes++
         if(mistakes == 3){
             btn_right.setNotClickable()
@@ -204,7 +204,7 @@ class GameFragment : Fragment() {
         }
     }
 
-    private fun toLeftClickedInWrongTicket() = toRightClickedInCorrectTicket()
-    private fun toRightClickedInWrongTicket() = toLeftClickedInCorrectTicket()
+    private fun onLeftToWrongTicket() = onRightToCorrectTicket()
+    private fun onRightToWrongTicket() = onLeftToCorrectTicket()
 }
 

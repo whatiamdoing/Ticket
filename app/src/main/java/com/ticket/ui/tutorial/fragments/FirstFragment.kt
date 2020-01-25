@@ -23,8 +23,8 @@ class FirstFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val visibility = (activity!! as TutorialActivity).tutorialQualifier
-        if(visibility == false ){
+        val isVisible = (activity!! as TutorialActivity).tutorialQualifier
+        if(isVisible == false ){
             btn_exit.setVisible()
         } else {
             btn_exit.setGone()

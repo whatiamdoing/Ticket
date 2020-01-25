@@ -30,4 +30,6 @@
     <string name="point_o">очко</string>
     <string name="point_a">очка</string>
     <string name="point_ov">очков</string>
+    <string name="start_over">Начать заново?</string>
+    <string name="play_fair">Ай-ай-ай, играй честно :)</string>
 </resources>
