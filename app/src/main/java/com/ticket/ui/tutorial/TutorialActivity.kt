@@ -8,6 +8,7 @@ import com.ticket.R
 import com.ticket.ui.tutorial.fragments.FirstFragment
 import com.ticket.ui.tutorial.fragments.SecondFragment
 import com.ticket.ui.tutorial.fragments.ThirdFragment
+import com.ticket.utils.Constants.Others.EXTRA_NAME
 import kotlinx.android.synthetic.main.activity_tutorial.*
 
 class TutorialActivity : AppCompatActivity() {
@@ -16,7 +17,7 @@ class TutorialActivity : AppCompatActivity() {
     companion object {
        fun newTutorialIntent(context: Context, isForInformation: Boolean): Intent{
             val intent = Intent(context, TutorialActivity::class.java)
-            intent.putExtra("extra-name", isForInformation)
+            intent.putExtra(EXTRA_NAME, isForInformation)
             return intent
         }
     }
@@ -25,7 +26,7 @@ class TutorialActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tutorial)
 
-        tutorialQualifier = intent.getBooleanExtra("extra-name", true)
+        tutorialQualifier = intent.getBooleanExtra(EXTRA_NAME, true)
         val adapter = if(tutorialQualifier!!){
             ViewPageAdapter(
                 supportFragmentManager,

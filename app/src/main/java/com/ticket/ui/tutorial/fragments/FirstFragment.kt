@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import com.ticket.R
 import com.ticket.ui.game.GameActivity
 import com.ticket.ui.tutorial.TutorialActivity
+import com.ticket.utils.setGone
+import com.ticket.utils.setVisible
 import kotlinx.android.synthetic.main.fragment_one.*
 
 class FirstFragment : Fragment() {
@@ -23,9 +25,9 @@ class FirstFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val visibility = (activity!! as TutorialActivity).tutorialQualifier
         if(visibility == false ){
-            btn_exit.visibility = View.VISIBLE
+            btn_exit.setVisible()
         } else {
-            btn_exit.visibility = View.GONE
+            btn_exit.setGone()
         }
         btn_exit.setOnClickListener{
             startActivity(GameActivity.newIntent(activity!!))

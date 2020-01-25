@@ -60,6 +60,6 @@ class SharedPrefsHelper{
         const val PREF_KEY_LAUNCH = "isFirstLaunch"
         const val PREF_KEY_NAME = "user_name"
         const val PREF_KEY_RECORD = "user_record"
-        const val PREF_KEY_ID = "id_name"
+        const val PREF_KEY_ID = "user_id"
     }
 }

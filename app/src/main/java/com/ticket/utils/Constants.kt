@@ -1,6 +1,6 @@
 package com.ticket.utils
 
-object Constants {
+object Constants{
     object Api{
         const val BASE_URL = "https://ticket-14620.firebaseio.com/"
         const val JSON_REQUEST_TYPE = "application/json; utf-8"
@@ -15,5 +15,17 @@ object Constants {
     object Timer{
         const val TIMER_TIME_IN_MILLISECONDS: Long = 4000
         const val MILLISECONDS_IN_SECONDS: Long = 1000
+    }
+
+    object Denominators{
+        const val TEN: Int = 10
+        const val HUNDRED: Int = 100
+        const val THOUSAND: Int = 1000
+        const val TEN_THOUSAND: Int = 10000
+        const val HUNDRED_THOUSAND: Int = 100000
+    }
+
+    object Others{
+        const val EXTRA_NAME = "name"
     }
 }

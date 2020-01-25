@@ -12,8 +12,8 @@ import org.junit.Test
 class ExampleUnitTest {
     @Test
     fun addition_isCorrect() {
-        val num = 123456
-        val firstHalf: Int = num / 100000 + num / 10000 % 10 + num / 1000 % 100
+        val num = 132123
+        val firstHalf: Int = num / 100000 + num / 10000 % 10 + num / 1000 % 10
         val secondHalf: Int = num % 10 + num / 10 % 10 + num / 100 % 10
         println(secondHalf)
     }

@@ -14,18 +14,23 @@ import com.ticket.R
 import com.ticket.ui.game.GameViewModel
 import com.ticket.ui.menu.MenuActivity
 import com.ticket.ui.tutorial.TutorialActivity
-import com.ticket.utils.Constants
+import com.ticket.utils.*
 import com.ticket.utils.Constants.Delays.GAME_DELAY
+import com.ticket.utils.Constants.Denominators.HUNDRED
+import com.ticket.utils.Constants.Denominators.HUNDRED_THOUSAND
+import com.ticket.utils.Constants.Denominators.TEN
+import com.ticket.utils.Constants.Denominators.TEN_THOUSAND
+import com.ticket.utils.Constants.Denominators.THOUSAND
 import com.ticket.utils.Constants.Timer.MILLISECONDS_IN_SECONDS
-import com.ticket.utils.getUserName
-import com.ticket.utils.getUserRecord
-import com.ticket.utils.setUserRecord
 import kotlinx.android.synthetic.main.fragment_game.*
 
 class GameFragment : Fragment() {
 
     private lateinit var gameViewModel: GameViewModel
     private var points = 0
+    private var mistakes = 0
+    private lateinit var gameTimer: CountDownTimer
+
     private val tickets =
         arrayOf(114150, 425920, 461812, 479749, 499679, 207513, 401221, 777777, 111111, 222222, 112320, 105320, 543363,
         333333, 444444, 555555, 666666, 888888, 999999, 367583, 195861, 861159, 673853, 570057, 409607, 229913,
@@ -33,12 +38,13 @@ class GameFragment : Fragment() {
         123456, 654321, 333467, 567789, 778932, 223589, 737924, 423772, 234688, 782193, 727812, 516923, 352503,
         234674, 672863, 678216, 261893, 216782, 399337, 680697, 638608, 289389, 711339, 444062, 968615, 405046,
         132502, 101843, 798424, 780534, 386337, 894341, 468595, 480924, 700738, 145958, 168981, 408438, 212965)
+    private var currentTicket = tickets.random()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        gameStarter()
+        startGame()
         return inflater.inflate(R.layout.fragment_game, container, false)
         }
 
@@ -48,7 +54,7 @@ class GameFragment : Fragment() {
 
         gameViewModel = ViewModelProviders.of(this).get(GameViewModel::class.java)
         setOnClickListeners()
-        tv_gameTickets?.text = tickets.random().toString()
+        tv_gameTickets?.text = currentTicket.toString()
         tv_points?.text = String.format(getString(R.string.points), points)
         tv_record?.text = String.format((getString(R.string.record)), getUserRecord(activity!!))
     }
@@ -58,91 +64,147 @@ class GameFragment : Fragment() {
             startActivity(TutorialActivity.newTutorialIntent(activity!!, false))
         }
         btn_back?.setOnClickListener{
-            val builder = AlertDialog.Builder(activity!!)
-            builder.setTitle(getString(R.string.exit_to_main_menu_q))
-            builder.setPositiveButton(R.string.yeah) { dialogInterface: DialogInterface, i: Int ->
+            builder()
+                .setTitle(getString(R.string.exit_to_main_menu_q))
+                .setPositiveButton(R.string.yeah) { dialogInterface: DialogInterface, i: Int ->
                 startActivity(MenuActivity.newIntent(activity!!))
-            }
-            builder.setNegativeButton(R.string.no,{ dialogInterface: DialogInterface, i: Int -> })
-            builder.show()
+                }
+                .setNegativeButton(R.string.no) { dialogInterface: DialogInterface, i: Int -> }
+                .show()
         }
         btn_left?.setOnClickListener {
-            if(ticketDefinition(tv_gameTickets.text.toString().toInt())){
-                points++
-                tv_points?.text = String.format(getString(R.string.points), points)
+            if(isTicketHappy(currentTicket)){
+                toLeftClickedInCorrectTicket()
+            } else {
+                toRightClickedInCorrectTicket()
             }
-            tv_gameTickets?.text = tickets.random().toString()
         }
         btn_right?.setOnClickListener {
-            if(!ticketDefinition(tv_gameTickets.text.toString().toInt())){
-                points++
-                tv_points?.text = String.format(getString(R.string.points), points)
+            if(!isTicketHappy(currentTicket)){
+                toRightClickedInWrongTicket()
+            } else {
+                toLeftClickedInWrongTicket()
             }
-            tv_gameTickets?.text = tickets.random().toString()
         }
         btn_tryAgain.setOnClickListener{
-            alertDialog()
+            showAlertDialog()
         }
     }
 
-    private fun ticketDefinition(num: Int): Boolean {
-        val firstHalf: Int = num / 100000 + num / 10000 % 10 + num / 1000 % 10
-        val secondHalf: Int = num % 10 + num / 10 % 10 + num / 100 % 10
+    private fun isTicketHappy(num: Int): Boolean {
+        val firstHalf: Int = num / HUNDRED_THOUSAND + num / TEN_THOUSAND % TEN + num / THOUSAND % TEN
+        val secondHalf: Int = num % TEN + num / TEN % TEN + num / HUNDRED % TEN
         return  firstHalf == secondHalf
     }
 
-    private fun gameStarter(){
+    private fun startGame(){
+        setNewTicket()
+        mistakes = 0
         points = 0
         tv_points?.text = String.format(getString(R.string.points),0)
-        tv_gameTime?.visibility = View.VISIBLE
-        btn_tryAgain?.visibility = View.GONE
-        val gameTimer = object : CountDownTimer(
+        tv_gameTime?.setVisible()
+        btn_tryAgain?.setGone()
+        gameTimer = object : CountDownTimer(
             GAME_DELAY,
             MILLISECONDS_IN_SECONDS
         ){
             override fun onFinish() {
                 Handler().postDelayed({
-                    btn_tryAgain?.visibility = View.VISIBLE
-                    tv_gameTime?.visibility = View.GONE
+                    btn_tryAgain?.setVisible()
+                    tv_gameTime?.setGone()
                 }, Constants.Delays.TIME_DELAY)
                 tv_gameTime?.text = getString(R.string.time_is_over)
-                btn_left.isClickable = false
-                btn_right.isClickable = false
-                btn_back.isClickable = true
-                btn_info.isClickable = true
-                if(getUserRecord(activity!!) < points){
-                    setUserRecord(activity!!, points)
-                    tv_record?.text = String.format(getString(R.string.record), points)
-                    gameViewModel.sendRecord(getUserName(activity!!)!!, getUserRecord(activity!!))
-                }
-                alertDialog()
+                btn_left.setNotClickable()
+                btn_right.setNotClickable()
+                btn_back.setClickable()
+                btn_info.setClickable()
+                setNewRecord(points)
+                showAlertDialog()
             }
             override fun onTick(millisUntilFinished: Long) {
                 tv_gameTime?.text = (millisUntilFinished/MILLISECONDS_IN_SECONDS).toString()
-                btn_back?.isClickable = false
-                btn_info?.isClickable = false
+                btn_back?.setNotClickable()
+                btn_info?.setNotClickable()
             }
         }
         gameTimer.start()
     }
 
-    private fun alertDialog(){
-        val builder = AlertDialog.Builder(activity!!)
-            builder.setMessage(String.format(getString(R.string.yours_result), points, when(points){
+    private fun showAlertDialog(){
+            builder()
+                .setMessage(String.format(getString(R.string.yours_result), points, when(points){
                 1, 21, 31, 41, 51 -> getString(R.string.point_o)
                 2, 3, 4, 22, 23, 24, 32, 33, 34, 42, 43, 44-> getString(R.string.point_a)
                 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 25, 26, 27, 28, 29, 30, 35, 36, 37, 38, 39, 40, 45, 46, 47, 48, 49, 50 -> "очков"
                 else -> getString(R.string.point_ov)
             }))
-            builder.setTitle(getString(R.string.try_one_more_time))
-            builder.setPositiveButton(getString(R.string.yeah)) { dialogInterface: DialogInterface, i: Int ->
+                .setTitle(getString(R.string.try_one_more_time))
+                .setPositiveButton(getString(R.string.yeah)) { dialogInterface: DialogInterface, i: Int ->
             tv_points?.text = String.format(getString(R.string.points), 0)
-            gameStarter()
-            btn_left.isClickable = true
-            btn_right.isClickable = true
-        }
-        builder.setNegativeButton(getString(R.string.no)) { dialogInterface: DialogInterface, i: Int -> }
-        builder.show()
+            startGame()
+            btn_left.setClickable()
+            btn_right.setClickable()
+                }
+                .setNegativeButton(getString(R.string.no)) { dialogInterface: DialogInterface, i: Int -> }
+                .show()
     }
+    private fun builder() = AlertDialog.Builder(activity!!)
+
+    private fun setNewRecord(points: Int){
+        if(getUserRecord(activity!!) < points){
+            setUserRecord(activity!!, points)
+            tv_record?.text = String.format(getString(R.string.record), points)
+            gameViewModel.sendRecord(getUserName(activity!!)!!, getUserRecord(activity!!))
+        }
+    }
+    private fun showMistakeDialog(){
+        points = 0
+        gameTimer.cancel()
+        tv_gameTime?.setGone()
+        btn_tryAgain?.setVisible()
+        builder()
+            .setMessage("Начать заново?")
+            .setTitle("Ай-ай-ай, играй честно :)")
+            .setPositiveButton(R.string.yeah) { dialogInterface: DialogInterface, i: Int ->
+                btn_left.setClickable()
+                btn_right.setClickable()
+                startGame()
+            }
+            .setNegativeButton(R.string.no) { dialogInterface: DialogInterface, i: Int ->
+                tv_points?.text = String.format(getString(R.string.points), 0)
+                btn_left.setNotClickable()
+                btn_right.setNotClickable()
+                tv_gameTime?.setInvisible()
+                btn_info.setClickable()
+                btn_back.setClickable()
+            }
+            .show()
+    }
+
+    private fun setNewTicket(){
+        currentTicket = tickets.random()
+        tv_gameTickets?.text = currentTicket.toString()
+    }
+
+    private fun toLeftClickedInCorrectTicket(){
+        mistakes = 0
+        points++
+        tv_points?.text = String.format(getString(R.string.points), points)
+        setNewTicket()
+    }
+
+    private fun toRightClickedInCorrectTicket(){
+        mistakes++
+        if(mistakes == 3){
+            btn_right.setNotClickable()
+            btn_left.setNotClickable()
+            showMistakeDialog()
+        } else {
+            setNewTicket()
+        }
+    }
+
+    private fun toLeftClickedInWrongTicket() = toRightClickedInCorrectTicket()
+    private fun toRightClickedInWrongTicket() = toLeftClickedInCorrectTicket()
 }
 
