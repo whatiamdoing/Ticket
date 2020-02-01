@@ -27,13 +27,12 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/user_list"
-        tools:listitem="@layout/item_records"
-        tools:itemCount="2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:layout_below="@id/tv_records"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="@dimen/spacing_normal_16"/>
+        tools:itemCount="2"
+        tools:listitem="@layout/item_records" />
 
     <ProgressBar
         android:id="@+id/pb_records"

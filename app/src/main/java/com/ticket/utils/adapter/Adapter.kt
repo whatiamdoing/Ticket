@@ -1,6 +1,5 @@
 package com.ticket.utils.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -15,10 +14,9 @@ class Adapter(var list: List<UserDTO>) : RecyclerView.Adapter<Holder>() {
 
     override fun getItemCount(): Int = list.size
 
-    override fun onBindViewHolder(holder: Holder, position: Int) = holder.bind(Pair(list[position].name, list[position].record))
+    override fun onBindViewHolder(holder: Holder, position: Int) = holder.bind(Triple(position, list[position].name, list[position].record))
 
     fun updateList(list: List<UserDTO>) {
-        Log.d("M_Adapter", list.toString())
         this.list = list
         notifyDataSetChanged()
     }

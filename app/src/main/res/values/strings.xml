@@ -33,4 +33,5 @@
     <string name="start_over">Начать заново?</string>
     <string name="play_fair">Ай-ай-ай, играй честно :)</string>
     <string name="one">1</string>
+    <string name="number_with_point">1.</string>
 </resources>
