@@ -3,13 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.records.RecordsActivity">
+    tools:context=".ui.records.RecordsActivity"
+    android:background="@android:color/transparent">
 
     <TextView
         android:id="@+id/tv_records"
         android:text="@string/records"
         android:gravity="center"
         style="@style/medium40.darkGray"
+        android:background="@android:color/transparent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_small_8"/>
@@ -27,12 +29,12 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/user_list"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/tv_records"
         tools:itemCount="2"
-        tools:listitem="@layout/item_records" />
+        tools:listitem="@layout/item_records"/>
 
     <ProgressBar
         android:id="@+id/pb_records"

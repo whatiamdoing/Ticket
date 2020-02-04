@@ -6,50 +6,75 @@
     android:background="@color/white">
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_height="280dp">
+        android:layout_centerHorizontal="true"
+        android:id="@+id/center_part"
+        android:layout_below="@id/upper_part"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:adjustViewBounds="true"
+            android:cropToPadding="false"
+            android:src="@drawable/bus_ticket_top" />
+
+        <ImageView
+            android:id="@+id/iv_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/iv_top"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:adjustViewBounds="true"
+            android:cropToPadding="false"
+            android:src="@drawable/bus_ticket_bottom" />
 
         <TextView
+            android:layout_below="@id/iv_top"
             android:id="@+id/tv_gameTickets"
-            android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:text="@string/any_ticket_number"
             android:textColor="@color/very_dark_grey"
             android:textSize="40sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+
     </RelativeLayout>
 
-    <ImageView
-        android:layout_above="@id/tv_points"
-        android:src="@drawable/bus_ticket"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="80dp"
-        android:layout_marginBottom="10dp"/>
+    <RelativeLayout
+    android:id="@+id/upper_part"
+    android:layout_alignParentTop="true"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <androidx.appcompat.widget.AppCompatImageButton
-        android:id="@+id/btn_info"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_info_outline_black_35dp"
-        android:background="@android:color/transparent"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="@dimen/spacing_small_8"
-        android:layout_marginEnd="@dimen/spacing_small_8"
-        android:padding="@dimen/spacing_small_8"/>
-
-    <androidx.appcompat.widget.AppCompatImageButton
+        android:layout_alignParentStart="true"
         android:id="@+id/btn_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_arrow_back_black_35dp"
         android:background="@android:color/transparent"
-        android:layout_alignParentStart="true"
         android:layout_marginTop="@dimen/spacing_small_8"
         android:layout_marginStart="@dimen/spacing_small_8"
         android:padding="@dimen/spacing_small_8"/>
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="end"
+        android:id="@+id/btn_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_info_outline_black_35dp"
+        android:background="@android:color/transparent"
+        android:layout_marginTop="@dimen/spacing_small_8"
+        android:layout_marginEnd="@dimen/spacing_small_8"
+        android:padding="@dimen/spacing_small_8"/>
+
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -74,43 +99,49 @@
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/tv_points"
-        android:text="@string/points"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/tv_record"
-        android:gravity="center"
-        style="@style/medium30.darkGray"/>
-
-    <TextView
-        android:id="@+id/tv_record"
-        android:text="@string/record"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <RelativeLayout
         android:layout_alignParentBottom="true"
-        android:gravity="center"
-        style="@style/medium30.darkGray"
-        android:layout_marginBottom="@dimen/spacing_huge_32"/>
-
-    <TextView
-        android:id="@+id/tv_gameTime"
-        android:text="@string/zero"
-        android:gravity="center"
-        style="@style/foma50.red"
-        android:layout_above="@id/tv_points"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_tryAgain"
-        android:text="@string/try_again_btn_text"
-        android:gravity="center"
-        android:visibility="gone"
-        android:layout_above="@+id/tv_points"
-        android:layout_width="match_parent"
-        style="@style/foma25.red"
-        android:layout_height="wrap_content"
-        android:background="@null"/>
+        <TextView
+            android:id="@+id/tv_gameTime"
+            android:text="@string/zero"
+            android:gravity="center"
+            style="@style/foma50.red"
+            android:layout_above="@+id/tv_points"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tv_points"
+            android:text="@string/points"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/tv_record"
+            android:gravity="center"
+            style="@style/medium30.darkGray"/>
+
+        <TextView
+            android:id="@+id/tv_record"
+            android:text="@string/record"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:gravity="center"
+            style="@style/medium30.darkGray"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_tryAgain"
+            android:text="@string/try_again_btn_text"
+            android:gravity="center"
+            android:visibility="gone"
+            android:layout_above="@+id/tv_points"
+            android:layout_width="match_parent"
+            style="@style/foma25.red"
+            android:layout_height="wrap_content"
+            android:background="@null"/>
+
+    </RelativeLayout>
 
 </RelativeLayout>
