@@ -5,20 +5,20 @@
     android:layout_height="match_parent">
 
     <androidx.appcompat.widget.AppCompatImageButton
-        android:visibility="gone"
         android:id="@+id/btn_exit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_close_black_35dp"
+        android:visibility="gone"
         android:background="@android:color/transparent"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="@dimen/spacing_small_8"
         android:padding="@dimen/spacing_normal_16"/>
 
     <TextView
-        style="@style/medium40.darkGray"
         android:id="@+id/tv_rules"
         android:text="@string/tutorial"
+        style="@style/medium40.darkGray"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -34,12 +34,14 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/spacing_small_8"
         android:layout_marginEnd="6dp"
-        android:src="@drawable/lose_ticket"/>
+        android:adjustViewBounds="true"
+        android:cropToPadding="true"
+        android:src="@drawable/lose_ticket" />
 
     <TextView
-        style="@style/medium22.darkGray"
-        android:textColor="@color/dark_grey"
         android:text="@string/rules_of_the_game_f"
+        android:textColor="@color/dark_grey"
+        style="@style/medium22.darkGray"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -48,7 +50,7 @@
         android:layout_marginEnd="@dimen/spacing_tiny_4"
         android:layout_marginTop="@dimen/spacing_normal_16" />
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
         android:src="@drawable/hand"

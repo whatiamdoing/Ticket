@@ -6,7 +6,7 @@
     tools:context=".ui.splash.SplashActivity"
     android:background="@color/dark_grey">
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/iv_logo"
         android:src="@drawable/logo"
         android:layout_centerInParent="true"

@@ -35,15 +35,16 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_login"
+        android:layout_marginTop="@dimen/spacing_small_8"
         android:text="@string/continue_l"
         android:textSize="17sp"
         android:textColor="@drawable/btn_text_color"
         android:textAllCaps="false"
         android:fontFamily="@font/baufra_demibold"
-        android:layout_width="150dp"
+        android:layout_width="250dp"
         android:layout_height="40dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="75dp"
+        android:layout_marginBottom="70dp"
         android:layout_alignParentBottom="true"
         android:background="@drawable/custom_button_login"/>
 

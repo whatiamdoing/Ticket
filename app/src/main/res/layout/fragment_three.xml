@@ -7,25 +7,25 @@
     <TextView
         android:id="@+id/ready"
         android:text="@string/go"
-        style="@style/medium40.darkGray"
         android:layout_width="match_parent"
         android:layout_height="100dp"
+        style="@style/medium40.darkGray"
         android:gravity="center"
         android:layout_centerVertical="true"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_start"
+        android:text="@string/yes"
+        android:textColor="@drawable/r_button_text_colors"
+        android:textSize="30sp"
+        android:textAlignment="center"
+        android:textAllCaps="false"
         android:fontFamily="@font/ticket"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/ready"
         android:layout_centerHorizontal="true"
-        android:text="@string/yes"
-        android:textColor="@drawable/r_button_text_colors"
-        android:textSize="30sp"
-        android:textAlignment="center"
-        android:textAllCaps="false"
         android:background="@null"/>
 
 </RelativeLayout>
