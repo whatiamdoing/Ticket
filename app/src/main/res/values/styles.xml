@@ -20,7 +20,7 @@
         <item name="android:textSize">22sp</item>
     </style>
 
-    <style name="medium22.darkGray">
+    <style name="medium22.dark_gray">
         <item name="android:textColor">@color/dark_grey</item>
     </style>
 
@@ -70,12 +70,21 @@
     </style>
 
     <style name="baufra21">
-        <item name="android:fontFamily">@font/baufa_regular</item>
+        <item name="android:fontFamily">@font/baufra_regular</item>
         <item name="android:textSize">21sp</item>
     </style>
 
+    <style name="baufra_medium21">
+        <item name="android:fontFamily">@font/baufra_medium</item>
+        <item name="android:textSize">21sp</item>
+    </style>
+
+    <style name="baufra_medium21.very_dark_grey">
+        <item name="android:textColor">@color/very_dark_grey</item>
+    </style>
+
     <style name="baufra21_ed">
-        <item name="android:fontFamily">@font/baufa_regular</item>
+        <item name="android:fontFamily">@font/baufra_regular</item>
         <item name="android:textSize">21sp</item>
     </style>
 
@@ -88,8 +97,12 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
+    <style name="baufra21.dark_grey">
+        <item name="android:textColor">@color/dark_grey</item>
+    </style>
+
     <style name="baufra60">
-        <item name="android:fontFamily">@font/baufa_regular</item>
+        <item name="android:fontFamily">@font/baufra_regular</item>
         <item name="android:textSize">60sp</item>
     </style>
 

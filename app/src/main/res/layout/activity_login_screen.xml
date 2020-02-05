@@ -9,7 +9,7 @@
     <TextView
         android:id="@+id/hello"
         android:text="@string/hello"
-        android:fontFamily="@font/baufa_regular"
+        android:fontFamily="@font/baufra_regular"
         style="@style/baufra60.white"
         android:gravity="center"
         android:layout_width="match_parent"

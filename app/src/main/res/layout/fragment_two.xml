@@ -41,7 +41,7 @@
     <TextView
         android:text="@string/rules_of_the_game_f"
         android:textColor="@color/dark_grey"
-        style="@style/medium22.darkGray"
+        style="@style/medium22.dark_gray"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
