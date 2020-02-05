@@ -6,6 +6,7 @@ import android.os.Bundle
 import com.ticket.R
 import com.ticket.base.BaseActivity
 import com.ticket.ui.game.GameActivity
+import com.ticket.ui.records.RecordsActivity
 import com.ticket.utils.getUserName
 import kotlinx.android.synthetic.main.activity_menu.*
 
@@ -20,8 +21,15 @@ class MenuActivity : BaseActivity() {
         setContentView(R.layout.activity_menu)
 
         tv_username.text = getUserName(this)
+        setOnClickListeners()
+
+    }
+    private fun setOnClickListeners(){
         btn_let.setOnClickListener {
             startActivity(GameActivity.newIntent(this))
+        }
+        btn_records.setOnClickListener {
+            startActivity(RecordsActivity.newIntent(this))
         }
     }
 }

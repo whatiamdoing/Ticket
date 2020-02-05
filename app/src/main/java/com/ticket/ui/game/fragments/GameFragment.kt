@@ -161,7 +161,9 @@ class GameFragment : Fragment() {
         points = 0
         gameTimer.cancel()
         tv_gameTime?.setGone()
-        btn_tryAgain?.setVisible()
+        btn_tryAgain.setVisible()
+        btn_info?.setClickable()
+        btn_back?.setClickable()
         builder()
             .setMessage(getString(R.string.start_over))
             .setTitle(getString(R.string.play_fair))
