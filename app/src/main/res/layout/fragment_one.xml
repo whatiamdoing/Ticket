@@ -5,8 +5,8 @@
     android:layout_height="match_parent">
 
     <androidx.appcompat.widget.AppCompatImageButton
-        android:visibility="gone"
         android:id="@+id/btn_exit"
+        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_close_black_35dp"
@@ -16,12 +16,12 @@
         android:padding="@dimen/spacing_small_8"/>
 
     <TextView
-        style="@style/medium40.darkGray"
-        android:gravity="center"
         android:id="@+id/tv_rules"
         android:text="@string/tutorial"
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        style="@style/medium40.darkGray"
+        android:gravity="center"
         android:layout_marginTop="@dimen/spacing_small_8"
         android:layout_alignParentTop="true"/>
 
@@ -34,25 +34,26 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/spacing_small_8"
         android:layout_marginEnd="6dp"
-        android:src="@drawable/win_ticket"/>
+        android:adjustViewBounds="true"
+        android:cropToPadding="false"
+        android:src="@drawable/win_ticket" />
 
     <TextView
-        style="@style/medium22.darkGray"
         android:text="@string/rules_of_the_game_t"
+        style="@style/medium22.dark_gray"
         android:layout_width="match_parent"
-        android:gravity="center"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:layout_below="@id/iv_rules"
         android:layout_marginStart="@dimen/spacing_tiny_4"
         android:layout_marginEnd="@dimen/spacing_tiny_4"
         android:layout_marginTop="@dimen/spacing_normal_16" />
     
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
         android:src="@drawable/hand"
-        android:layout_width="80dp"
-        android:layout_height="80dp"/>
-
+        android:layout_width="70dp"
+        android:layout_height="70dp"/>
 
 </RelativeLayout>

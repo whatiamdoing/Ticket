@@ -5,55 +5,54 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.menu.MenuActivity"
-    android:background="@color/dark_grey">
+    android:background="@drawable/login_background">
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/iv_ticket"
-        android:layout_height="250dp"
-        android:layout_width="250dp"
+        android:layout_height="175dp"
+        android:layout_width="175dp"
         android:src="@drawable/logo"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/spacing_outsize_50"/>
+        android:layout_above="@id/tv_username"/>
 
     <TextView
         android:id="@+id/tv_username"
+        android:text="@string/friend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/friend"
-        style="@style/medium50.white"
+        style="@style/baufra60.white"
         android:gravity="center"
-        android:layout_below="@id/iv_ticket"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/spacing_normal_16"
+        android:layout_centerInParent="true"
         android:shadowColor="@color/black"
-        android:shadowRadius="5"/>
+        android:shadowRadius="5"
+        android:layout_marginBottom="@dimen/spacing_huge_32"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_let"
-        android:layout_width="140dp"
-        android:layout_height="50dp"
         android:text="@string/toBegin"
-        android:textSize="20sp"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:textSize="19sp"
         android:textColor="@color/white"
         android:textAllCaps="false"
-        android:fontFamily="@font/ticket"
+        android:fontFamily="@font/baufra_demibold"
         android:background="@drawable/custom_button_login"
         android:layout_below="@id/tv_username"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/spacing_huge_32"/>
+        android:layout_marginBottom="@dimen/spacing_normal_16"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_records"
-        android:layout_width="140dp"
-        android:layout_height="50dp"
         android:text="@string/records"
-        android:textSize="20sp"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:textSize="19sp"
         android:textColor="@color/white"
         android:textAllCaps="false"
-        android:fontFamily="@font/ticket"
+        android:fontFamily="@font/baufra_demibold"
         android:background="@drawable/custom_button_login"
         android:layout_below="@id/btn_let"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/spacing_normal_16"/>
+        android:layout_marginBottom="@dimen/spacing_normal_16"/>
 
 </RelativeLayout>

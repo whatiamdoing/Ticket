@@ -6,7 +6,9 @@
 
     <TextView
         android:id="@+id/tv_getReady"
-        style="@style/medium50.white"
+        android:textColor="@color/white"
+        android:fontFamily="@font/baufra_demibold"
+        android:textSize="40sp"
         android:gravity="center"
         android:text="@string/get_ready"
         android:layout_width="match_parent"
