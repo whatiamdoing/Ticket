@@ -4,19 +4,19 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.ticket.R
+import com.ticket.base.BaseActivity
 import com.ticket.ui.menu.MenuActivity
 import com.ticket.utils.adapter.Adapter
 import com.ticket.utils.setGone
 import com.ticket.utils.setVisible
 import kotlinx.android.synthetic.main.activity_records.*
 
-class RecordsActivity : AppCompatActivity() {
+class RecordsActivity : BaseActivity() {
 
     private lateinit var viewModel: RecordsViewModel
     private lateinit var adapter: Adapter
@@ -31,9 +31,7 @@ class RecordsActivity : AppCompatActivity() {
 
         viewModel = ViewModelProviders.of(this).get(RecordsViewModel::class.java)
         setObservers()
-        btn_back.setOnClickListener{
-            startActivity(MenuActivity.newIntent(this))
-        }
+        setOnClickListeners()
     }
     private fun setObservers() {
         setUsersListObserver()
@@ -41,6 +39,12 @@ class RecordsActivity : AppCompatActivity() {
         observeSuccessMessage()
         observeUnSuccessMessage()
         setLoadingObserver()
+    }
+
+    private fun setOnClickListeners(){
+        btn_back.setOnClickListener{
+            startActivity(MenuActivity.newIntent(this))
+        }
     }
 
     private fun initRecycles() {
@@ -59,13 +63,13 @@ class RecordsActivity : AppCompatActivity() {
 
     private fun observeSuccessMessage(){
         viewModel.successLiveData.observe(this, androidx.lifecycle.Observer{
-            Snackbar.make(user_list,getString(R.string.message_success), Snackbar.LENGTH_LONG).show()
+            showMessage(getString(R.string.message_success))
         })
     }
 
     private fun observeUnSuccessMessage(){
         viewModel.errorLiveData.observe(this, androidx.lifecycle.Observer{
-            Snackbar.make(user_list,getString(R.string.message_error), Snackbar.LENGTH_LONG).show()
+            showMessage(getString(R.string.message_error))
         })
     }
 

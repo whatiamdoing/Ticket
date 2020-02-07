@@ -1,17 +1,15 @@
 package com.ticket.utils.adapter
 
 import android.view.View
-import android.view.ViewGroup
 import android.view.animation.AnimationUtils
-import android.widget.RelativeLayout
-import androidx.core.view.marginTop
 import androidx.recyclerview.widget.RecyclerView
 import com.ticket.R
+import com.ticket.entity.UserDTO
 import com.ticket.utils.setVisible
 import kotlinx.android.synthetic.main.item_records.view.*
 
-class Holder(itemView: View): RecyclerView.ViewHolder(itemView) {
-    fun bind(data: Triple<Int, String, Int>) {
+class UserHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+    fun bind(data: Pair<Int, UserDTO>) {
         when(data.first){
             0 -> {
                 itemView.iv_crown.setVisible()
@@ -23,8 +21,8 @@ class Holder(itemView: View): RecyclerView.ViewHolder(itemView) {
             }
         }
         itemView.tv_number.text = String.format(itemView.tv_number.resources.getString(R.string.number), data.first + 1)
-        itemView.tv_username.text = data.second
-        itemView.tv_record.text = data.third.toString()
+        itemView.tv_username.text = data.second.name
+        itemView.tv_record.text = data.second.record.toString()
     }
     private fun startScale() = (AnimationUtils.loadAnimation(itemView.context, R.anim.scale))
 }
