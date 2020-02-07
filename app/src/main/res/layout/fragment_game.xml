@@ -10,12 +10,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/upper_part">
+        android:layout_below="@id/upper_part"
+        android:layout_marginTop="@dimen/spacing_small_8">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/iv_top"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="258dp"
+            android:layout_height="154dp"
             android:src="@drawable/bus_ticket_top"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center"
@@ -24,7 +25,7 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/iv_bottom"
-            android:layout_width="wrap_content"
+            android:layout_width="258dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/iv_top"
             android:layout_centerHorizontal="true"
@@ -87,7 +88,7 @@
             android:layout_height="600dp"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:background="@android:color/transparent"/>
+            android:background="@android:color/transparent" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_right"

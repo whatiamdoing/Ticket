@@ -13,6 +13,7 @@
 
     <color name="white">#fff</color>
     <color name="black">#000</color>
+    <color name="black_for_ed">#30000000</color>
     <color name="grey">#87939A</color>
 
 

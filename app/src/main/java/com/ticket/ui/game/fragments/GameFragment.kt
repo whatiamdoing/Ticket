@@ -98,6 +98,8 @@ class GameFragment : Fragment() {
     }
 
     private fun startGame(){
+        btn_left?.setVisible()
+        btn_right?.setVisible()
         setNewTicket()
         mistakes = 0
         points = 0
