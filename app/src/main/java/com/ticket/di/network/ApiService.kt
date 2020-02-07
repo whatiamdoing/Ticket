@@ -13,8 +13,11 @@ interface ApiService {
     fun createUser(@Path("id") id: String, @Body user: User): Observable<Response<ResponseBody>>
 
     @PATCH("users/{id}/.json")
-    fun usersRecord(@Body body: RequestBody, @Path("id") id: String): Observable<Response<ResponseBody>>
+    fun userRecord(@Body body: RequestBody, @Path("id") id: String): Observable<Response<ResponseBody>>
 
     @GET("users.json")
     fun getUsers(): Observable<Map<String, User>>
+
+    @PATCH("users/{id}/.json")
+    fun changeUserName(@Path("id") id: String, @Body body: RequestBody): Observable<Response<ResponseBody>>
 }

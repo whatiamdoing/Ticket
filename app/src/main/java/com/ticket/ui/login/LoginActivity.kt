@@ -25,6 +25,7 @@ class LoginActivity : BaseActivity() {
         setContentView(R.layout.activity_login_screen)
         viewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
 
+        buttonSelector()
         observeSuccessMessage()
         setOnClickListeners()
     }
@@ -32,6 +33,26 @@ class LoginActivity : BaseActivity() {
     private fun setOnClickListeners(){
         btn_login.setOnClickListener {
             saveNickname()
+            setFirstLaunch(this, false)
+        }
+        btn_change.setOnClickListener {
+            changeNickname()
+        }
+        btn_back.setOnClickListener{
+            startActivity(MenuActivity.newIntent(this))
+        }
+    }
+
+    private fun buttonSelector(){
+        if(getUserName(this) == null){
+            btn_change?.setGone()
+            btn_login?.setVisible()
+            btn_back?.setGone()
+
+        } else {
+            btn_change?.setVisible()
+            btn_login?.setGone()
+            btn_back?.setVisible()
         }
     }
 
@@ -57,6 +78,17 @@ class LoginActivity : BaseActivity() {
             setUserName(this, name)
             setUserId(this, userId)
             viewModel.sendName(name, userId)
+        }
+    }
+
+    private  fun changeNickname(){
+        val name = et_login.text.toString().trim()
+        if(name.isEmpty()){
+            et_login.error = getString(R.string.error_enter_the_name)
+            return
+        } else {
+            setUserName(this, name)
+            viewModel.changeName(name, getUserId(this)!!)
         }
     }
 }

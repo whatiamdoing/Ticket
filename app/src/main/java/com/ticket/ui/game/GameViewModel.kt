@@ -28,7 +28,7 @@ class GameViewModel: BaseViewModel(){
         val body = RequestBody.create(JSON_REQUEST_TYPE.toMediaTypeOrNull(), json.toString())
 
         subscriptions.add(
-            apiService.usersRecord(body, id)
+            apiService.userRecord(body, id)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { isLoading.value = true }

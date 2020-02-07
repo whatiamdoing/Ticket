@@ -26,7 +26,6 @@ class SplashActivity : AppCompatActivity() {
         var intent: Intent
         Handler().postDelayed({
             intent = if(getIsFirstLaunch(this)) {
-                setFirstLaunch(this, false)
                 Intent(this, TutorialActivity::class.java)
             } else {
                 if(getUserName(this) != null) {
