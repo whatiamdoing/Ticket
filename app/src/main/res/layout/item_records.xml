@@ -10,7 +10,7 @@
         android:layout_marginTop="@dimen/spacing_small_8"
         android:orientation="vertical">
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/iv_crown"
             android:layout_gravity="center"
             android:visibility="gone"
@@ -29,7 +29,7 @@
             <TextView
                 android:id="@+id/tv_number"
                 android:text="@string/number"
-                style="@style/medium22.darkGray"
+                style="@style/baufra_medium21.very_dark_grey"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -37,17 +37,18 @@
                 android:id="@+id/tv_username"
                 android:layout_toEndOf="@id/tv_number"
                 android:layout_gravity="center"
-                style="@style/medium22.darkGray"
+                style="@style/baufra_medium21.very_dark_grey"
                 tools:text="@string/user_names"
                 android:layout_marginStart="@dimen/spacing_small_8"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:paddingBottom="2dp"/>
 
             <TextView
                 android:id="@+id/tv_record"
                 android:text="@string/_10"
                 android:layout_toEndOf="@id/tv_username"
-                style="@style/medium22.darkGray"
+                style="@style/baufra_medium21.very_dark_grey"
                 android:layout_marginStart="@dimen/spacing_normal_16"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>

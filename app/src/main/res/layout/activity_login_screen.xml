@@ -4,43 +4,48 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.login.LoginActivity"
-    android:background="@color/dark_grey">
+    android:background="@drawable/login_background">
 
     <TextView
         android:id="@+id/hello"
-        style="@style/medium50.white"
-        android:gravity="center"
         android:text="@string/hello"
-        android:layout_marginTop="150dp"
+        android:fontFamily="@font/baufra_regular"
+        style="@style/baufra60.white"
+        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/et_login"/>
+        android:layout_above="@id/et_login"
+        android:layout_marginTop="@dimen/spacing_normal_16"/>
 
-    <EditText
+    <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/et_login"
-        android:textColorHint="@color/black"
-        android:layout_centerInParent="true"
-        android:fontFamily="@font/ticket"
-        android:gravity="center"
         android:hint="@string/enter_nickname"
-        android:background="@drawable/custom_et_login"
-        android:layout_marginTop="40dp"
+        android:padding="@dimen/spacing_small_8"
+        style="@style/baufra21_ed.white"
+        android:layout_centerInParent="true"
+        android:gravity="center"
         android:layout_width="250dp"
         android:layout_height="40dp"
         android:cursorVisible="false"
+        android:layout_above="@id/btn_login"
+        android:layout_marginBottom="@dimen/spacing_small_8"
+        android:backgroundTint="@color/black_for_ed"
+        android:layout_marginTop="@dimen/spacing_normal_16"
         android:paddingEnd="@dimen/spacing_tiny_4"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_login"
-        android:fontFamily="@font/ticket"
+        android:layout_marginTop="@dimen/spacing_small_8"
+        android:text="@string/continue_l"
+        android:textSize="17sp"
         android:textColor="@drawable/btn_text_color"
         android:textAllCaps="false"
-        android:text="@string/continue_l"
-        android:layout_width="100dp"
+        android:fontFamily="@font/baufra_demibold"
+        android:layout_width="250dp"
         android:layout_height="40dp"
-        android:layout_below="@id/et_login"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginBottom="70dp"
+        android:layout_alignParentBottom="true"
         android:background="@drawable/custom_button_login"/>
 
 </RelativeLayout>

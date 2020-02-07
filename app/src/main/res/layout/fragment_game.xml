@@ -6,25 +6,26 @@
     android:background="@color/white">
 
     <RelativeLayout
-        android:layout_centerHorizontal="true"
         android:id="@+id/center_part"
-        android:layout_below="@id/upper_part"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/upper_part"
+        android:layout_marginTop="@dimen/spacing_small_8">
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/iv_top"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="258dp"
+            android:layout_height="154dp"
+            android:src="@drawable/bus_ticket_top"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center"
             android:adjustViewBounds="true"
-            android:cropToPadding="false"
-            android:src="@drawable/bus_ticket_top" />
+            android:cropToPadding="false"/>
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/iv_bottom"
-            android:layout_width="wrap_content"
+            android:layout_width="258dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/iv_top"
             android:layout_centerHorizontal="true"
@@ -34,14 +35,14 @@
             android:src="@drawable/bus_ticket_bottom" />
 
         <TextView
-            android:layout_below="@id/iv_top"
             android:id="@+id/tv_gameTickets"
-            android:layout_centerHorizontal="true"
             android:text="@string/any_ticket_number"
             android:textColor="@color/very_dark_grey"
             android:textSize="40sp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_below="@id/iv_top"
+            android:layout_centerHorizontal="true"/>
 
     </RelativeLayout>
 
@@ -52,24 +53,24 @@
     android:layout_height="wrap_content">
 
     <androidx.appcompat.widget.AppCompatImageButton
-        android:layout_alignParentStart="true"
         android:id="@+id/btn_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_arrow_back_black_35dp"
         android:background="@android:color/transparent"
+        android:layout_alignParentStart="true"
         android:layout_marginTop="@dimen/spacing_small_8"
         android:layout_marginStart="@dimen/spacing_small_8"
         android:padding="@dimen/spacing_small_8"/>
 
     <androidx.appcompat.widget.AppCompatImageButton
-        android:layout_alignParentEnd="true"
-        android:layout_gravity="end"
         android:id="@+id/btn_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_info_outline_black_35dp"
         android:background="@android:color/transparent"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="end"
         android:layout_marginTop="@dimen/spacing_small_8"
         android:layout_marginEnd="@dimen/spacing_small_8"
         android:padding="@dimen/spacing_small_8"/>
@@ -87,7 +88,7 @@
             android:layout_height="600dp"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:background="@android:color/transparent"/>
+            android:background="@android:color/transparent" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_right"
@@ -107,11 +108,11 @@
         <TextView
             android:id="@+id/tv_gameTime"
             android:text="@string/zero"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="center"
             style="@style/foma50.red"
-            android:layout_above="@+id/tv_points"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_above="@+id/tv_points"/>
 
         <TextView
             android:id="@+id/tv_points"
@@ -134,13 +135,13 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_tryAgain"
             android:text="@string/try_again_btn_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
             android:gravity="center"
             android:visibility="gone"
             android:layout_above="@+id/tv_points"
-            android:layout_width="match_parent"
-            style="@style/foma25.red"
-            android:layout_height="wrap_content"
-            android:background="@null"/>
+            style="@style/foma25.red"/>
 
     </RelativeLayout>
 

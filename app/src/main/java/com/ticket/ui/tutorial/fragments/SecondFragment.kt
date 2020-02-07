@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.ticket.R
-import com.ticket.ui.menu.MenuActivity
+import com.ticket.ui.game.GameActivity
 import com.ticket.ui.tutorial.TutorialActivity
 import com.ticket.utils.setGone
 import com.ticket.utils.setVisible
@@ -30,7 +30,7 @@ class SecondFragment : Fragment() {
             btn_exit.setGone()
         }
         btn_exit.setOnClickListener{
-            startActivity(MenuActivity.newIntent(activity!!))
+            startActivity(GameActivity.newIntent(activity!!))
         }
     }
 }
