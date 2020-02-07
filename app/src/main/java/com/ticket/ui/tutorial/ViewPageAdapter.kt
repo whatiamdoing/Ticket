@@ -6,7 +6,7 @@ import androidx.fragment.app.FragmentPagerAdapter
 
 class ViewPageAdapter(
     manager: FragmentManager,
-    val fragmentList: List<Fragment>
+    private val fragmentList: List<Fragment>
 ) : FragmentPagerAdapter(manager) {
 
     override fun getItem(position: Int): Fragment {
@@ -16,5 +16,4 @@ class ViewPageAdapter(
     override fun getCount(): Int {
         return fragmentList.size
     }
-
 }

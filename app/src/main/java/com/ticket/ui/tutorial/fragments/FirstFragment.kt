@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.ticket.R
 import com.ticket.ui.game.GameActivity
+import com.ticket.ui.menu.MenuActivity
 import com.ticket.ui.tutorial.TutorialActivity
 import com.ticket.utils.setGone
 import com.ticket.utils.setVisible

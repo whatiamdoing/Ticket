@@ -23,7 +23,8 @@ class RecordsViewModel: BaseViewModel(){
     var users = MutableLiveData<List<UserDTO>>()
 
     fun loadUsers(){
-        subscriptions.add(apiService.getUsers()
+        subscriptions.add(
+            apiService.getUsers()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe {isLoading.value = true }
@@ -41,5 +42,10 @@ class RecordsViewModel: BaseViewModel(){
         }.sortedByDescending{ it.record }
         users.value = userList
         return userList
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        subscriptions.dispose()
     }
 }
