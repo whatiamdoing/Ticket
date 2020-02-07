@@ -2,12 +2,10 @@ package com.ticket.ui.records
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.snackbar.Snackbar
 import com.ticket.R
 import com.ticket.base.BaseActivity
 import com.ticket.ui.menu.MenuActivity

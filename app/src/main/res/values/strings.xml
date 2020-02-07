@@ -35,4 +35,6 @@
     <string name="number">%1$d.</string>
     <string name="user_names">Имена пользователей</string>
     <string name="_10">10</string>
+    <string name="change_name">Сменить имя</string>
+    <string name="change">Изменить</string>
 </resources>

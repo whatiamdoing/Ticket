@@ -130,6 +130,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:gravity="center"
+            android:paddingBottom="@dimen/spacing_small_8"
             style="@style/medium30.darkGray"/>
 
         <androidx.appcompat.widget.AppCompatButton
