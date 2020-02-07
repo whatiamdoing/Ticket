@@ -22,13 +22,13 @@ class GameViewModel: BaseViewModel(){
     private val errorLiveData = SingleLiveEvent<Void>()
     private val successLiveData = SingleLiveEvent<String>()
 
-    fun sendRecord(name: String, record: Int){
+    fun sendRecord(id: String, record: Int){
         val json = JSONObject()
         json.put("record", record)
         val body = RequestBody.create(JSON_REQUEST_TYPE.toMediaTypeOrNull(), json.toString())
 
         subscriptions.add(
-            apiService.usersRecord(body, name)
+            apiService.usersRecord(body, id)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { isLoading.value = true }

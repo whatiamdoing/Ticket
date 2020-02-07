@@ -66,10 +66,10 @@ class GameFragment : Fragment() {
         btn_back?.setOnClickListener{
             builder()
                 .setTitle(getString(R.string.exit_to_main_menu_q))
-                .setPositiveButton(R.string.yeah) { dialogInterface: DialogInterface, i: Int ->
+                .setPositiveButton(R.string.yeah) { _: DialogInterface, _: Int ->
                 startActivity(MenuActivity.newIntent(activity!!))
                 }
-                .setNegativeButton(R.string.no) { dialogInterface: DialogInterface, i: Int -> }
+                .setNegativeButton(R.string.no) { _: DialogInterface, _: Int -> }
                 .show()
         }
         btn_left?.setOnClickListener {
@@ -139,13 +139,13 @@ class GameFragment : Fragment() {
                 else -> getString(R.string.point_ov)
             }))
                 .setTitle(getString(R.string.try_one_more_time))
-                .setPositiveButton(getString(R.string.yeah)) { dialogInterface: DialogInterface, i: Int ->
+                .setPositiveButton(getString(R.string.yeah)) { _: DialogInterface, _: Int ->
             tv_points?.text = String.format(getString(R.string.points), 0)
             startGame()
             btn_left.setClickable()
             btn_right.setClickable()
                 }
-                .setNegativeButton(getString(R.string.no)) { dialogInterface: DialogInterface, i: Int -> }
+                .setNegativeButton(getString(R.string.no)) { _: DialogInterface, _: Int -> }
                 .show()
     }
     private fun builder() = AlertDialog.Builder(activity!!)
@@ -154,7 +154,7 @@ class GameFragment : Fragment() {
         if(getUserRecord(activity!!) < points){
             setUserRecord(activity!!, points)
             tv_record?.text = String.format(getString(R.string.record), points)
-            gameViewModel.sendRecord(getUserName(activity!!)!!, getUserRecord(activity!!))
+            gameViewModel.sendRecord(getUserId(activity!!)!!, getUserRecord(activity!!))
         }
     }
     private fun showMistakeDialog(){
@@ -167,12 +167,12 @@ class GameFragment : Fragment() {
         builder()
             .setMessage(getString(R.string.start_over))
             .setTitle(getString(R.string.play_fair))
-            .setPositiveButton(R.string.yeah) { dialogInterface: DialogInterface, i: Int ->
+            .setPositiveButton(R.string.yeah) { _: DialogInterface, _: Int ->
                 btn_left.setClickable()
                 btn_right.setClickable()
                 startGame()
             }
-            .setNegativeButton(R.string.no) { dialogInterface: DialogInterface, i: Int ->
+            .setNegativeButton(R.string.no) { _: DialogInterface, _: Int ->
                 tv_points?.text = String.format(getString(R.string.points), 0)
                 btn_left.setNotClickable()
                 btn_right.setNotClickable()

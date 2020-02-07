@@ -84,9 +84,5 @@ class RecordsActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         viewModel.loadUsers()
-        val display = windowManager.defaultDisplay
-        val width = display.width
-        val height = display.height
-        Log.d("M_RecordsActivity", "$width, $height")
     }
 }

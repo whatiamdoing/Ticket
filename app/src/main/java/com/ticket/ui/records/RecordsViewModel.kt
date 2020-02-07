@@ -37,7 +37,7 @@ class RecordsViewModel: BaseViewModel(){
 
     private fun onRetrieveUserListSuccess(it: Map<String, User>): List<UserDTO> {
         val userList = it.map {
-            UserDTO(it.key, it.value.id, it.value.record)
+            UserDTO(it.key, it.value.name, it.value.record)
         }.sortedByDescending{ it.record }
         users.value = userList
         return userList
