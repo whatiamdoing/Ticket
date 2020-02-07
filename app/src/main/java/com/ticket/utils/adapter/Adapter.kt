@@ -14,7 +14,7 @@ class Adapter(var list: List<UserDTO>) : RecyclerView.Adapter<UserHolder>() {
 
     override fun getItemCount(): Int = list.size
 
-    override fun onBindViewHolder(holder: UserHolder, position: Int) = holder.bind(Pair(position, UserDTO(list[position].name, list[position].id, list[position].record)))
+    override fun onBindViewHolder(holder: UserHolder, position: Int) = holder.bind(Pair(position, UserDTO(list[position].id, list[position].name, list[position].record)))
 
     fun updateList(list: List<UserDTO>) {
         this.list = list

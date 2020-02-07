@@ -10,7 +10,6 @@ import com.ticket.base.BaseActivity
 import com.ticket.ui.menu.MenuActivity
 import com.ticket.utils.*
 import kotlinx.android.synthetic.main.activity_login_screen.*
-import kotlinx.android.synthetic.main.activity_menu.*
 import java.util.*
 
 class LoginActivity : BaseActivity() {
@@ -44,7 +43,7 @@ class LoginActivity : BaseActivity() {
             }, Constants.Delays.TIME_DELAY)
         })
         viewModel.errorLiveData.observe(this, androidx.lifecycle.Observer{
-            showMessage(getString(R.string.message_success))
+            showMessage(getString(R.string.message_error))
         })
     }
 

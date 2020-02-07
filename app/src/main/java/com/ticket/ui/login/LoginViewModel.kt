@@ -20,9 +20,9 @@ class LoginViewModel: BaseViewModel(){
     val errorLiveData = SingleLiveEvent<Void>()
     val successLiveData = SingleLiveEvent<String>()
 
-    fun sendName(name:String, id: String){
-        subscriptions.add(
-            apiService.createUser(name, User(id, 0))
+    fun sendName(
+        name:String, id: String){
+        subscriptions.add(apiService.createUser(id, User(name, 0))
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { isLoading.value = true }

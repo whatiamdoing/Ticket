@@ -9,11 +9,11 @@ import retrofit2.Response
 import retrofit2.http.*
 
 interface ApiService {
-    @PUT("users/{name}.json")
-    fun createUser(@Path("name") name: String, @Body user: User): Observable<Response<ResponseBody>>
+    @PUT("users/{id}.json")
+    fun createUser(@Path("id") id: String, @Body user: User): Observable<Response<ResponseBody>>
 
-    @PATCH("users/{name}/.json")
-    fun usersRecord(@Body body: RequestBody, @Path("name") name: String): Observable<Response<ResponseBody>>
+    @PATCH("users/{id}/.json")
+    fun usersRecord(@Body body: RequestBody, @Path("id") id: String): Observable<Response<ResponseBody>>
 
     @GET("users.json")
     fun getUsers(): Observable<Map<String, User>>
