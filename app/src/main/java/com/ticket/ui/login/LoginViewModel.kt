@@ -1,6 +1,5 @@
 package com.ticket.ui.login
 
-import androidx.lifecycle.MutableLiveData
 import com.ticket.base.BaseViewModel
 import com.ticket.di.network.ApiService
 import com.ticket.entity.User
@@ -21,7 +20,6 @@ class LoginViewModel: BaseViewModel(){
 
     private val userCreateSubscription = CompositeDisposable()
     private val userChangeSubscription = CompositeDisposable()
-    private val isLoading: MutableLiveData<Boolean> = MutableLiveData()
     val errorLiveData = SingleLiveEvent<Void>()
     val successLiveData = SingleLiveEvent<String>()
 
@@ -30,8 +28,8 @@ class LoginViewModel: BaseViewModel(){
             apiService.createUser(id, User(name, 0))
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .doOnSubscribe { isLoading.value = true }
-            .doOnTerminate { isLoading.value = false }
+            .doOnSubscribe {}
+            .doOnTerminate {}
             .subscribe(
                 { successLiveData.call() },
                 { errorLiveData.call() }
@@ -47,8 +45,8 @@ class LoginViewModel: BaseViewModel(){
             apiService.changeUserName(id, body)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe{ isLoading.value = true }
-                .doOnTerminate{ isLoading.value = false }
+                .doOnSubscribe{}
+                .doOnTerminate{}
                 .subscribe(
                     {successLiveData.call()},
                     {errorLiveData.call()}
@@ -59,6 +57,6 @@ class LoginViewModel: BaseViewModel(){
     override fun onCleared() {
         super.onCleared()
         userCreateSubscription.dispose()
-        userCreateSubscription.dispose()
+        userChangeSubscription.dispose()
     }
 }

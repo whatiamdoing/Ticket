@@ -25,7 +25,7 @@ class LoginActivity : BaseActivity() {
         setContentView(R.layout.activity_login_screen)
         viewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
 
-        buttonSelector()
+        setUpButtons()
         observeSuccessMessage()
         setOnClickListeners()
     }
@@ -43,7 +43,7 @@ class LoginActivity : BaseActivity() {
         }
     }
 
-    private fun buttonSelector(){
+    private fun setUpButtons(){
         if(getUserName(this) == null){
             btn_change?.setGone()
             btn_login?.setVisible()

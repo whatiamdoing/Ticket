@@ -1,6 +1,5 @@
 package com.ticket.ui.game
 
-import androidx.lifecycle.MutableLiveData
 import com.ticket.base.BaseViewModel
 import com.ticket.di.network.ApiService
 import com.ticket.utils.Constants.Api.JSON_REQUEST_TYPE
@@ -17,7 +16,6 @@ class GameViewModel: BaseViewModel(){
     @Inject
     lateinit var apiService: ApiService
 
-    private val isLoading: MutableLiveData<Boolean> = MutableLiveData()
     private val subscriptions = CompositeDisposable()
     private val errorLiveData = SingleLiveEvent<Void>()
     private val successLiveData = SingleLiveEvent<String>()
@@ -28,11 +26,11 @@ class GameViewModel: BaseViewModel(){
         val body = RequestBody.create(JSON_REQUEST_TYPE.toMediaTypeOrNull(), json.toString())
 
         subscriptions.add(
-            apiService.userRecord(body, id)
+            apiService.setUserRecord(body, id)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .doOnSubscribe { isLoading.value = true }
-            .doOnTerminate { isLoading.value = false }
+            .doOnSubscribe {}
+            .doOnTerminate {}
             .subscribe(
                 {
                     successLiveData.call()
