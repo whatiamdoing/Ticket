@@ -6,6 +6,19 @@
     tools:context=".ui.login.LoginActivity"
     android:background="@drawable/login_background">
 
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/btn_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_arrow_forward_white_35dp"
+        android:background="@android:color/transparent"
+        android:layout_alignParentEnd="true"
+        android:visibility="gone"
+        android:layout_marginEnd="@dimen/spacing_small_8"
+        android:layout_marginTop="@dimen/spacing_small_8"
+        android:layout_marginStart="@dimen/spacing_small_8"
+        android:padding="@dimen/spacing_normal_16"/>
+
     <TextView
         android:id="@+id/hello"
         android:text="@string/hello"
@@ -27,11 +40,18 @@
         android:layout_width="250dp"
         android:layout_height="40dp"
         android:cursorVisible="false"
-        android:layout_above="@id/btn_login"
+        android:layout_above="@id/container_of_btn"
         android:layout_marginBottom="@dimen/spacing_small_8"
         android:backgroundTint="@color/black_for_ed"
         android:layout_marginTop="@dimen/spacing_normal_16"
         android:paddingEnd="@dimen/spacing_tiny_4"/>
+
+    <RelativeLayout
+        android:id="@+id/container_of_btn"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_login"
@@ -44,8 +64,25 @@
         android:layout_width="250dp"
         android:layout_height="40dp"
         android:layout_centerHorizontal="true"
+        android:visibility="visible"
         android:layout_marginBottom="70dp"
-        android:layout_alignParentBottom="true"
         android:background="@drawable/custom_button_login"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_change"
+        android:layout_marginTop="@dimen/spacing_small_8"
+        android:text="@string/change"
+        android:textSize="17sp"
+        android:textColor="@drawable/btn_text_color"
+        android:textAllCaps="false"
+        android:fontFamily="@font/baufra_demibold"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:visibility="gone"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="70dp"
+        android:background="@drawable/custom_button_login"/>
+
+    </RelativeLayout>
 
 </RelativeLayout>

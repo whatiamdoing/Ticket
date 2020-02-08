@@ -8,9 +8,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.ticket.R
 import com.ticket.base.BaseActivity
 import com.ticket.ui.menu.MenuActivity
-import com.ticket.utils.Constants
-import com.ticket.utils.setUserId
-import com.ticket.utils.setUserName
+import com.ticket.utils.*
 import kotlinx.android.synthetic.main.activity_login_screen.*
 import java.util.*
 
@@ -27,10 +25,34 @@ class LoginActivity : BaseActivity() {
         setContentView(R.layout.activity_login_screen)
         viewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
 
+        setUpButtons()
         observeSuccessMessage()
+        setOnClickListeners()
+    }
 
+    private fun setOnClickListeners(){
         btn_login.setOnClickListener {
             saveNickname()
+            setFirstLaunch(this, false)
+        }
+        btn_change.setOnClickListener {
+            changeNickname()
+        }
+        btn_back.setOnClickListener{
+            startActivity(MenuActivity.newIntent(this))
+        }
+    }
+
+    private fun setUpButtons(){
+        if(getUserName(this) == null){
+            btn_change?.setGone()
+            btn_login?.setVisible()
+            btn_back?.setGone()
+
+        } else {
+            btn_change?.setVisible()
+            btn_login?.setGone()
+            btn_back?.setVisible()
         }
     }
 
@@ -56,6 +78,17 @@ class LoginActivity : BaseActivity() {
             setUserName(this, name)
             setUserId(this, userId)
             viewModel.sendName(name, userId)
+        }
+    }
+
+    private  fun changeNickname(){
+        val name = et_login.text.toString().trim()
+        if(name.isEmpty()){
+            et_login.error = getString(R.string.error_enter_the_name)
+            return
+        } else {
+            setUserName(this, name)
+            viewModel.changeName(name, getUserId(this)!!)
         }
     }
 }
