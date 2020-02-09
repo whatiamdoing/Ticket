@@ -10,7 +10,7 @@
         android:id="@+id/btn_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_arrow_forward_white_35dp"
+        android:src="@drawable/arrow_btn_states"
         android:background="@android:color/transparent"
         android:layout_alignParentEnd="true"
         android:visibility="gone"
@@ -43,8 +43,7 @@
         android:layout_above="@id/container_of_btn"
         android:layout_marginBottom="@dimen/spacing_small_8"
         android:backgroundTint="@color/black_for_ed"
-        android:layout_marginTop="@dimen/spacing_normal_16"
-        android:paddingEnd="@dimen/spacing_tiny_4"/>
+        android:layout_marginTop="@dimen/spacing_normal_16"/>
 
     <RelativeLayout
         android:id="@+id/container_of_btn"

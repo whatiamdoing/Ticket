@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.ticket.R
 import com.ticket.ui.game.GameActivity
-import com.ticket.ui.menu.MenuActivity
+import com.ticket.ui.login.LoginActivity
 import com.ticket.ui.tutorial.TutorialActivity
 import com.ticket.utils.setGone
 import com.ticket.utils.setVisible
@@ -24,12 +24,16 @@ class FirstFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        setOnClickListeners()
         val isVisible = (activity!! as TutorialActivity).tutorialQualifier
         if(isVisible == false ){
             btn_exit.setVisible()
         } else {
             btn_exit.setGone()
         }
+    }
+
+    private fun setOnClickListeners(){
         btn_exit.setOnClickListener{
             startActivity(GameActivity.newIntent(activity!!))
         }

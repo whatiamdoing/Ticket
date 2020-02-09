@@ -9,11 +9,11 @@
         android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_close_black_35dp"
+        android:src="@drawable/close_btn_states"
         android:background="@android:color/transparent"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="@dimen/spacing_normal_16"
-        android:padding="@dimen/spacing_small_8"/>
+        android:padding="@dimen/spacing_normal_16"/>
 
     <TextView
         android:id="@+id/tv_rules"

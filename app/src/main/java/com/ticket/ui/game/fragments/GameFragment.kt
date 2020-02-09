@@ -23,6 +23,7 @@ import com.ticket.utils.Constants.Denominators.TEN_THOUSAND
 import com.ticket.utils.Constants.Denominators.THOUSAND
 import com.ticket.utils.Constants.Timer.MILLISECONDS_IN_SECONDS
 import kotlinx.android.synthetic.main.fragment_game.*
+import kotlin.concurrent.timer
 
 class GameFragment : Fragment() {
 
@@ -57,6 +58,7 @@ class GameFragment : Fragment() {
         tv_gameTickets?.text = currentTicket.toString()
         tv_points?.text = String.format(getString(R.string.points), points)
         tv_record?.text = String.format((getString(R.string.record)), getUserRecord(activity!!))
+        gameViewModel.sendRecord(getUserId(activity!!)!!, getUserRecord(activity!!))
     }
 
     private fun setOnClickListeners() {
@@ -88,6 +90,9 @@ class GameFragment : Fragment() {
         }
         btn_tryAgain.setOnClickListener{
             showAlertDialog()
+        }
+        btn_retry.setOnClickListener{
+            showRetryAlert()
         }
     }
 
@@ -125,7 +130,6 @@ class GameFragment : Fragment() {
             }
             override fun onTick(millisUntilFinished: Long) {
                 tv_gameTime?.text = (millisUntilFinished/MILLISECONDS_IN_SECONDS).toString()
-                btn_back?.setNotClickable()
                 btn_info?.setNotClickable()
             }
         }
@@ -155,8 +159,8 @@ class GameFragment : Fragment() {
     private fun setNewRecord(points: Int){
         if(getUserRecord(activity!!) < points){
             setUserRecord(activity!!, points)
-            tv_record?.text = String.format(getString(R.string.record), points)
             gameViewModel.sendRecord(getUserId(activity!!)!!, getUserRecord(activity!!))
+            tv_record?.text = String.format(getString(R.string.record), points)
         }
     }
     private fun showMistakeDialog(){
@@ -170,6 +174,26 @@ class GameFragment : Fragment() {
             .setMessage(getString(R.string.start_over))
             .setTitle(getString(R.string.play_fair))
             .setPositiveButton(R.string.yeah) { _: DialogInterface, _: Int ->
+                btn_left.setClickable()
+                btn_right.setClickable()
+                startGame()
+            }
+            .setNegativeButton(R.string.no) { _: DialogInterface, _: Int ->
+                tv_points?.text = String.format(getString(R.string.points), 0)
+                btn_left.setNotClickable()
+                btn_right.setNotClickable()
+                tv_gameTime?.setInvisible()
+                btn_info.setClickable()
+                btn_back.setClickable()
+            }
+            .show()
+    }
+
+    private fun showRetryAlert(){
+        builder()
+            .setMessage(getString(R.string.start_over))
+            .setPositiveButton(R.string.yeah) { _: DialogInterface, _: Int ->
+                gameTimer.cancel()
                 btn_left.setClickable()
                 btn_right.setClickable()
                 startGame()

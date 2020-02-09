@@ -40,7 +40,7 @@ class RecordsActivity : BaseActivity() {
     }
 
     private fun setOnClickListeners(){
-        btn_back.setOnClickListener{
+        btn_close.setOnClickListener{
             startActivity(MenuActivity.newIntent(this))
         }
     }
