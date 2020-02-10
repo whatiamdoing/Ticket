@@ -23,7 +23,6 @@ import com.ticket.utils.Constants.Denominators.TEN_THOUSAND
 import com.ticket.utils.Constants.Denominators.THOUSAND
 import com.ticket.utils.Constants.Timer.MILLISECONDS_IN_SECONDS
 import kotlinx.android.synthetic.main.fragment_game.*
-import kotlin.concurrent.timer
 
 class GameFragment : Fragment() {
 
@@ -32,13 +31,14 @@ class GameFragment : Fragment() {
     private var mistakes = 0
     private lateinit var gameTimer: CountDownTimer
 
-    private val tickets =
-        arrayOf(114150, 425920, 461812, 479749, 499679, 207513, 401221, 777777, 111111, 222222, 112320, 105320, 543363,
-        333333, 444444, 555555, 666666, 888888, 999999, 367583, 195861, 861159, 673853, 570057, 409607, 229913,
-        524029, 146128, 994769, 104212, 425209, 345903, 123303, 123501, 312015, 543291, 194329, 907295, 333603,
-        123456, 654321, 333467, 567789, 778932, 223589, 737924, 423772, 234688, 782193, 727812, 516923, 352503,
-        234674, 672863, 678216, 261893, 216782, 399337, 680697, 638608, 289389, 711339, 444062, 968615, 405046,
-        132502, 101843, 798424, 780534, 386337, 894341, 468595, 480924, 700738, 145958, 168981, 408438, 212965)
+    private val tickets = arrayOf(
+            "114150", "425920", "461812", "479749", "499679", "207513", "401221", "777777", "111111", "222222", "112301", "105320", "543363",
+            "333333", "444444", "555555", "666666", "888888", "999999", "367583", "195861", "861159", "673853", "570057", "409607", "229913",
+            "524029", "146128", "994769", "104212", "425209", "345903", "123303", "123501", "312015", "543291", "194329", "907295", "333603",
+            "019423", "058660", "069348", "036036", "035080", "037352", "093723", "037514", "007124", "099891", "012030", "063135", "079547",
+        "123456", "654321", "333467", "567789", "778932", "223589", "737924", "423772", "234688", "782193", "727812", "516923", "352503",
+        "234674", "672863", "678216", "261893", "216782", "399337", "680697", "638608", "289389", "711339", "444062", "968615", "405046",
+        "132502", "101843", "798424", "780534", "386337", "894341", "468595", "480924", "700738", "145958", "168981", "408438", "212965")
     private var currentTicket = tickets.random()
 
     override fun onCreateView(
@@ -55,7 +55,7 @@ class GameFragment : Fragment() {
 
         gameViewModel = ViewModelProviders.of(this).get(GameViewModel::class.java)
         setOnClickListeners()
-        tv_gameTickets?.text = currentTicket.toString()
+        tv_gameTickets?.text = currentTicket
         tv_points?.text = String.format(getString(R.string.points), points)
         tv_record?.text = String.format((getString(R.string.record)), getUserRecord(activity!!))
         gameViewModel.sendRecord(getUserId(activity!!)!!, getUserRecord(activity!!))
@@ -96,9 +96,15 @@ class GameFragment : Fragment() {
         }
     }
 
-    private fun isTicketHappy(num: Int): Boolean {
-        val firstHalf: Int = num / HUNDRED_THOUSAND + num / TEN_THOUSAND % TEN + num / THOUSAND % TEN
-        val secondHalf: Int = num % TEN + num / TEN % TEN + num / HUNDRED % TEN
+    private fun isTicketHappy(num: String): Boolean {
+        val number = num.toInt()
+        val firstHalf = when(num.length){
+            6 -> number / HUNDRED_THOUSAND + number / TEN_THOUSAND % TEN + number / THOUSAND % TEN
+            5 -> number / TEN_THOUSAND % TEN + number / THOUSAND % TEN
+            4 -> number / number / THOUSAND % TEN
+            else -> 111111
+        }
+        val secondHalf = number % TEN + number / TEN % TEN + number / HUNDRED % TEN
         return  firstHalf == secondHalf
     }
 
@@ -182,7 +188,7 @@ class GameFragment : Fragment() {
                 tv_points?.text = String.format(getString(R.string.points), 0)
                 btn_left.setNotClickable()
                 btn_right.setNotClickable()
-                tv_gameTime?.setInvisible()
+                tv_gameTime?.setGone()
                 btn_info.setClickable()
                 btn_back.setClickable()
             }
@@ -208,7 +214,7 @@ class GameFragment : Fragment() {
 
     private fun setNewTicket(){
         currentTicket = tickets.random()
-        tv_gameTickets?.text = currentTicket.toString()
+        tv_gameTickets?.text = currentTicket
     }
 
     private fun onLeftToCorrectTicket(){

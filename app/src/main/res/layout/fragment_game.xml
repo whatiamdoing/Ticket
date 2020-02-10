@@ -49,7 +49,7 @@
 
     <RelativeLayout
         android:id="@+id/center_part"
-        android:layout_weight="5"
+        android:layout_weight="4"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/spacing_small_8">
@@ -57,7 +57,8 @@
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/iv_top"
             android:layout_width="258dp"
-            android:layout_height="154dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_normal_16"
             android:src="@drawable/bus_ticket_top"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center"
@@ -114,6 +115,7 @@
     <LinearLayout
         android:layout_weight="1.4"
         android:layout_width="match_parent"
+        android:layout_gravity="center_horizontal"
         android:layout_height="0dp"
         android:orientation="vertical">
 
@@ -123,8 +125,7 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:gravity="center"
-            style="@style/foma50.red"
-            android:layout_weight="2"/>
+            style="@style/foma50.red"/>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_tryAgain"
@@ -134,7 +135,6 @@
             android:background="@null"
             android:gravity="center"
             android:visibility="gone"
-            android:layout_weight="2"
             style="@style/foma25.red"/>
 
         <TextView
@@ -144,8 +144,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:background="@android:color/transparent"
-            style="@style/medium30.darkGray"
-            android:layout_weight="1"/>
+            style="@style/medium30.darkGray"/>
 
         <TextView
             android:id="@+id/tv_record"
@@ -154,8 +153,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:paddingBottom="@dimen/spacing_normal_16"
-            style="@style/medium30.darkGray"
-            android:layout_weight="1"/>
+            style="@style/medium30.darkGray"/>
 
     </LinearLayout>
 
