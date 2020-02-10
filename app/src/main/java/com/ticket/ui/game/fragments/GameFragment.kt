@@ -200,9 +200,6 @@ class GameFragment : Fragment() {
             }
             .setNegativeButton(R.string.no) { _: DialogInterface, _: Int ->
                 tv_points?.text = String.format(getString(R.string.points), 0)
-                btn_left.setNotClickable()
-                btn_right.setNotClickable()
-                tv_gameTime?.setInvisible()
                 btn_info.setClickable()
                 btn_back.setClickable()
             }
