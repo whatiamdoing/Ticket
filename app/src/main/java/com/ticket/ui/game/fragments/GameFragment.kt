@@ -63,7 +63,10 @@ class GameFragment : Fragment() {
 
     private fun setOnClickListeners() {
         btn_info?.setOnClickListener{
-            startActivity(TutorialActivity.newTutorialIntent(activity!!, false))
+            startActivity(TutorialActivity.newTutorialIntent(activity!!,
+                isForInformation = false,
+                isBackVisible = true
+            ))
         }
         btn_back?.setOnClickListener{
             builder()

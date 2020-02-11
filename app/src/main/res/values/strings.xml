@@ -37,4 +37,6 @@
     <string name="_10">10</string>
     <string name="change_name">Сменить имя</string>
     <string name="change">Изменить</string>
+    <string name="digits">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZабвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ1234567890</string>
+    <string name="tutorial_btn_text">Правила игры</string>
 </resources>

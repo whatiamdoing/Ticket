@@ -34,7 +34,6 @@ class RecordsActivity : BaseActivity() {
     private fun setObservers() {
         setUsersListObserver()
         initRecycles()
-        observeSuccessMessage()
         observeUnSuccessMessage()
         setLoadingObserver()
     }
@@ -56,12 +55,6 @@ class RecordsActivity : BaseActivity() {
             it?.let {
                 adapter.updateList(it)
             }
-        })
-    }
-
-    private fun observeSuccessMessage(){
-        viewModel.successLiveData.observe(this, androidx.lifecycle.Observer{
-            showMessage(getString(R.string.message_success))
         })
     }
 

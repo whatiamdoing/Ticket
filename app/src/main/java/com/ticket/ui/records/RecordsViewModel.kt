@@ -19,7 +19,6 @@ class RecordsViewModel: BaseViewModel(){
     private val subscriptions = CompositeDisposable()
     val isLoading: MutableLiveData<Boolean> = MutableLiveData()
     val errorLiveData = SingleLiveEvent<Void>()
-    val successLiveData = SingleLiveEvent<String>()
     var users = MutableLiveData<List<UserDTO>>()
 
     fun loadUsers(){
@@ -30,8 +29,7 @@ class RecordsViewModel: BaseViewModel(){
             .doOnSubscribe {isLoading.value = true }
             .doOnTerminate {isLoading.value = false}
             .subscribe(
-                { (onRetrieveUserListSuccess(it))
-                successLiveData.call()},
+                { (onRetrieveUserListSuccess(it))},
                 { errorLiveData.call()}
             ))
     }

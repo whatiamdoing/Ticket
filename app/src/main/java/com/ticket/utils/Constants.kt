@@ -27,5 +27,6 @@ object Constants{
 
     object Others{
         const val EXTRA_NAME = "name"
+        const val EXTRA_BACK = "back"
     }
 }
