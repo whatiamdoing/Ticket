@@ -19,38 +19,33 @@
     <TextView
         android:id="@+id/tv_username"
         android:text="@string/friend"
-        android:layout_weight="0.15"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         style="@style/baufra60.white"
         android:gravity="center"
         android:shadowColor="@color/black"
         android:shadowRadius="5"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="@dimen/spacing_small_8"
-        />
+        android:layout_gravity="center_horizontal"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_let"
         android:text="@string/toBegin"
-        android:layout_weight="0.06"
         android:layout_width="250dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:textSize="19sp"
         android:textColor="@drawable/menu_btn_colors"
         android:textAllCaps="false"
         android:fontFamily="@font/baufra_demibold"
         android:background="@drawable/custom_button_login"
         android:layout_gravity="center"
+        android:layout_marginTop="@dimen/spacing_huge_32"
         android:layout_marginBottom="@dimen/spacing_normal_16"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_records"
         android:text="@string/records"
         android:layout_width="250dp"
-        android:layout_height="0dp"
-        android:layout_weight="0.06
-"
+        android:layout_height="wrap_content"
         android:textSize="19sp"
         android:textColor="@drawable/menu_btn_colors"
         android:textAllCaps="false"
@@ -63,9 +58,7 @@
         android:id="@+id/btn_name_changer"
         android:text="@string/change_name"
         android:layout_width="250dp"
-        android:layout_height="0dp"
-        android:layout_weight="0.06
-"
+        android:layout_height="wrap_content"
         android:textSize="19sp"
         android:textColor="@drawable/menu_btn_colors"
         android:textAllCaps="false"
@@ -78,9 +71,7 @@
         android:id="@+id/btn_tutorial"
         android:text="@string/tutorial_btn_text"
         android:layout_width="250dp"
-        android:layout_height="0dp"
-        android:layout_weight="0.06
-"
+        android:layout_height="wrap_content"
         android:textSize="19sp"
         android:textColor="@drawable/menu_btn_colors"
         android:textAllCaps="false"

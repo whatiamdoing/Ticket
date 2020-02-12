@@ -33,7 +33,7 @@
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/et_login"
         android:hint="@string/enter_nickname"
-        android:maxLength="14"
+        android:maxLength="10"
         android:digits="@string/digits"
         style="@style/baufra21_ed.white"
         android:layout_centerInParent="true"
