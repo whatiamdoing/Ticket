@@ -10,7 +10,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
+import com.google.android.material.snackbar.Snackbar
 import com.ticket.R
+import com.ticket.base.BaseActivity
 import com.ticket.ui.game.GameViewModel
 import com.ticket.ui.menu.MenuActivity
 import com.ticket.ui.tutorial.TutorialActivity
@@ -23,6 +25,7 @@ import com.ticket.utils.Constants.Denominators.TEN_THOUSAND
 import com.ticket.utils.Constants.Denominators.THOUSAND
 import com.ticket.utils.Constants.Timer.MILLISECONDS_IN_SECONDS
 import kotlinx.android.synthetic.main.fragment_game.*
+import com.google.android.material.snackbar.Snackbar.make as make1
 
 class GameFragment : Fragment() {
 
@@ -58,6 +61,7 @@ class GameFragment : Fragment() {
         tv_gameTickets?.text = currentTicket
         tv_points?.text = String.format(getString(R.string.points), points)
         tv_record?.text = String.format((getString(R.string.record)), getUserRecord(activity!!))
+        observeSuccessMessage()
         gameViewModel.sendRecord(getUserId(activity!!)!!, getUserRecord(activity!!))
     }
 
@@ -240,5 +244,11 @@ class GameFragment : Fragment() {
 
     private fun onLeftToWrongTicket() = onRightToCorrectTicket()
     private fun onRightToWrongTicket() = onLeftToCorrectTicket()
+
+    private fun observeSuccessMessage() {
+        gameViewModel.errorLiveData.observe(this, androidx.lifecycle.Observer{
+            (activity!! as BaseActivity).showMessage(getString(R.string.message_error))
+        })
+    }
 }
 
