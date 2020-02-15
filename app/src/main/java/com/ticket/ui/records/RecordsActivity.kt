@@ -34,13 +34,12 @@ class RecordsActivity : BaseActivity() {
     private fun setObservers() {
         setUsersListObserver()
         initRecycles()
-        observeSuccessMessage()
         observeUnSuccessMessage()
         setLoadingObserver()
     }
 
     private fun setOnClickListeners(){
-        btn_back.setOnClickListener{
+        btn_close.setOnClickListener{
             startActivity(MenuActivity.newIntent(this))
         }
     }
@@ -56,12 +55,6 @@ class RecordsActivity : BaseActivity() {
             it?.let {
                 adapter.updateList(it)
             }
-        })
-    }
-
-    private fun observeSuccessMessage(){
-        viewModel.successLiveData.observe(this, androidx.lifecycle.Observer{
-            showMessage(getString(R.string.message_success))
         })
     }
 

@@ -17,8 +17,8 @@ class GameViewModel: BaseViewModel(){
     lateinit var apiService: ApiService
 
     private val subscriptions = CompositeDisposable()
-    private val errorLiveData = SingleLiveEvent<Void>()
-    private val successLiveData = SingleLiveEvent<String>()
+    val errorLiveData = SingleLiveEvent<Void>()
+    val succsessLiveData = SingleLiveEvent<Void>()
 
     fun sendRecord(id: String, record: Int){
         val json = JSONObject()
@@ -31,14 +31,8 @@ class GameViewModel: BaseViewModel(){
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe {}
             .doOnTerminate {}
-            .subscribe(
-                {
-                    successLiveData.call()
-                },
-                {
-                    errorLiveData.call()
-                }
-            ))
+            .subscribe({},
+                {errorLiveData.call()}))
     }
 
     override fun onCleared() {

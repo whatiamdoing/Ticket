@@ -24,14 +24,31 @@ class FirstFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val isVisible = (activity!! as TutorialActivity).tutorialQualifier
-        if(isVisible == false ){
-            btn_exit.setVisible()
-        } else {
-            btn_exit.setGone()
-        }
-        btn_exit.setOnClickListener{
+        setVisibility()
+        setOnClickListeners()
+    }
+
+    private fun setOnClickListeners() {
+        btn_exit.setOnClickListener {
             startActivity(GameActivity.newIntent(activity!!))
+        }
+        btn_back.setOnClickListener {
+            startActivity(MenuActivity.newIntent(activity!!))
+        }
+    }
+
+    private fun setVisibility() {
+        val isVisible = (activity!! as TutorialActivity).tutorialQualifier
+        val isBackVisible = (activity!! as TutorialActivity).backQualifier
+        if (isVisible == false) {
+            if (isBackVisible!!) {
+                btn_exit.setVisible()
+            } else {
+                btn_back?.setVisible()
+            }
+        } else {
+            btn_back?.setGone()
+            btn_exit?.setGone()
         }
     }
 }

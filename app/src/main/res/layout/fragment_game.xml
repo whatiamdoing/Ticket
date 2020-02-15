@@ -1,22 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@color/white">
 
     <RelativeLayout
+        android:id="@+id/upper_part"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/back_btn_states"
+            android:background="@android:color/transparent"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="@dimen/spacing_small_8"
+            android:layout_marginStart="@dimen/spacing_small_8"
+            android:padding="@dimen/spacing_normal_16"/>
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btn_retry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/retry_btn_states"
+            android:background="@android:color/transparent"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/spacing_small_8"
+            android:padding="@dimen/spacing_normal_16"/>
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btn_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_info_grey_35dp"
+            android:background="@android:color/transparent"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="end"
+            android:layout_marginTop="@dimen/spacing_small_8"
+            android:layout_marginEnd="@dimen/spacing_small_8"
+            android:padding="@dimen/spacing_normal_16"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
         android:id="@+id/center_part"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/upper_part"
+        android:layout_weight="4"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:layout_marginTop="@dimen/spacing_small_8">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/iv_top"
             android:layout_width="258dp"
-            android:layout_height="154dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_normal_16"
             android:src="@drawable/bus_ticket_top"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center"
@@ -44,94 +86,46 @@
             android:layout_below="@id/iv_top"
             android:layout_centerHorizontal="true"/>
 
-    </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
-    <RelativeLayout
-    android:id="@+id/upper_part"
-    android:layout_alignParentTop="true"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_left"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@android:color/transparent" />
 
-    <androidx.appcompat.widget.AppCompatImageButton
-        android:id="@+id/btn_back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_arrow_back_black_35dp"
-        android:background="@android:color/transparent"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="@dimen/spacing_small_8"
-        android:layout_marginStart="@dimen/spacing_small_8"
-        android:padding="@dimen/spacing_small_8"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_right"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"/>
 
-    <androidx.appcompat.widget.AppCompatImageButton
-        android:id="@+id/btn_info"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_info_outline_black_35dp"
-        android:background="@android:color/transparent"
-        android:layout_alignParentEnd="true"
-        android:layout_gravity="end"
-        android:layout_marginTop="@dimen/spacing_small_8"
-        android:layout_marginEnd="@dimen/spacing_small_8"
-        android:padding="@dimen/spacing_small_8"/>
+        </LinearLayout>
 
     </RelativeLayout>
+
 
     <LinearLayout
+        android:layout_weight="1.4"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_left"
-            android:layout_width="match_parent"
-            android:layout_height="600dp"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:background="@android:color/transparent" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_right"
-            android:layout_width="match_parent"
-            android:layout_height="600dp"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:background="@android:color/transparent"/>
-
-    </LinearLayout>
-
-    <RelativeLayout
-        android:layout_alignParentBottom="true"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_gravity="center_horizontal"
+        android:layout_height="0dp"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/tv_gameTime"
             android:text="@string/zero"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:gravity="center"
-            style="@style/foma50.red"
-            android:layout_above="@+id/tv_points"/>
-
-        <TextView
-            android:id="@+id/tv_points"
-            android:text="@string/points"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_above="@id/tv_record"
-            android:gravity="center"
-            style="@style/medium30.darkGray"/>
-
-        <TextView
-            android:id="@+id/tv_record"
-            android:text="@string/record"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:gravity="center"
-            android:paddingBottom="@dimen/spacing_small_8"
-            style="@style/medium30.darkGray"/>
+            style="@style/foma50.red"/>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_tryAgain"
@@ -141,9 +135,26 @@
             android:background="@null"
             android:gravity="center"
             android:visibility="gone"
-            android:layout_above="@+id/tv_points"
             style="@style/foma25.red"/>
 
-    </RelativeLayout>
+        <TextView
+            android:id="@+id/tv_points"
+            android:text="@string/points"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:background="@android:color/transparent"
+            style="@style/medium30.darkGray"/>
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/tv_record"
+            android:text="@string/record"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingBottom="@dimen/spacing_normal_16"
+            style="@style/medium30.darkGray"/>
+
+    </LinearLayout>
+
+</LinearLayout>

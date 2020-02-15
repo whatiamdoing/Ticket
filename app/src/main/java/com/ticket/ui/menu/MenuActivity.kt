@@ -8,6 +8,7 @@ import com.ticket.base.BaseActivity
 import com.ticket.ui.game.GameActivity
 import com.ticket.ui.login.LoginActivity
 import com.ticket.ui.records.RecordsActivity
+import com.ticket.ui.tutorial.TutorialActivity
 import com.ticket.utils.getUserName
 import kotlinx.android.synthetic.main.activity_menu.*
 
@@ -34,6 +35,9 @@ class MenuActivity : BaseActivity() {
         }
         btn_name_changer.setOnClickListener {
             startActivity(LoginActivity.newIntent(this))
+        }
+        btn_tutorial.setOnClickListener {
+            startActivity(TutorialActivity.newTutorialIntent(this, isForInformation = false, isBackVisible = false))
         }
     }
 }

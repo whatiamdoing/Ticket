@@ -1,0 +1,19 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Focused and not pressed -->
+    <item
+        android:state_focused="true"
+        android:state_pressed="false"
+        android:drawable="@drawable/ic_back_red_35dp"/>
+    <!-- Focused and pressed -->
+    <item
+        android:state_focused="true"
+        android:state_pressed="true"
+        android:drawable="@drawable/ic_back_red_35dp"/>
+    <!-- Unfocused and pressed -->
+    <item
+        android:state_focused="false"
+        android:state_pressed="true"
+        android:drawable="@drawable/ic_back_red_35dp"/>
+    <!-- Default color -->
+    <item android:drawable="@drawable/ic_back_grey_35dp"/>
+</selector>

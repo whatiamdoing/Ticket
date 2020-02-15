@@ -10,7 +10,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
+import com.google.android.material.snackbar.Snackbar
 import com.ticket.R
+import com.ticket.base.BaseActivity
 import com.ticket.ui.game.GameViewModel
 import com.ticket.ui.menu.MenuActivity
 import com.ticket.ui.tutorial.TutorialActivity
@@ -23,6 +25,7 @@ import com.ticket.utils.Constants.Denominators.TEN_THOUSAND
 import com.ticket.utils.Constants.Denominators.THOUSAND
 import com.ticket.utils.Constants.Timer.MILLISECONDS_IN_SECONDS
 import kotlinx.android.synthetic.main.fragment_game.*
+import com.google.android.material.snackbar.Snackbar.make as make1
 
 class GameFragment : Fragment() {
 
@@ -31,13 +34,14 @@ class GameFragment : Fragment() {
     private var mistakes = 0
     private lateinit var gameTimer: CountDownTimer
 
-    private val tickets =
-        arrayOf(114150, 425920, 461812, 479749, 499679, 207513, 401221, 777777, 111111, 222222, 112320, 105320, 543363,
-        333333, 444444, 555555, 666666, 888888, 999999, 367583, 195861, 861159, 673853, 570057, 409607, 229913,
-        524029, 146128, 994769, 104212, 425209, 345903, 123303, 123501, 312015, 543291, 194329, 907295, 333603,
-        123456, 654321, 333467, 567789, 778932, 223589, 737924, 423772, 234688, 782193, 727812, 516923, 352503,
-        234674, 672863, 678216, 261893, 216782, 399337, 680697, 638608, 289389, 711339, 444062, 968615, 405046,
-        132502, 101843, 798424, 780534, 386337, 894341, 468595, 480924, 700738, 145958, 168981, 408438, 212965)
+    private val tickets = arrayOf(
+            "114150", "425920", "461812", "479749", "499679", "207513", "401221", "777777", "111111", "222222", "112301", "105320", "543363",
+            "333333", "444444", "555555", "666666", "888888", "999999", "367583", "195861", "861159", "673853", "570057", "409607", "229913",
+            "524029", "146128", "994769", "104212", "425209", "345903", "123303", "123501", "312015", "543291", "194329", "907295", "333603",
+            "019423", "058660", "069348", "036036", "035080", "037352", "093723", "037514", "007124", "099891", "012030", "063135", "079547",
+        "123456", "654321", "333467", "567789", "778932", "223589", "737924", "423772", "234688", "782193", "727812", "516923", "352503",
+        "234674", "672863", "678216", "261893", "216782", "399337", "680697", "638608", "289389", "711339", "444062", "968615", "405046",
+        "132502", "101843", "798424", "780534", "386337", "894341", "468595", "480924", "700738", "145958", "168981", "408438", "212965")
     private var currentTicket = tickets.random()
 
     override fun onCreateView(
@@ -54,14 +58,19 @@ class GameFragment : Fragment() {
 
         gameViewModel = ViewModelProviders.of(this).get(GameViewModel::class.java)
         setOnClickListeners()
-        tv_gameTickets?.text = currentTicket.toString()
+        tv_gameTickets?.text = currentTicket
         tv_points?.text = String.format(getString(R.string.points), points)
         tv_record?.text = String.format((getString(R.string.record)), getUserRecord(activity!!))
+        observeSuccessMessage()
+        gameViewModel.sendRecord(getUserId(activity!!)!!, getUserRecord(activity!!))
     }
 
     private fun setOnClickListeners() {
         btn_info?.setOnClickListener{
-            startActivity(TutorialActivity.newTutorialIntent(activity!!, false))
+            startActivity(TutorialActivity.newTutorialIntent(activity!!,
+                isForInformation = false,
+                isBackVisible = true
+            ))
         }
         btn_back?.setOnClickListener{
             builder()
@@ -89,11 +98,20 @@ class GameFragment : Fragment() {
         btn_tryAgain.setOnClickListener{
             showAlertDialog()
         }
+        btn_retry.setOnClickListener{
+            showRetryAlert()
+        }
     }
 
-    private fun isTicketHappy(num: Int): Boolean {
-        val firstHalf: Int = num / HUNDRED_THOUSAND + num / TEN_THOUSAND % TEN + num / THOUSAND % TEN
-        val secondHalf: Int = num % TEN + num / TEN % TEN + num / HUNDRED % TEN
+    private fun isTicketHappy(num: String): Boolean {
+        val number = num.toInt()
+        val firstHalf = when(num.length){
+            6 -> number / HUNDRED_THOUSAND + number / TEN_THOUSAND % TEN + number / THOUSAND % TEN
+            5 -> number / TEN_THOUSAND % TEN + number / THOUSAND % TEN
+            4 -> number / number / THOUSAND % TEN
+            else -> 111111
+        }
+        val secondHalf = number % TEN + number / TEN % TEN + number / HUNDRED % TEN
         return  firstHalf == secondHalf
     }
 
@@ -125,7 +143,6 @@ class GameFragment : Fragment() {
             }
             override fun onTick(millisUntilFinished: Long) {
                 tv_gameTime?.text = (millisUntilFinished/MILLISECONDS_IN_SECONDS).toString()
-                btn_back?.setNotClickable()
                 btn_info?.setNotClickable()
             }
         }
@@ -155,8 +172,8 @@ class GameFragment : Fragment() {
     private fun setNewRecord(points: Int){
         if(getUserRecord(activity!!) < points){
             setUserRecord(activity!!, points)
-            tv_record?.text = String.format(getString(R.string.record), points)
             gameViewModel.sendRecord(getUserId(activity!!)!!, getUserRecord(activity!!))
+            tv_record?.text = String.format(getString(R.string.record), points)
         }
     }
     private fun showMistakeDialog(){
@@ -178,7 +195,24 @@ class GameFragment : Fragment() {
                 tv_points?.text = String.format(getString(R.string.points), 0)
                 btn_left.setNotClickable()
                 btn_right.setNotClickable()
-                tv_gameTime?.setInvisible()
+                tv_gameTime?.setGone()
+                btn_info.setClickable()
+                btn_back.setClickable()
+            }
+            .show()
+    }
+
+    private fun showRetryAlert(){
+        builder()
+            .setMessage(getString(R.string.start_over))
+            .setPositiveButton(R.string.yeah) { _: DialogInterface, _: Int ->
+                gameTimer.cancel()
+                btn_left.setClickable()
+                btn_right.setClickable()
+                startGame()
+            }
+            .setNegativeButton(R.string.no) { _: DialogInterface, _: Int ->
+                tv_points?.text = String.format(getString(R.string.points), 0)
                 btn_info.setClickable()
                 btn_back.setClickable()
             }
@@ -187,7 +221,7 @@ class GameFragment : Fragment() {
 
     private fun setNewTicket(){
         currentTicket = tickets.random()
-        tv_gameTickets?.text = currentTicket.toString()
+        tv_gameTickets?.text = currentTicket
     }
 
     private fun onLeftToCorrectTicket(){
@@ -210,5 +244,11 @@ class GameFragment : Fragment() {
 
     private fun onLeftToWrongTicket() = onRightToCorrectTicket()
     private fun onRightToWrongTicket() = onLeftToCorrectTicket()
+
+    private fun observeSuccessMessage() {
+        gameViewModel.errorLiveData.observe(this, androidx.lifecycle.Observer{
+            (activity!! as BaseActivity).showMessage(getString(R.string.message_error))
+        })
+    }
 }
 
