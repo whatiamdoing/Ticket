@@ -1,11 +1,115 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
+    <style name="medium40">
+        <item name="android:fontFamily">@font/ticket</item>
+        <item name="android:textSize">40sp</item>
+    </style>
+
+    <style name="medium40.darkGray">
+        <item name="android:textColor">@color/dark_grey</item>
+    </style>
+
+    <style name="medium22">
+        <item name="android:fontFamily">@font/ticket</item>
+        <item name="android:textSize">22sp</item>
+    </style>
+
+    <style name="medium22.dark_gray">
+        <item name="android:textColor">@color/dark_grey</item>
+    </style>
+
+    <style name="medium30">
+        <item name="android:fontFamily">@font/ticket</item>
+        <item name="android:textSize">30sp</item>
+    </style>
+
+    <style name="medium30.darkGray">
+        <item name="android:textColor">@color/dark_grey</item>
+    </style>
+
+    <style name="medium50">
+        <item name="android:textSize">50sp</item>
+        <item name="android:fontFamily">@font/ticket</item>
+    </style>
+
+    <style name="medium50.white">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="foma50">
+        <item name="android:textSize">50sp</item>
+        <item name="android:fontFamily">@font/foma</item>
+    </style>
+
+    <style name="foma25">
+        <item name="android:textSize">25sp</item>
+        <item name="android:fontFamily">@font/foma</item>
+    </style>
+
+    <style name="foma50.red">
+        <item name="android:textColor">@color/red</item>
+    </style>
+
+    <style name="foma25.red">
+        <item name="android:textColor">@color/red</item>
+    </style>
+
+    <style name="medium80">
+        <item name="android:textSize">80sp</item>
+        <item name="android:fontFamily">@font/ticket</item>
+    </style>
+
+    <style name="medium80.white">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="baufra21">
+        <item name="android:fontFamily">@font/baufra_regular</item>
+        <item name="android:textSize">21sp</item>
+    </style>
+
+    <style name="baufra_medium21">
+        <item name="android:fontFamily">@font/baufra_medium</item>
+        <item name="android:textSize">21sp</item>
+    </style>
+
+    <style name="baufra_medium21.very_dark_grey">
+        <item name="android:textColor">@color/very_dark_grey</item>
+    </style>
+
+    <style name="baufra21_ed">
+        <item name="android:fontFamily">@font/baufra_regular</item>
+        <item name="android:textSize">21sp</item>
+    </style>
+
+    <style name="baufra21_ed.white">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textColorHint">@color/white</item>
+    </style>
+
+    <style name="baufra21.white">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="baufra21.dark_grey">
+        <item name="android:textColor">@color/dark_grey</item>
+    </style>
+
+    <style name="baufra60">
+        <item name="android:fontFamily">@font/baufra_regular</item>
+        <item name="android:textSize">60sp</item>
+    </style>
+
+    <style name="baufra60.white">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+
 
 </resources>

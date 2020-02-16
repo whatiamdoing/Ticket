@@ -1,8 +1,8 @@
 package com.ticket
 
+import com.ticket.entity.User
 import org.junit.Test
 
-import org.junit.Assert.*
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -12,6 +12,22 @@ import org.junit.Assert.*
 class ExampleUnitTest {
     @Test
     fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
+        val num = 132123
+        val firstHalf: Int = num / 100000 + num / 10000 % 10 + num / 1000 % 10
+        val secondHalf: Int = num % 10 + num / 10 % 10 + num / 100 % 10
+        println(secondHalf)
+    }
+
+    @Test
+    fun mapTest() {
+        val map = mapOf(
+            "Dima" to 2,
+            "Ivan" to 3,
+            "David" to 44
+        )
+        val listOfUsers = map.map {
+            (User(it.key, it.value))
+        }.sortedByDescending{it.record}
+        println(listOfUsers)
     }
 }

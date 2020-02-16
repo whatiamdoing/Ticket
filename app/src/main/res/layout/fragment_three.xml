@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/ready"
+        android:text="@string/go"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        style="@style/medium40.darkGray"
+        android:gravity="center"
+        android:layout_centerVertical="true"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_start"
+        android:text="@string/yes"
+        android:textColor="@drawable/r_btn_text_colors"
+        android:textSize="30sp"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:fontFamily="@font/ticket"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ready"
+        android:layout_centerHorizontal="true"
+        android:background="@null"/>
+
+</RelativeLayout>
