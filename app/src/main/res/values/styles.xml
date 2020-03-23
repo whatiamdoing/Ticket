@@ -24,6 +24,15 @@
         <item name="android:textColor">@color/dark_grey</item>
     </style>
 
+    <style name="medium25">
+        <item name="android:fontFamily">@font/ticket</item>
+        <item name="android:textSize">25sp</item>
+    </style>
+
+    <style name="medium25.dark_gray">
+        <item name="android:textColor">@color/dark_grey</item>
+    </style>
+
     <style name="medium30">
         <item name="android:fontFamily">@font/ticket</item>
         <item name="android:textSize">30sp</item>
@@ -42,8 +51,8 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
-    <style name="foma50">
-        <item name="android:textSize">50sp</item>
+    <style name="foma40">
+        <item name="android:textSize">40sp</item>
         <item name="android:fontFamily">@font/foma</item>
     </style>
 
@@ -52,7 +61,7 @@
         <item name="android:fontFamily">@font/foma</item>
     </style>
 
-    <style name="foma50.red">
+    <style name="foma40.red">
         <item name="android:textColor">@color/red</item>
     </style>
 
