@@ -5,6 +5,7 @@ import android.content.DialogInterface
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -35,7 +36,7 @@ class GameFragment : Fragment() {
     private var mistakes = 0
     private lateinit var gameTimer: CountDownTimer
 
-    private var currentTicket: String = getLuckyTicket()
+    private lateinit var currentTicket: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,7 +52,7 @@ class GameFragment : Fragment() {
 
         gameViewModel = ViewModelProviders.of(this).get(GameViewModel::class.java)
         setOnClickListeners()
-        tv_gameTickets?.text = currentTicket
+        setNewTicket()
         tv_points?.text = String.format(getString(R.string.points), points)
         tv_record?.text = String.format((getString(R.string.record)), getUserRecord(activity!!))
         observeSuccessMessage()
@@ -108,8 +109,13 @@ class GameFragment : Fragment() {
     }
 
     private fun getUnLuckyTicket(): String {
-        val randomNumber = Random.nextInt(0,9)
-        return "" + randomNumber + randomNumber + randomNumber + randomNumber + randomNumber + randomNumber
+        val firstNumber = Random.nextInt(0,9)
+        val secondNumber = Random.nextInt(0,9)
+        val thirdNumber = Random.nextInt(0,9)
+        val fourthNumber = Random.nextInt(0,9)
+        val fifthNumber = Random.nextInt(0,9)
+        val sixthNumber = Random.nextInt(0,9)
+        return "" + firstNumber + secondNumber + thirdNumber + fourthNumber + fifthNumber + sixthNumber
     }
 
     private fun isTicketHappy(num: String): Boolean {
@@ -234,7 +240,6 @@ class GameFragment : Fragment() {
         } else {
             getUnLuckyTicket()
         }
-
         tv_gameTickets?.text = currentTicket
     }
 
@@ -263,6 +268,11 @@ class GameFragment : Fragment() {
         gameViewModel.errorLiveData.observe(this, androidx.lifecycle.Observer{
             (activity!! as BaseActivity).showMessage(getString(R.string.message_error))
         })
+    }
+
+    override fun onPause() {
+        super.onPause()
+        gameTimer.cancel()
     }
 }
 
