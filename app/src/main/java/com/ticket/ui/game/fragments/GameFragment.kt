@@ -5,12 +5,12 @@ import android.content.DialogInterface
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
-import com.google.android.material.snackbar.Snackbar
 import com.ticket.R
 import com.ticket.base.BaseActivity
 import com.ticket.ui.game.GameViewModel
@@ -25,7 +25,9 @@ import com.ticket.utils.Constants.Denominators.TEN_THOUSAND
 import com.ticket.utils.Constants.Denominators.THOUSAND
 import com.ticket.utils.Constants.Timer.MILLISECONDS_IN_SECONDS
 import kotlinx.android.synthetic.main.fragment_game.*
-import com.google.android.material.snackbar.Snackbar.make as make1
+import kotlin.math.max
+import kotlin.math.min
+import kotlin.random.Random
 
 class GameFragment : Fragment() {
 
@@ -34,15 +36,7 @@ class GameFragment : Fragment() {
     private var mistakes = 0
     private lateinit var gameTimer: CountDownTimer
 
-    private val tickets = arrayOf(
-            "114150", "425920", "461812", "479749", "499679", "207513", "401221", "777777", "111111", "222222", "112301", "105320", "543363",
-            "333333", "444444", "555555", "666666", "888888", "999999", "367583", "195861", "861159", "673853", "570057", "409607", "229913",
-            "524029", "146128", "994769", "104212", "425209", "345903", "123303", "123501", "312015", "543291", "194329", "907295", "333603",
-            "019423", "058660", "069348", "036036", "035080", "037352", "093723", "037514", "007124", "099891", "012030", "063135", "079547",
-        "123456", "654321", "333467", "567789", "778932", "223589", "737924", "423772", "234688", "782193", "727812", "516923", "352503",
-        "234674", "672863", "678216", "261893", "216782", "399337", "680697", "638608", "289389", "711339", "444062", "968615", "405046",
-        "132502", "101843", "798424", "780534", "386337", "894341", "468595", "480924", "700738", "145958", "168981", "408438", "212965")
-    private var currentTicket = tickets.random()
+    private lateinit var currentTicket: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,7 +52,7 @@ class GameFragment : Fragment() {
 
         gameViewModel = ViewModelProviders.of(this).get(GameViewModel::class.java)
         setOnClickListeners()
-        tv_gameTickets?.text = currentTicket
+        setNewTicket()
         tv_points?.text = String.format(getString(R.string.points), points)
         tv_record?.text = String.format((getString(R.string.record)), getUserRecord(activity!!))
         observeSuccessMessage()
@@ -101,6 +95,27 @@ class GameFragment : Fragment() {
         btn_retry.setOnClickListener{
             showRetryAlert()
         }
+    }
+
+    private fun getLuckyTicket(): String {
+        val firstNumber = Random.nextInt(0,9)
+        val secondNumber = Random.nextInt(0,9)
+        val thirdNumber = Random.nextInt(0,9)
+        val sum = firstNumber + secondNumber + thirdNumber
+        val fourthNumber = Random.nextInt(max(0, sum - 18 + 1), min(sum, 9 + 1))
+        val fifthNumber = Random.nextInt(max(0, sum - fourthNumber - 9 + 1), min(sum - fourthNumber, 9 + 1))
+        val sixthNumber = sum - fourthNumber - fifthNumber
+        return "" + firstNumber + secondNumber + thirdNumber + fourthNumber + fifthNumber + sixthNumber
+    }
+
+    private fun getUnLuckyTicket(): String {
+        val firstNumber = Random.nextInt(0,9)
+        val secondNumber = Random.nextInt(0,9)
+        val thirdNumber = Random.nextInt(0,9)
+        val fourthNumber = Random.nextInt(0,9)
+        val fifthNumber = Random.nextInt(0,9)
+        val sixthNumber = Random.nextInt(0,9)
+        return "" + firstNumber + secondNumber + thirdNumber + fourthNumber + fifthNumber + sixthNumber
     }
 
     private fun isTicketHappy(num: String): Boolean {
@@ -220,7 +235,11 @@ class GameFragment : Fragment() {
     }
 
     private fun setNewTicket(){
-        currentTicket = tickets.random()
+        currentTicket = if(Random.nextBoolean()) {
+            getLuckyTicket()
+        } else {
+            getUnLuckyTicket()
+        }
         tv_gameTickets?.text = currentTicket
     }
 
@@ -249,6 +268,11 @@ class GameFragment : Fragment() {
         gameViewModel.errorLiveData.observe(this, androidx.lifecycle.Observer{
             (activity!! as BaseActivity).showMessage(getString(R.string.message_error))
         })
+    }
+
+    override fun onPause() {
+        super.onPause()
+        gameTimer.cancel()
     }
 }
 

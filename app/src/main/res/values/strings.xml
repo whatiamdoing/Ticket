@@ -16,7 +16,7 @@
     <string name="records">Рекорды</string>
     <string name="record">Рекорд: %1$d</string>
     <string name="points">Очки: %1$d</string>
-    <string name="get_ready">Приготовься, игра начнётся через: %1$d</string>
+    <string name="get_ready">Приготовься, игра начнется через: %1$d</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="no">Нет</string>
     <string name="yeah">Да</string>
