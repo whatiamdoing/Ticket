@@ -18,7 +18,6 @@ class GameViewModel: BaseViewModel(){
 
     private val subscriptions = CompositeDisposable()
     val errorLiveData = SingleLiveEvent<Void>()
-    val succsessLiveData = SingleLiveEvent<Void>()
 
     fun sendRecord(id: String, record: Int){
         val json = JSONObject()

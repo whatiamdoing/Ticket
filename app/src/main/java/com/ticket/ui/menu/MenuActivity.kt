@@ -21,10 +21,8 @@ class MenuActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu)
-
         tv_username.text = getUserName(this)
         setOnClickListeners()
-
     }
     private fun setOnClickListeners(){
         btn_let.setOnClickListener {

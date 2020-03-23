@@ -13,7 +13,6 @@ import okhttp3.RequestBody
 import org.json.JSONObject
 import javax.inject.Inject
 
-
 class LoginViewModel: BaseViewModel(){
     @Inject
     lateinit var apiService: ApiService
