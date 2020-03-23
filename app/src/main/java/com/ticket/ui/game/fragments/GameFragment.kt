@@ -67,6 +67,7 @@ class GameFragment : Fragment() {
         }
         btn_back?.setOnClickListener{
             builder()
+                .setCancelable(false)
                 .setTitle(getString(R.string.exit_to_main_menu_q))
                 .setPositiveButton(R.string.yeah) { _: DialogInterface, _: Int ->
                 startActivity(MenuActivity.newIntent(activity!!))
@@ -165,6 +166,7 @@ class GameFragment : Fragment() {
 
     private fun showAlertDialog(){
             builder()
+                .setCancelable(false)
                 .setMessage(String.format(getString(R.string.yours_result), points, when(points){
                 1, 21, 31, 41, 51 -> getString(R.string.point_o)
                 2, 3, 4, 22, 23, 24, 32, 33, 34, 42, 43, 44-> getString(R.string.point_a)
@@ -198,6 +200,7 @@ class GameFragment : Fragment() {
         btn_info?.setClickable()
         btn_back?.setClickable()
         builder()
+            .setCancelable(false)
             .setMessage(getString(R.string.start_over))
             .setTitle(getString(R.string.play_fair))
             .setPositiveButton(R.string.yeah) { _: DialogInterface, _: Int ->
@@ -218,6 +221,7 @@ class GameFragment : Fragment() {
 
     private fun showRetryAlert(){
         builder()
+            .setCancelable(false)
             .setMessage(getString(R.string.start_over))
             .setPositiveButton(R.string.yeah) { _: DialogInterface, _: Int ->
                 gameTimer.cancel()
