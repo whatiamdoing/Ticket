@@ -275,9 +275,9 @@ class GameFragment : Fragment() {
 
     override fun onPause() {
         super.onPause()
-        val lastTime = tv_gameTime.text.toString()
+        val lastTime = tv_gameTime.text.toString().toLong()
+        gameDelay = lastTime * 1000
         gameTimer.cancel()
-        gameDelay = lastTime.toLong() * 1000
     }
 
     override fun onResume() {
