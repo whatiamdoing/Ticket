@@ -5,7 +5,6 @@ import android.content.DialogInterface
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -35,7 +34,6 @@ class GameFragment : Fragment() {
     private var points = 0
     private var mistakes = 0
     private lateinit var gameTimer: CountDownTimer
-
     private lateinit var currentTicket: String
 
     override fun onCreateView(
