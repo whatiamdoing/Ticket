@@ -35,12 +35,12 @@ class GameFragment : Fragment() {
     private var mistakes = 0
     private lateinit var gameTimer: CountDownTimer
     private lateinit var currentTicket: String
+    private var gameDelay: Long = GAME_DELAY
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        startGame()
         return inflater.inflate(R.layout.fragment_game, container, false)
         }
 
@@ -129,6 +129,7 @@ class GameFragment : Fragment() {
     }
 
     private fun startGame(){
+        gameDelay = GAME_DELAY
         btn_left?.setVisible()
         btn_right?.setVisible()
         setNewTicket()
@@ -137,8 +138,12 @@ class GameFragment : Fragment() {
         tv_points?.text = String.format(getString(R.string.points),0)
         tv_gameTime?.setVisible()
         btn_tryAgain?.setGone()
+        startTimer()
+    }
+
+    private fun startTimer() {
         gameTimer = object : CountDownTimer(
-            GAME_DELAY,
+            gameDelay,
             MILLISECONDS_IN_SECONDS
         ){
             override fun onFinish() {
@@ -270,7 +275,14 @@ class GameFragment : Fragment() {
 
     override fun onPause() {
         super.onPause()
+        val lastTime = tv_gameTime.text.toString()
         gameTimer.cancel()
+        gameDelay = lastTime.toLong() * 1000
+    }
+
+    override fun onResume() {
+        super.onResume()
+        startTimer()
     }
 }
 
