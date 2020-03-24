@@ -1,6 +1,5 @@
 package com.ticket.ui.tutorial.fragments
 
-
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,7 +11,7 @@ import com.ticket.ui.menu.MenuActivity
 import com.ticket.ui.tutorial.TutorialActivity
 import com.ticket.utils.setGone
 import com.ticket.utils.setVisible
-import kotlinx.android.synthetic.main.fragment_one.*
+import kotlinx.android.synthetic.main.fragment_two.*
 
 class SecondFragment : Fragment() {
 

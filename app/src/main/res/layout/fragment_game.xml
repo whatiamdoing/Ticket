@@ -49,14 +49,14 @@
 
     <RelativeLayout
         android:id="@+id/center_part"
-        android:layout_weight="4"
+        android:layout_weight="6"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/spacing_small_8">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/iv_top"
-            android:layout_width="258dp"
+            android:layout_width="240dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_normal_16"
             android:src="@drawable/bus_ticket_top"
@@ -67,7 +67,7 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/iv_bottom"
-            android:layout_width="258dp"
+            android:layout_width="240dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/iv_top"
             android:layout_centerHorizontal="true"
@@ -123,9 +123,9 @@
             android:id="@+id/tv_gameTime"
             android:text="@string/zero"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="40dp"
             android:gravity="center"
-            style="@style/foma50.red"/>
+            style="@style/foma40.red"/>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_tryAgain"
@@ -144,7 +144,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:background="@android:color/transparent"
-            style="@style/medium30.darkGray"/>
+            style="@style/medium22.dark_gray"/>
 
         <TextView
             android:id="@+id/tv_record"
@@ -152,8 +152,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:paddingBottom="@dimen/spacing_normal_16"
-            style="@style/medium30.darkGray"/>
+            style="@style/medium22.dark_gray"/>
 
     </LinearLayout>
 
