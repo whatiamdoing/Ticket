@@ -38,7 +38,7 @@ class RecordsActivity : BaseActivity() {
         setLoadingObserver()
     }
 
-    private fun setOnClickListeners(){
+    private fun setOnClickListeners() {
         btn_close.setOnClickListener{
             startActivity(MenuActivity.newIntent(this))
         }
@@ -58,13 +58,13 @@ class RecordsActivity : BaseActivity() {
         })
     }
 
-    private fun observeUnSuccessMessage(){
-        viewModel.errorLiveData.observe(this, androidx.lifecycle.Observer{
+    private fun observeUnSuccessMessage() {
+        viewModel.errorLiveData.observe(this, androidx.lifecycle.Observer {
             showMessage(getString(R.string.message_error))
         })
     }
 
-    private fun setLoadingObserver(){
+    private fun setLoadingObserver() {
         viewModel.isLoading.observe(this, Observer {
             it?.let{
                 if (it){

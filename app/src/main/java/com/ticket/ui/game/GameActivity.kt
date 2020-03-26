@@ -21,10 +21,10 @@ class GameActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
 
-        val prepareTimer = object : CountDownTimer(TIMER_TIME_IN_MILLISECONDS, MILLISECONDS_IN_SECONDS){
+        val prepareTimer = object : CountDownTimer(TIMER_TIME_IN_MILLISECONDS, MILLISECONDS_IN_SECONDS) {
 
             override fun onFinish() {
-                supportFragmentManager.beginTransaction().apply{
+                supportFragmentManager.beginTransaction().apply {
                             replace(R.id.fragment_game, GameFragment())
                             addToBackStack(null)
                             commit()

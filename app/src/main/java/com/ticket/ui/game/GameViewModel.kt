@@ -12,13 +12,12 @@ import okhttp3.RequestBody
 import org.json.JSONObject
 import javax.inject.Inject
 
-class GameViewModel: BaseViewModel(){
+class GameViewModel: BaseViewModel() {
     @Inject
     lateinit var apiService: ApiService
 
     private val subscriptions = CompositeDisposable()
     val errorLiveData = SingleLiveEvent<Void>()
-    val succsessLiveData = SingleLiveEvent<Void>()
 
     fun sendRecord(id: String, record: Int){
         val json = JSONObject()

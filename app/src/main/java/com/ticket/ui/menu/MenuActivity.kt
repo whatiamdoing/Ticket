@@ -26,7 +26,7 @@ class MenuActivity : BaseActivity() {
         setOnClickListeners()
 
     }
-    private fun setOnClickListeners(){
+    private fun setOnClickListeners() {
         btn_let.setOnClickListener {
             startActivity(GameActivity.newIntent(this))
         }
