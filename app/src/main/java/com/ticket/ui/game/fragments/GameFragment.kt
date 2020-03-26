@@ -5,7 +5,6 @@ import android.content.DialogInterface
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -66,7 +65,7 @@ class GameFragment : Fragment() {
                 isBackVisible = true
             ))
         }
-        btn_back?.setOnClickListener{
+        btn_back?.setOnClickListener {
             builder()
                 .setTitle(getString(R.string.exit_to_main_menu_q))
                 .setPositiveButton(R.string.yeah) { _: DialogInterface, _: Int ->
@@ -76,23 +75,23 @@ class GameFragment : Fragment() {
                 .show()
         }
         btn_left?.setOnClickListener {
-            if(isTicketHappy(currentTicket)){
+            if(isTicketHappy(currentTicket)) {
                 onLeftToCorrectTicket()
             } else {
                 onRightToCorrectTicket()
             }
         }
         btn_right?.setOnClickListener {
-            if(!isTicketHappy(currentTicket)){
+            if(!isTicketHappy(currentTicket)) {
                 onRightToWrongTicket()
             } else {
                 onLeftToWrongTicket()
             }
         }
-        btn_tryAgain.setOnClickListener{
+        btn_tryAgain.setOnClickListener {
             showAlertDialog()
         }
-        btn_retry.setOnClickListener{
+        btn_retry.setOnClickListener {
             showRetryAlert()
         }
     }
@@ -130,7 +129,7 @@ class GameFragment : Fragment() {
         return  firstHalf == secondHalf
     }
 
-    private fun startGame(){
+    private fun startGame() {
         btn_left?.setVisible()
         btn_right?.setVisible()
         setNewTicket()
@@ -164,7 +163,7 @@ class GameFragment : Fragment() {
         gameTimer.start()
     }
 
-    private fun showAlertDialog(){
+    private fun showAlertDialog() {
             builder()
                 .setMessage(String.format(getString(R.string.yours_result), points, when(points){
                 1, 21, 31, 41, 51 -> getString(R.string.point_o)
@@ -184,14 +183,14 @@ class GameFragment : Fragment() {
     }
     private fun builder() = AlertDialog.Builder(activity!!)
 
-    private fun setNewRecord(points: Int){
-        if(getUserRecord(activity!!) < points){
+    private fun setNewRecord(points: Int) {
+        if(getUserRecord(activity!!) < points) {
             setUserRecord(activity!!, points)
             gameViewModel.sendRecord(getUserId(activity!!)!!, getUserRecord(activity!!))
             tv_record?.text = String.format(getString(R.string.record), points)
         }
     }
-    private fun showMistakeDialog(){
+    private fun showMistakeDialog() {
         points = 0
         gameTimer.cancel()
         tv_gameTime?.setGone()
@@ -217,7 +216,7 @@ class GameFragment : Fragment() {
             .show()
     }
 
-    private fun showRetryAlert(){
+    private fun showRetryAlert() {
         builder()
             .setMessage(getString(R.string.start_over))
             .setPositiveButton(R.string.yeah) { _: DialogInterface, _: Int ->
@@ -234,7 +233,7 @@ class GameFragment : Fragment() {
             .show()
     }
 
-    private fun setNewTicket(){
+    private fun setNewTicket() {
         currentTicket = if(Random.nextBoolean()) {
             getLuckyTicket()
         } else {
@@ -243,16 +242,19 @@ class GameFragment : Fragment() {
         tv_gameTickets?.text = currentTicket
     }
 
-    private fun onLeftToCorrectTicket(){
+    private fun onLeftToCorrectTicket() {
         mistakes = 0
         points++
         tv_points?.text = String.format(getString(R.string.points), points)
         setNewTicket()
     }
 
-    private fun onRightToCorrectTicket(){
+    private fun onRightToCorrectTicket() {
         mistakes++
-        if(mistakes == 3){
+        if(points > 0)
+            points--
+        tv_points?.text = String.format(getString(R.string.points), points)
+        if(mistakes == 3) {
             btn_right.setNotClickable()
             btn_left.setNotClickable()
             showMistakeDialog()
@@ -265,7 +267,7 @@ class GameFragment : Fragment() {
     private fun onRightToWrongTicket() = onLeftToCorrectTicket()
 
     private fun observeSuccessMessage() {
-        gameViewModel.errorLiveData.observe(this, androidx.lifecycle.Observer{
+        gameViewModel.errorLiveData.observe(this, androidx.lifecycle.Observer {
             (activity!! as BaseActivity).showMessage(getString(R.string.message_error))
         })
     }

@@ -27,8 +27,8 @@ class SecondFragment : Fragment() {
         setOnClickListeners()
     }
 
-    private fun setOnClickListeners(){
-        btn_exit.setOnClickListener{
+    private fun setOnClickListeners() {
+        btn_exit.setOnClickListener {
             startActivity(GameActivity.newIntent(activity!!))
         }
         btn_back.setOnClickListener {
@@ -36,11 +36,11 @@ class SecondFragment : Fragment() {
         }
     }
 
-    private fun setVisibility(){
+    private fun setVisibility() {
         val isVisible = (activity!! as TutorialActivity).tutorialQualifier
         val isBackVisible = (activity!! as TutorialActivity).backQualifier
-        if(isVisible == false ){
-            if (isBackVisible!!){
+        if(isVisible == false ) {
+            if (isBackVisible!!) {
                 btn_exit.setVisible()
             } else {
                 btn_back?.setVisible()

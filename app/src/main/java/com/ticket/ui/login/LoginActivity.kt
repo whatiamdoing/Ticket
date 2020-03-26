@@ -29,7 +29,7 @@ class LoginActivity : BaseActivity() {
         setOnClickListeners()
     }
 
-    private fun setOnClickListeners(){
+    private fun setOnClickListeners() {
         btn_login.setOnClickListener {
             saveNickname()
             setFirstLaunch(this, false)
@@ -37,13 +37,13 @@ class LoginActivity : BaseActivity() {
         btn_change.setOnClickListener {
             changeNickname()
         }
-        btn_back.setOnClickListener{
+        btn_back.setOnClickListener {
             startActivity(MenuActivity.newIntent(this))
         }
     }
 
-    private fun setUpButtons(){
-        if(getUserName(this) == null){
+    private fun setUpButtons() {
+        if(getUserName(this) == null) {
             btn_change?.setGone()
             btn_login?.setVisible()
             btn_back?.setGone()
@@ -56,18 +56,18 @@ class LoginActivity : BaseActivity() {
     }
 
     private fun observeSuccessMessage() {
-        viewModel.successLiveData.observe(this, androidx.lifecycle.Observer{
+        viewModel.successLiveData.observe(this, androidx.lifecycle.Observer {
                 startActivity(MenuActivity.newIntent(this))
         })
-        viewModel.errorLiveData.observe(this, androidx.lifecycle.Observer{
+        viewModel.errorLiveData.observe(this, androidx.lifecycle.Observer {
             showMessage(getString(R.string.message_error))
         })
     }
 
-    private fun saveNickname(){
+    private fun saveNickname() {
         val userId = UUID.randomUUID().toString()
         val name = et_login.text.toString().trim()
-        if(name.isEmpty()){
+        if(name.isEmpty()) {
             et_login.error = getString(R.string.error_enter_the_name)
             return
         } else {
@@ -77,9 +77,9 @@ class LoginActivity : BaseActivity() {
         }
     }
 
-    private  fun changeNickname(){
+    private  fun changeNickname() {
         val name = et_login.text.toString().trim()
-        if(name.isEmpty()){
+        if(name.isEmpty()) {
             et_login.error = getString(R.string.error_enter_the_name)
             return
         } else {
