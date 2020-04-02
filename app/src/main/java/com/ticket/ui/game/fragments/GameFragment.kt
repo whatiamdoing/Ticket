@@ -9,12 +9,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import com.ticket.R
 import com.ticket.base.BaseActivity
 import com.ticket.ui.game.GameViewModel
-import com.ticket.ui.menu.MenuActivity
-import com.ticket.ui.tutorial.TutorialActivity
 import com.ticket.utils.*
 import com.ticket.utils.Constants.Delays.GAME_DELAY
 import com.ticket.utils.Constants.Denominators.HUNDRED
@@ -22,8 +23,11 @@ import com.ticket.utils.Constants.Denominators.HUNDRED_THOUSAND
 import com.ticket.utils.Constants.Denominators.TEN
 import com.ticket.utils.Constants.Denominators.TEN_THOUSAND
 import com.ticket.utils.Constants.Denominators.THOUSAND
+import com.ticket.utils.Constants.Others.EXTRA_BACK_BUTTON
+import com.ticket.utils.Constants.Others.EXTRA_TUTORIAL
 import com.ticket.utils.Constants.Timer.MILLISECONDS_IN_SECONDS
 import kotlinx.android.synthetic.main.fragment_game.*
+import kotlinx.android.synthetic.main.fragment_timer.*
 import kotlin.math.max
 import kotlin.math.min
 import kotlin.random.Random
@@ -34,6 +38,7 @@ class GameFragment : Fragment() {
     private var points = 0
     private var mistakes = 0
     private lateinit var gameTimer: CountDownTimer
+    private lateinit var navController: NavController
 
     private lateinit var currentTicket: String
 
@@ -41,14 +46,14 @@ class GameFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        startGame()
         return inflater.inflate(R.layout.fragment_game, container, false)
         }
 
     override fun onViewCreated(
         view: View,
         savedInstanceState: Bundle?) {
-
+        startGame()
+        navController = Navigation.findNavController(view)
         gameViewModel = ViewModelProviders.of(this).get(GameViewModel::class.java)
         setOnClickListeners()
         setNewTicket()
@@ -59,17 +64,18 @@ class GameFragment : Fragment() {
     }
 
     private fun setOnClickListeners() {
-        btn_info?.setOnClickListener{
-            startActivity(TutorialActivity.newTutorialIntent(activity!!,
-                isForInformation = false,
-                isBackVisible = true
-            ))
+        btn_info?.setOnClickListener {
+            val bundle = bundleOf(
+                EXTRA_TUTORIAL to false,
+                EXTRA_BACK_BUTTON to true
+            )
+            navController.navigate(R.id.action_gameFragment_to_tutorialFragment, bundle)
         }
         btn_back?.setOnClickListener {
             builder()
                 .setTitle(getString(R.string.exit_to_main_menu_q))
                 .setPositiveButton(R.string.yeah) { _: DialogInterface, _: Int ->
-                startActivity(MenuActivity.newIntent(activity!!))
+                    navController.navigate(R.id.action_gameFragment_to_menuFragment)
                 }
                 .setNegativeButton(R.string.no) { _: DialogInterface, _: Int -> }
                 .show()
@@ -267,7 +273,7 @@ class GameFragment : Fragment() {
     private fun onRightToWrongTicket() = onLeftToCorrectTicket()
 
     private fun observeSuccessMessage() {
-        gameViewModel.errorLiveData.observe(this, androidx.lifecycle.Observer {
+        gameViewModel.errorLiveData.observe(activity!!, androidx.lifecycle.Observer {
             (activity!! as BaseActivity).showMessage(getString(R.string.message_error))
         })
     }

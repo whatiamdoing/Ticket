@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.login.LoginActivity"
-    android:background="@drawable/login_background">
+    tools:context=".ui.login.LoginFragment"
+    android:background="@color/dark_grey">
 
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/btn_back"

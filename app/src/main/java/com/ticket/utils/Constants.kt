@@ -26,7 +26,7 @@ object Constants {
     }
 
     object Others {
-        const val EXTRA_NAME = "name"
-        const val EXTRA_BACK = "back"
+        const val EXTRA_TUTORIAL = "name"
+        const val EXTRA_BACK_BUTTON = "back"
     }
 }
