@@ -6,11 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.ticket.R
-import com.ticket.ui.menu.MenuFragment
-import com.ticket.ui.tutorial.TutorialFragment
-import com.ticket.utils.setGone
-import com.ticket.utils.setVisible
-import kotlinx.android.synthetic.main.fragment_one.*
 
 class FirstFragment : Fragment() {
 
@@ -20,33 +15,4 @@ class FirstFragment : Fragment() {
     ): View? {
         return inflater.inflate(R.layout.fragment_one, container, false)
     }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        setVisibility()
-        setOnClickListeners()
-    }
-
-    private fun setOnClickListeners() {
-        btn_exit.setOnClickListener {
-            activity!!.onBackPressed()
-        }
-        btn_back.setOnClickListener {
-            activity!!.onBackPressed()
-        }
-    }
-
-//    private fun setVisibility() {
-//        val isVisible = (activity!! as TutorialFragment).tutorialQualifier
-//        val isBackVisible = (activity!! as TutorialFragment).backQualifier
-//        if (isVisible == false) {
-//            if (isBackVisible!!) {
-//                btn_exit.setVisible()
-//            } else {
-//                btn_back?.setVisible()
-//            }
-//        } else {
-//            btn_back?.setGone()
-//            btn_exit?.setGone()
-//        }
-//    }
 }

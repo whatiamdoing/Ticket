@@ -9,9 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.ticket.R
-import com.ticket.ui.login.LoginFragment
-import com.ticket.ui.records.RecordsFragment
-import com.ticket.ui.tutorial.TutorialFragment
 import com.ticket.utils.Constants.Others.EXTRA_TUTORIAL
 import com.ticket.utils.getUserName
 import kotlinx.android.synthetic.main.fragment_menu.*

@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.fragment_splash_screen.*
 
 class SplashFragment : Fragment() {
 
-    lateinit var navController: NavController
+    private lateinit var navController: NavController
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

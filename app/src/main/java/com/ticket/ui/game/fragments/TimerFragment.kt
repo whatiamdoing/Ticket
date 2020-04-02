@@ -9,11 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.ticket.R
-import com.ticket.utils.Constants
 import com.ticket.utils.Constants.Timer.MILLISECONDS_IN_SECONDS
 import com.ticket.utils.Constants.Timer.TIMER_TIME_IN_MILLISECONDS
-import com.ticket.utils.setGone
-import kotlinx.android.synthetic.main.fragment_game.*
 import kotlinx.android.synthetic.main.fragment_timer.*
 
 class TimerFragment : Fragment() {
