@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.menu.MenuActivity"
+    tools:context=".ui.menu.MenuFragment"
     android:orientation="vertical"
-    android:background="@drawable/login_background">
+    android:background="@color/dark_grey">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/iv_ticket"

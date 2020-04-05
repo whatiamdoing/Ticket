@@ -1,29 +1,35 @@
 package com.ticket.ui.login
 
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import com.ticket.R
-import com.ticket.base.BaseActivity
-import com.ticket.ui.menu.MenuActivity
+import com.ticket.base.BaseFragment
 import com.ticket.utils.*
-import kotlinx.android.synthetic.main.activity_login_screen.*
+import kotlinx.android.synthetic.main.fragment_login_screen.*
 import java.util.*
 
-class LoginActivity : BaseActivity() {
+class LoginFragment : BaseFragment() {
 
     private lateinit var viewModel: LoginViewModel
+    lateinit var navController: NavController
 
-    companion object {
-        fun newIntent(context: Context) = Intent(context, LoginActivity::class.java)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.fragment_login_screen, container, false)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login_screen)
-        viewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel = ViewModelProviders.of(activity!!).get(LoginViewModel::class.java)
+        navController = Navigation.findNavController(view)
+        setOnClickListeners()
         setUpButtons()
         observeSuccessMessage()
         setOnClickListeners()
@@ -32,18 +38,18 @@ class LoginActivity : BaseActivity() {
     private fun setOnClickListeners() {
         btn_login.setOnClickListener {
             saveNickname()
-            setFirstLaunch(this, false)
+            setFirstLaunch(activity!!, false)
         }
         btn_change.setOnClickListener {
             changeNickname()
         }
         btn_back.setOnClickListener {
-            startActivity(MenuActivity.newIntent(this))
+            navController.navigate(R.id.action_loginFragment_to_menuFragment)
         }
     }
 
     private fun setUpButtons() {
-        if(getUserName(this) == null) {
+        if(getUserName(activity!!) == null) {
             btn_change?.setGone()
             btn_login?.setVisible()
             btn_back?.setGone()
@@ -56,10 +62,10 @@ class LoginActivity : BaseActivity() {
     }
 
     private fun observeSuccessMessage() {
-        viewModel.successLiveData.observe(this, androidx.lifecycle.Observer {
-                startActivity(MenuActivity.newIntent(this))
+        viewModel.successLiveData.observe(activity!!, androidx.lifecycle.Observer {
+            navController.navigate(R.id.action_loginFragment_to_menuFragment)
         })
-        viewModel.errorLiveData.observe(this, androidx.lifecycle.Observer {
+        viewModel.errorLiveData.observe(activity!!, androidx.lifecycle.Observer {
             showMessage(getString(R.string.message_error))
         })
     }
@@ -71,8 +77,8 @@ class LoginActivity : BaseActivity() {
             et_login.error = getString(R.string.error_enter_the_name)
             return
         } else {
-            setUserName(this, name)
-            setUserId(this, userId)
+            setUserName(activity!!, name)
+            setUserId(activity!!, userId)
             viewModel.sendName(name, userId)
         }
     }
@@ -83,8 +89,8 @@ class LoginActivity : BaseActivity() {
             et_login.error = getString(R.string.error_enter_the_name)
             return
         } else {
-            setUserName(this, name)
-            viewModel.changeName(name, getUserId(this)!!)
+            setUserName(activity!!, name)
+            viewModel.changeName(name, getUserId(activity!!)!!)
         }
     }
 }

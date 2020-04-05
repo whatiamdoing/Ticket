@@ -1,36 +1,45 @@
 package com.ticket.ui.records
 
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ticket.R
 import com.ticket.base.BaseActivity
-import com.ticket.ui.menu.MenuActivity
 import com.ticket.utils.adapter.Adapter
 import com.ticket.utils.setGone
 import com.ticket.utils.setVisible
-import kotlinx.android.synthetic.main.activity_records.*
+import kotlinx.android.synthetic.main.fragment_menu.*
+import kotlinx.android.synthetic.main.fragment_records.*
 
-class RecordsActivity : BaseActivity() {
+class RecordsFragment : Fragment() {
 
     private lateinit var viewModel: RecordsViewModel
     private lateinit var adapter: Adapter
+    private lateinit var navController: NavController
 
-    companion object {
-        fun newIntent(context: Context) = Intent(context, RecordsActivity::class.java)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.fragment_records, container, false)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_records)
-
-        viewModel = ViewModelProviders.of(this).get(RecordsViewModel::class.java)
+    override fun onViewCreated(
+        view: View,
+        savedInstanceState: Bundle?) {
+        navController = Navigation.findNavController(view)
+        viewModel = ViewModelProviders.of(activity!!).get(RecordsViewModel::class.java)
         setObservers()
         setOnClickListeners()
     }
+
     private fun setObservers() {
         setUsersListObserver()
         initRecycles()
@@ -39,19 +48,19 @@ class RecordsActivity : BaseActivity() {
     }
 
     private fun setOnClickListeners() {
-        btn_close.setOnClickListener{
-            startActivity(MenuActivity.newIntent(this))
+        btn_close?.setOnClickListener {
+            activity!!.onBackPressed()
         }
     }
 
     private fun initRecycles() {
         adapter = Adapter(arrayListOf())
         user_list?.adapter = adapter
-        user_list?.layoutManager = LinearLayoutManager(this)
+        user_list?.layoutManager = LinearLayoutManager(activity!!)
     }
 
     private fun setUsersListObserver() {
-        viewModel.users.observe(this, Observer {
+        viewModel.users.observe(activity!!, Observer {
             it?.let {
                 adapter.updateList(it)
             }
@@ -59,14 +68,14 @@ class RecordsActivity : BaseActivity() {
     }
 
     private fun observeUnSuccessMessage() {
-        viewModel.errorLiveData.observe(this, androidx.lifecycle.Observer {
-            showMessage(getString(R.string.message_error))
+        viewModel.errorLiveData.observe(activity!!, androidx.lifecycle.Observer {
+            (activity!! as BaseActivity).showMessage(getString(R.string.message_error))
         })
     }
 
     private fun setLoadingObserver() {
-        viewModel.isLoading.observe(this, Observer {
-            it?.let{
+        viewModel.isLoading.observe(activity!!, Observer {
+            it?.let {
                 if (it){
                     pb_records.setVisible()
                 } else {
