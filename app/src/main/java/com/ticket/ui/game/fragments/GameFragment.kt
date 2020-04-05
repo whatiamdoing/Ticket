@@ -9,12 +9,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import com.ticket.R
 import com.ticket.base.BaseActivity
 import com.ticket.ui.game.GameViewModel
-import com.ticket.ui.menu.MenuActivity
-import com.ticket.ui.tutorial.TutorialActivity
 import com.ticket.utils.*
 import com.ticket.utils.Constants.Delays.GAME_DELAY
 import com.ticket.utils.Constants.Denominators.HUNDRED
@@ -22,6 +23,8 @@ import com.ticket.utils.Constants.Denominators.HUNDRED_THOUSAND
 import com.ticket.utils.Constants.Denominators.TEN
 import com.ticket.utils.Constants.Denominators.TEN_THOUSAND
 import com.ticket.utils.Constants.Denominators.THOUSAND
+import com.ticket.utils.Constants.Others.EXTRA_BACK_BUTTON
+import com.ticket.utils.Constants.Others.EXTRA_TUTORIAL
 import com.ticket.utils.Constants.Timer.MILLISECONDS_IN_SECONDS
 import kotlinx.android.synthetic.main.fragment_game.*
 import kotlin.math.max
@@ -34,6 +37,7 @@ class GameFragment : Fragment() {
     private var points = 0
     private var mistakes = 0
     private lateinit var gameTimer: CountDownTimer
+    private lateinit var navController: NavController
     private lateinit var currentTicket: String
     private var gameDelay: Long = GAME_DELAY
 
@@ -47,52 +51,53 @@ class GameFragment : Fragment() {
     override fun onViewCreated(
         view: View,
         savedInstanceState: Bundle?) {
-
+        navController = Navigation.findNavController(view)
         gameViewModel = ViewModelProviders.of(this).get(GameViewModel::class.java)
         setOnClickListeners()
         setNewTicket()
         tv_points?.text = String.format(getString(R.string.points), points)
         tv_record?.text = String.format((getString(R.string.record)), getUserRecord(activity!!))
-        observeSuccessMessage()
+        observeUnSuccessMessage()
         gameViewModel.sendRecord(getUserId(activity!!)!!, getUserRecord(activity!!))
     }
 
     private fun setOnClickListeners() {
-        btn_info?.setOnClickListener{
-            startActivity(TutorialActivity.newTutorialIntent(activity!!,
-                isForInformation = false,
-                isBackVisible = true
-            ))
+        btn_info?.setOnClickListener {
+            val bundle = bundleOf(
+                EXTRA_TUTORIAL to false,
+                EXTRA_BACK_BUTTON to true
+            )
+            navController.navigate(R.id.action_gameFragment_to_tutorialFragment, bundle)
         }
-        btn_back?.setOnClickListener{
+        btn_back?.setOnClickListener {
             builder()
                 .setCancelable(false)
                 .setTitle(getString(R.string.exit_to_main_menu_q))
                 .setPositiveButton(R.string.yeah) { _: DialogInterface, _: Int ->
-                startActivity(MenuActivity.newIntent(activity!!))
+                    navController.navigate(R.id.action_gameFragment_to_menuFragment)
                 }
                 .setNegativeButton(R.string.no) { _: DialogInterface, _: Int -> }
                 .show()
         }
         btn_left?.setOnClickListener {
-            if(isTicketHappy(currentTicket)){
+            if(isTicketHappy(currentTicket)) {
                 onLeftToCorrectTicket()
             } else {
                 onRightToCorrectTicket()
             }
         }
         btn_right?.setOnClickListener {
-            if(!isTicketHappy(currentTicket)){
+            if(!isTicketHappy(currentTicket)) {
                 onRightToWrongTicket()
             } else {
                 onLeftToWrongTicket()
             }
         }
-        btn_tryAgain.setOnClickListener{
-            showAlertDialog()
+        btn_tryAgain.setOnClickListener {
+            showResultDialog()
         }
-        btn_retry.setOnClickListener{
-            showRetryAlert()
+        btn_retry.setOnClickListener {
+            showRetryDialog()
         }
     }
 
@@ -129,8 +134,7 @@ class GameFragment : Fragment() {
         return  firstHalf == secondHalf
     }
 
-    private fun startGame(){
-        gameDelay = GAME_DELAY
+    private fun startGame() {
         btn_left?.setVisible()
         btn_right?.setVisible()
         setNewTicket()
@@ -152,13 +156,12 @@ class GameFragment : Fragment() {
                     btn_tryAgain?.setVisible()
                     tv_gameTime?.setGone()
                 }, Constants.Delays.TIME_DELAY)
-                tv_gameTime?.text = getString(R.string.time_is_over)
-                btn_left.setNotClickable()
-                btn_right.setNotClickable()
-                btn_back.setClickable()
-                btn_info.setClickable()
+                btn_left?.setNotClickable()
+                btn_right?.setNotClickable()
+                btn_back?.setClickable()
+                btn_info?.setClickable()
                 setNewRecord(points)
-                showAlertDialog()
+                showResultDialog()
             }
             override fun onTick(millisUntilFinished: Long) {
                 tv_gameTime?.text = (millisUntilFinished/MILLISECONDS_IN_SECONDS).toString()
@@ -168,7 +171,7 @@ class GameFragment : Fragment() {
         gameTimer.start()
     }
 
-    private fun showAlertDialog(){
+    private fun showResultDialog() {
             builder()
                 .setCancelable(false)
                 .setMessage(String.format(getString(R.string.yours_result), points, when(points){
@@ -179,24 +182,25 @@ class GameFragment : Fragment() {
             }))
                 .setTitle(getString(R.string.try_one_more_time))
                 .setPositiveButton(getString(R.string.yeah)) { _: DialogInterface, _: Int ->
-            tv_points?.text = String.format(getString(R.string.points), 0)
-            startGame()
-            btn_left.setClickable()
-            btn_right.setClickable()
+                        tv_points?.text = String.format(getString(R.string.points), 0)
+                        btn_left.setClickable()
+                        btn_right.setClickable()
+                        startGame()
                 }
                 .setNegativeButton(getString(R.string.no)) { _: DialogInterface, _: Int -> }
                 .show()
     }
     private fun builder() = AlertDialog.Builder(activity!!)
 
-    private fun setNewRecord(points: Int){
-        if(getUserRecord(activity!!) < points){
+    private fun setNewRecord(points: Int) {
+        if(getUserRecord(activity!!) < points) {
             setUserRecord(activity!!, points)
             gameViewModel.sendRecord(getUserId(activity!!)!!, getUserRecord(activity!!))
             tv_record?.text = String.format(getString(R.string.record), points)
         }
     }
-    private fun showMistakeDialog(){
+    private fun showMistakeDialog() {
+        gameDelay = GAME_DELAY
         points = 0
         gameTimer.cancel()
         tv_gameTime?.setGone()
@@ -223,11 +227,12 @@ class GameFragment : Fragment() {
             .show()
     }
 
-    private fun showRetryAlert(){
+    private fun showRetryDialog() {
         builder()
             .setCancelable(false)
             .setMessage(getString(R.string.start_over))
             .setPositiveButton(R.string.yeah) { _: DialogInterface, _: Int ->
+                gameDelay = GAME_DELAY
                 gameTimer.cancel()
                 btn_left.setClickable()
                 btn_right.setClickable()
@@ -241,7 +246,7 @@ class GameFragment : Fragment() {
             .show()
     }
 
-    private fun setNewTicket(){
+    private fun setNewTicket() {
         currentTicket = if(Random.nextBoolean()) {
             getLuckyTicket()
         } else {
@@ -250,16 +255,19 @@ class GameFragment : Fragment() {
         tv_gameTickets?.text = currentTicket
     }
 
-    private fun onLeftToCorrectTicket(){
+    private fun onLeftToCorrectTicket() {
         mistakes = 0
         points++
         tv_points?.text = String.format(getString(R.string.points), points)
         setNewTicket()
     }
 
-    private fun onRightToCorrectTicket(){
+    private fun onRightToCorrectTicket() {
         mistakes++
-        if(mistakes == 3){
+        if(points > 0)
+            points--
+        tv_points?.text = String.format(getString(R.string.points), points)
+        if(mistakes == 3) {
             btn_right.setNotClickable()
             btn_left.setNotClickable()
             showMistakeDialog()
@@ -271,22 +279,27 @@ class GameFragment : Fragment() {
     private fun onLeftToWrongTicket() = onRightToCorrectTicket()
     private fun onRightToWrongTicket() = onLeftToCorrectTicket()
 
-    private fun observeSuccessMessage() {
-        gameViewModel.errorLiveData.observe(this, androidx.lifecycle.Observer{
-            (activity!! as BaseActivity).showMessage(getString(R.string.message_error))
+    private fun observeUnSuccessMessage() {
+        gameViewModel.errorLiveData.observe(activity!!, androidx.lifecycle.Observer {
+            activity?.let {
+                (it as BaseActivity).showMessage(getString(R.string.message_error))
+            }
         })
     }
 
     override fun onPause() {
         super.onPause()
-        val lastTime = tv_gameTime.text.toString().toLong()
-        gameDelay = lastTime * 1000
+        val lastTime = tv_gameTime.text.toString()
+        gameDelay = lastTime.toLong() * 1000
         gameTimer.cancel()
     }
 
     override fun onResume() {
         super.onResume()
-        startTimer()
+        when(GAME_DELAY) {
+            30000L -> startGame()
+            else -> startTimer()
+        }
     }
 }
 

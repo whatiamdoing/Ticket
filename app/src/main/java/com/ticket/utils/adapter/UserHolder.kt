@@ -10,7 +10,7 @@ import kotlinx.android.synthetic.main.item_records.view.*
 
 class UserHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
     fun bind(data: Pair<Int, UserDTO>) {
-        when(data.first){
+        when(data.first) {
             0 -> {
                 itemView.iv_crown.setVisible()
                 itemView.iv_crown.startAnimation(startScale())

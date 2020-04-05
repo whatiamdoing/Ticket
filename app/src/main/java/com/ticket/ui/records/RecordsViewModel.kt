@@ -11,7 +11,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class RecordsViewModel: BaseViewModel(){
+class RecordsViewModel: BaseViewModel() {
 
     @Inject
     lateinit var apiService: ApiService
@@ -21,15 +21,15 @@ class RecordsViewModel: BaseViewModel(){
     val errorLiveData = SingleLiveEvent<Void>()
     var users = MutableLiveData<List<UserDTO>>()
 
-    fun loadUsers(){
+    fun loadUsers() {
         subscriptions.add(
             apiService.getUsers()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe {isLoading.value = true }
-            .doOnTerminate {isLoading.value = false}
             .subscribe(
-                { (onRetrieveUserListSuccess(it))},
+                { (onRetrieveUserListSuccess(it))
+                    isLoading.value = false},
                 { errorLiveData.call()}
             ))
     }

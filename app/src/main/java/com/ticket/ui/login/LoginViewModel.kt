@@ -13,7 +13,8 @@ import okhttp3.RequestBody
 import org.json.JSONObject
 import javax.inject.Inject
 
-class LoginViewModel: BaseViewModel(){
+class LoginViewModel: BaseViewModel() {
+
     @Inject
     lateinit var apiService: ApiService
 
@@ -22,7 +23,7 @@ class LoginViewModel: BaseViewModel(){
     val errorLiveData = SingleLiveEvent<Void>()
     val successLiveData = SingleLiveEvent<String>()
 
-    fun sendName(name:String, id: String){
+    fun sendName(name:String, id: String) {
         userCreateSubscription.add(
             apiService.createUser(id, User(name, 0))
             .subscribeOn(Schedulers.io())
@@ -35,7 +36,7 @@ class LoginViewModel: BaseViewModel(){
             ))
     }
 
-    fun changeName(newName: String, id: String){
+    fun changeName(newName: String, id: String) {
         val json = JSONObject()
         json.put("name", newName)
         val body = RequestBody.create(Constants.Api.JSON_REQUEST_TYPE.toMediaTypeOrNull(), json.toString())

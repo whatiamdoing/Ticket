@@ -12,7 +12,7 @@ import okhttp3.RequestBody
 import org.json.JSONObject
 import javax.inject.Inject
 
-class GameViewModel: BaseViewModel(){
+class GameViewModel: BaseViewModel() {
     @Inject
     lateinit var apiService: ApiService
 

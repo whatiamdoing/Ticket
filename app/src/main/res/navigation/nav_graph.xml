@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/nav_graph"
+            app:startDestination="@id/splashFragment"
+            >
+
+    <fragment android:id="@+id/splashFragment"
+        android:name="com.ticket.ui.splash.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash_screen">
+
+        <action android:id="@+id/action_splashFragment_to_tutorialFragment"
+            app:destination="@id/tutorialFragment"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            />
+
+        <action android:id="@+id/action_splashFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            />
+
+        <action android:id="@+id/action_splashFragment_to_menuFragment"
+            app:destination="@id/menuFragment"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            />
+
+    </fragment>
+
+    <fragment android:id="@+id/tutorialFragment"
+        android:name="com.ticket.ui.tutorial.TutorialFragment"
+        android:label="fragment_tutorial"
+        tools:layout="@layout/fragment_tutorial">
+
+        <action android:id="@+id/action_tutorialFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            />
+
+    </fragment>
+
+    <fragment android:id="@+id/loginFragment"
+        android:name="com.ticket.ui.login.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login_screen">
+
+        <action android:id="@+id/action_loginFragment_to_menuFragment"
+            app:destination="@id/menuFragment"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            />
+
+    </fragment>
+
+    <fragment android:id="@+id/menuFragment"
+        android:name="com.ticket.ui.menu.MenuFragment"
+        android:label="fragment_menu"
+        tools:layout="@layout/fragment_menu">
+
+        <action android:id="@+id/action_menuFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            />
+
+        <action android:id="@+id/action_menuFragment_to_tutorialFragment"
+            app:destination="@id/tutorialFragment"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            />
+
+        <action android:id="@+id/action_menuFragment_to_recordsFragment"
+            app:destination="@id/recordsFragment"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            />
+
+        <action android:id="@+id/action_menuFragment_to_timerFragment"
+            app:destination="@id/timerFragment"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            />
+
+    </fragment>
+
+
+    <fragment android:id="@+id/gameFragment"
+    android:name="com.ticket.ui.game.fragments.GameFragment"
+    android:label="fragment_game"
+    tools:layout="@layout/fragment_game"
+    >
+        <action android:id="@+id/action_gameFragment_to_tutorialFragment"
+            app:destination="@id/tutorialFragment"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            />
+
+        <action android:id="@+id/action_gameFragment_to_menuFragment"
+            app:destination="@id/menuFragment"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            />
+
+    </fragment>
+
+    <fragment android:id="@+id/recordsFragment"
+        android:name="com.ticket.ui.records.RecordsFragment"
+        android:label="fragment_records"
+        tools:layout="@layout/fragment_records"
+        />
+
+    <fragment android:id="@+id/timerFragment"
+        android:name="com.ticket.ui.game.fragments.TimerFragment"
+        android:label="fragment_timer"
+        tools:layout="@layout/fragment_timer"
+        >
+
+        <action android:id="@+id/action_timerFragment_to_gameFragment"
+            app:destination="@id/gameFragment"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            />
+
+    </fragment>
+
+</navigation>
